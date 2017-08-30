@@ -6,3 +6,6 @@ A group project built with:
 * [@mford008](https://github.com/mford008)
 
 A live demo can be viewed [here](https://takatanium.github.io/UCB-Project1)
+
+
+This project is released under the MIT License.
