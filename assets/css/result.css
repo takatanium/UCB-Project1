@@ -1,0 +1,64 @@
+body {
+	background-image: url("../img/landing_img1.jpg");
+	background-size: cover;
+}
+
+.my-container {
+	padding: 0 50px 0 50px;
+}
+#blue {
+	min-height: 100vh;
+}
+
+#map-row {
+	margin: 0;
+}
+
+#map-col {
+	padding: 0;
+	/*padding-right: 10px;*/
+}
+
+#map,
+#stat {
+	/*margin-bottom: 0;*/
+	height: 87vh;
+	margin: 0;
+	z-index: -1;
+}
+
+#info-list {
+	margin-top: 0 !important;
+	height: 87vh;
+}
+
+#stat-col {
+	padding: 0;
+	/*padding-left: 10px;*/
+}
+
+#magnify {
+	line-height: 45px;
+}
+
+#search {
+	font-size: 40px;
+	margin: 0;
+}
+
+input {
+	background-color: rgba(0,0,0,0.1);
+	z-index: 2;
+}
+
+#nav_container {
+	background-color: rgba(0,0,0,0.1) !important;
+}
+
+.list-body {
+	border: none;
+}
+
+/*.fade-alabama {
+	display: none;
+}*/
