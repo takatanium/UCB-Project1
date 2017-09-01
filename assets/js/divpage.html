@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map">
+    	<script>
+    	function initializeMap() {
+    		var state = $("#state-input").val();
+    		var stateMap = new google.maps.Map(document.getElementById('map'), {
+          		zoom: 4,
+          		center: state
+    	}
+    	</script>
+    	<script async defer
+    	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s&callback=initializeMap">
+    </script>
+    </div>
+  </body>
+</html>

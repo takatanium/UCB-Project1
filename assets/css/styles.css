@@ -45,6 +45,12 @@ body {
 	z-index: 5;
 }
 
+#map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+}
+
 #state-input-label {
 	font-size: 40px;
 	position: static;
