@@ -31,7 +31,20 @@
 	          <div id="map" class="card blue-grey darken-1">
 	            <div class="card-content white-text">
 	              <span class="card-title">Google Map</span>
-	              <p>Card to hold Map and associated data</p>
+	              
+	              	<script>
+    				function initializeMap() {
+    					var state = $("#state-input").val();
+    					var stateMap = new google.maps.Map(document.getElementById('map'), {
+          						zoom: 4,
+          						center: state
+    						}
+    				</script>
+    				
+    				<script async defer
+    					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s&callback=initializeMap">
+    				</script>
+
 	            </div>
 	          </div>
 	        </div>
