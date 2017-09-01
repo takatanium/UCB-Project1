@@ -2,20 +2,24 @@
 html,
 body {
 	height: 100%;
+	width: 100%;
 }
 
 body {
+	background-color: #03031A;
+}
+
+.fade {
+	height: 100%;
+	width: 100%;
+	position: fixed;
 	background-image: url("../img/landing_img1.jpg");
 	background-size: cover;
 }
 
-#main-container {
-/*	display: flex;
-	flex-direction: column;*/
-}
-
 #main-row {
 	height: 100vh;
+	margin: 0;
 }
 
 #landing-col {
@@ -34,8 +38,8 @@ body {
 }
 
 #state-auto { 
-	/*border: none;*/
 	color: silver;
+	opacity: 0.5;
 	border-width: 3px;
 }
 
