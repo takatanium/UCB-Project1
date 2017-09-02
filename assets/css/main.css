@@ -10,6 +10,7 @@ body {
 }
 
 .fade {
+	opacity: 0;
   height: 100%;
   width: 100%;
   background-image: url("../img/landing_img1.jpg");
