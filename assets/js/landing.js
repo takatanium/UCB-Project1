@@ -52,7 +52,7 @@ states = {
 };
 
 $(document).ready(function() {
-  $(".fade").hide(0).delay(100).fadeIn(5000);
+  // $(".fade").hide(0).delay(100).fadeIn(5000);
 });
 
 $("#state-input").keyup(function(e) {
@@ -95,4 +95,5 @@ $("#state-input").keyup(function(e) {
   if (e.which == 13 && $("#state-auto").val().length > 0) {
     $("#state-input").val($("#state-auto").val());
   }
+
 });
