@@ -72,7 +72,7 @@ $(function() {
       		console.log("Make " + nextState);
 
 	      	let $info = $('<div>').addClass('row').attr('id', 'info-row');
-	      	$info.append(mapColGen(nextState)).append(statColGen());
+	      	$info.append(mapColGen(nextState)).append(statColGen(nextState));
 
 	      	let $cont = $('<div>').addClass('my-container sticky-scroll');
 					$cont.attr('id', nextState).append(navGen(nextState)).append($info);
@@ -82,7 +82,10 @@ $(function() {
 					$('body').promise().done(function(){
   					$('#'+prevState).css('opacity', '0');
   					$('#'+nextState).css('opacity', '0');
-  					$('#'+currentState).fadeTo(1000, 1);
+  					$('#'+currentState).fadeTo(600, 1);
+  					if (currentState !== 'landing') {
+							initializeMap(currentState);
+						}
 					});
 
 					$.scrollify({
@@ -95,6 +98,9 @@ $(function() {
     			$('#'+prevState).css('opacity', '0');
 					$('#'+nextState).css('opacity', '0');
 					$('#'+currentState).fadeTo(1000, 1);
+					if (currentState !== 'landing') {
+						initializeMap(currentState);
+					}
 				}
       });
     }
@@ -142,12 +148,10 @@ function mapColGen(stateName) {
 	let $col = $('<div>').addClass('col s12 m6').attr('id', 'map-col');
 	$col.html($card);
 
-	// initializeMap(stateName);
-
 	return $col;
 }
 
-function statColGen() {
+function statColGen(stateName) {
 	let $ul = $('<ul>').addClass('collapsible grey lighten-5');
 	$ul.attr('id', 'stat-list');
 	
@@ -155,7 +159,8 @@ function statColGen() {
 	$liHeader.html('<i class="material-icons">whatshot</i>State Info');
 	// let $liContent = $('<span>').html('State Info');
 	let $liBody = $('<div>').addClass('collapsible-body grey lighten-5 list-body');
-	// $liBody.html('<span>State Info</span>');
+	$liBody.html('<span>State Info</span>');
+	$liBody.attr('id', stateName+'-info');
 	let $li = $('<li>').html($liHeader).append($liBody);
 
 	$ul.append(displayStats('Statistic One', 'filter_drama'));
@@ -181,11 +186,13 @@ function displayStats(name, icon) {
 	return $li;
 }
 
-// function initializeMap(stateName) {
-//   var state = {lat: -25.363, lng: 131.044};
-//   var stateMap = new google.maps.Map(document.getElementById(stateName+'-map'), {
-//     zoom: 4,
-//     center: state
-//   });
-// }
+function initializeMap(stateName) {
+	if (stateName !== undefined) {
+	  var state = {lat: -25.363, lng: 131.044};
+	  var stateMap = new google.maps.Map(document.getElementById(stateName+'-map'), {
+	    zoom: 4,
+	    center: state
+	  });
+	}
+}
 
