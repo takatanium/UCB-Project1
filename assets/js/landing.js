@@ -1,4 +1,4 @@
-states = {
+oldStates = {
   Alabama: "04000US01",
   Alaska: "04000US02",
   Arizona: "04000US04",
@@ -52,12 +52,13 @@ states = {
 };
 
 $(document).ready(function() {
-  $(".fade").hide(0).delay(100).fadeIn(5000);
+  $(".fade").fadeTo(6000, 1);
 });
 
 $("#state-input").keyup(function(e) {
   //restrict to letters
   let str1 = tools.capFirst($("#state-input").val());
+  $("#state-input").val(tools.capFirst($("#state-input").val()));
   // if (str1 == "No") {
   //   str1 = "North ";
   //   $("#state-auto").val(str1);
@@ -68,10 +69,9 @@ $("#state-input").keyup(function(e) {
   //   $("#state-auto").val(str1);
   //   $("#state-input").val(str1);
   // }
-
   //traverse states object and suggest state
   if (str1.length > 0) {
-    for (var key in states) {
+    for (var key in oldStates) {
       let str2 = key.slice(0, str1.length);
 
       if (str1 === str2) {
@@ -95,4 +95,5 @@ $("#state-input").keyup(function(e) {
   if (e.which == 13 && $("#state-auto").val().length > 0) {
     $("#state-input").val($("#state-auto").val());
   }
+
 });
