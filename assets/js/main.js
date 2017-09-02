@@ -31,6 +31,8 @@ function getData() {
     dataType: 'json',
     method: 'GET',
     success: function(res) {
+      
+      console.log(res)
       for(let i = 0; i < res.data.length; i++) {
         let id = res.data[i][1];
         for(let j = 0; j < states.length; j++) {
@@ -38,11 +40,6 @@ function getData() {
             states[j].population = res.data[i][2];
             states[j].median_age = res.data[i][3];
             states[j].median_income = res.data[i][4];
-            console.log("State: " + states[j].name +
-                        "\nPopulation: " + states[j].population +
-                        "\nMedian Age: " + states[j].median_age +
-                        "\nMedian Income: " + states[j].median_income);
-
           }
         }
       }
