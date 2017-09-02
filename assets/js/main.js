@@ -10,7 +10,6 @@ $(document).ready(function($) {
     dataType: 'json',
     method: 'GET',
     success: function(res) {
-
       states = res;
 
       for (let i = 0; i < states.length; i++) {
@@ -18,14 +17,7 @@ $(document).ready(function($) {
         states[i]['median_age'] = null
         states[i]['median_income'] = null
       }
-
-      console.log("Modified States object: ")
-      console.log(states);
-
-      console.log("API data response: ")
       getData();
-
-
     },
     error: function(e) {
       console.log(e);
@@ -43,13 +35,13 @@ function getData() {
         let id = res.data[i][1];
         for(let j = 0; j < states.length; j++) {
           if (id == states[j].id) {
-              states[j].population = res.data[i][2];
-              states[j].median_age = res.data[i][3];
-              states[j].median_income = res.data[i][4];
-              console.log("State: " + states[j].name +
-                          "\nPopulation: " + states[j].population +
-                          "\nMedian Age: " + states[j].median_age +
-                          "\nMedian Income: " + states[j].median_income);
+            states[j].population = res.data[i][2];
+            states[j].median_age = res.data[i][3];
+            states[j].median_income = res.data[i][4];
+            console.log("State: " + states[j].name +
+                        "\nPopulation: " + states[j].population +
+                        "\nMedian Age: " + states[j].median_age +
+                        "\nMedian Income: " + states[j].median_income);
 
           }
         }
