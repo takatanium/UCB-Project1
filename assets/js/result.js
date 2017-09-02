@@ -186,7 +186,13 @@ function displayStats(name, icon) {
 	return $li;
 }
 
+// locResult (needs to be an array of capitol results)
+
 function initializeMap(stateName) {
+
+	// var capLat = locResult[].geometry.location.lat();
+	// var capLng = locResult[].geometry.location.lng();
+
 	if (stateName !== undefined) {
 	  var state = {lat: -25.363, lng: 131.044};
 	  var stateMap = new google.maps.Map(document.getElementById(stateName+'-map'), {

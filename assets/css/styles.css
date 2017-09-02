@@ -60,3 +60,14 @@ body {
 .input-field label:not(.label-icon).active {
     transform: translateY(-40px) scale(0.6);
 }
+
+input#search {
+	background-color: #a9bcd0;
+}
+
+/*Color pallete for reference:
+d8dbe2 - pale gray for backgrounds
+a9bcd0 - pale blue - headers
+58a4b0 - turquoise/blue - other headers, possibly larger headers
+373f51 - navy - backgrounds
+1b1b1e - black/blue - other background material?*/
