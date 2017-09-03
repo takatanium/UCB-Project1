@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=pop,age,income&year=latest'
+const BASE_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=pop,age,income'
 
 // Global object that holds API data
 var states;
@@ -13,9 +13,9 @@ $(document).ready(function($) {
       states = res;
 
       for (let i = 0; i < states.length; i++) {
-        states[i]['population'] = null
-        states[i]['median_age'] = null
-        states[i]['median_income'] = null
+        states[i]['population'] = {}
+        states[i]['median_age'] = {}
+        states[i]['median_income'] = {}
       }
       getData();
     },
@@ -31,18 +31,31 @@ function getData() {
     dataType: 'json',
     method: 'GET',
     success: function(res) {
-      
-      console.log(res)
+
       for(let i = 0; i < res.data.length; i++) {
         let id = res.data[i][1];
+        
         for(let j = 0; j < states.length; j++) {
           if (id == states[j].id) {
-            states[j].population = res.data[i][2];
-            states[j].median_age = res.data[i][3];
-            states[j].median_income = res.data[i][4];
+            
+            let year = res.data[i][0];
+
+            if (!states[j]['population'].hasOwnProperty(res.data[i][0])) {
+              states[j]['population'][year] = res.data[i][2];
+            }            
+
+            if (!states[j]['median_age'].hasOwnProperty(res.data[i][0])) {
+              states[j]['median_age'][year] = res.data[i][3];
+            }            
+
+            if (!states[j]['median_income'].hasOwnProperty(res.data[i][0])) {
+              states[j]['median_income'][year] = res.data[i][4];
+            }
           }
         }
       }
+      // end result
+      console.log(states);
       dynamicDiv('landing');
     },
     error: function(e) {
