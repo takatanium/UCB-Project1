@@ -1,73 +1,123 @@
-/*Insert Main Css*/
-html,
-body {
-	height: 100%;
-}
-
-body {
-	background-image: url("../img/landing_img1.jpg");
-	background-size: cover;
-}
-
-#main-container {
-/*	display: flex;
-	flex-direction: column;*/
-}
-
-#main-row {
-	height: 100vh;
-}
-
-#landing-col {
-	height: 100vh;
-	margin-top: 0;
-		display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-}
-
-#state-auto,
-#state-input {
-	position: absolute;
-	font-size: 60px;
-	height: 80px;
-}
-
-#state-auto { 
-	/*border: none;*/
-	color: silver;
-	border-width: 3px;
-}
-
-#state-input {
-	color: #26a69a;
-	border-width: 3px;
-	z-index: 5;
-}
-
-#map-col {
-        width: 100%;
-        height: 400px;
-        background-color: grey;
-}
-
-#state-input-label {
-	font-size: 40px;
-	position: static;
-	height: auto;
-}
-
-.input-field label:not(.label-icon).active {
-    transform: translateY(-40px) scale(0.6);
-}
-
-input#search {
-	background-color: #a9bcd0;
-}
-
 /*Color pallete for reference:
 d8dbe2 - pale gray for backgrounds
 a9bcd0 - pale blue - headers
 58a4b0 - turquoise/blue - other headers, possibly larger headers
 373f51 - navy - backgrounds
 1b1b1e - black/blue - other background material?*/
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #d8dbe2;
+}
+
+.fade {
+	opacity: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/landing_img1.jpg");
+  background-size: cover;
+}
+
+#main-row {
+  height: 100vh;
+  margin: 0;
+}
+
+#landing-col {
+  height: 100vh;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#state-auto,
+#state-input {
+  position: absolute;
+  font-size: 60px;
+  height: 80px;
+}
+
+#state-auto {
+  color: silver;
+  opacity: 0.5;
+  border-width: 3px;
+}
+
+#state-input {
+  color: #26a69a;
+  border-width: 3px;
+  z-index: 5;
+}
+
+#state-input-label {
+  font-size: 40px;
+  position: static;
+  height: auto;
+}
+
+.input-field label:not(.label-icon).active {
+  transform: translateY(-40px) scale(0.6);
+}
+
+.my-container {
+	padding: 0 50px 0 50px;
+	opacity: 0;
+}
+
+#info-row {
+	margin: 0;
+}
+
+#map-col {
+	padding: 0;
+}
+
+.map,
+#stat {
+	height: 87vh;
+	margin: 0;
+	z-index: -1;
+}
+
+#stat-list {
+	margin: 0 !important;
+	height: 87vh;
+}
+
+#stat-col {
+	padding: 0;
+}
+
+#magnify {
+	line-height: 45px;
+}
+
+#search {
+	font-size: 40px;
+	margin: 0;
+}
+
+input {
+	background-color: rgba(0,0,0,0.1);
+	z-index: 2;
+}
+
+.nav-container {
+	background-color: rgba(0,0,0,0.1) !important;
+}
+
+.list-body {
+	border: none;
+}
+
+input#search {
+	background-color: #58a4b0;
+}
+
+
