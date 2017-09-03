@@ -56,6 +56,7 @@ function getData() {
       }
       // end result
       console.log(states);
+      dynamicDiv('landing');
     },
     error: function(e) {
       console.log(e);
