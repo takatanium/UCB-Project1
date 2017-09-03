@@ -136,12 +136,12 @@ function displayStats(state, title, icon, active) {
 		$liHeader.addClass('active');
 		$liBody.addClass('list-body');
 		$liContent.append('<p>State Capitol: ' + state.capitol + '</p>');
-		$liContent.append('<p>Population: ' + state.population + '</p>');
-		$liContent.append('<p>Median Age: ' + state.median_age + '</p>');
+		$liContent.append('<p>Population: ' + state.population["2015"] + '</p>');
+		$liContent.append('<p>Median Age: ' + state.median_age["2015"] + '</p>');
 	} 
 	else if (title === 'Employment Statistics') {
 		$liContent.append('<p>State Statistics</p>');
-		$liContent.append('<p>Median Income: ' + state.median_income + '</p>');
+		$liContent.append('<p>Median Income: ' + state.median_income["2015"] + '</p>');
 	}
 	else {
 		$liContent.append('State Statistics');
