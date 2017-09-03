@@ -51,9 +51,9 @@ oldStates = {
   Wyoming: "04000US56"
 };
 
-$(document).ready(function() {
-  $(".fade").fadeTo(6000, 1);
-});
+// $(document).ready(function() {
+//   $(".fade").fadeTo(6000, 1);
+// });
 
 $("#state-input").keyup(function(e) {
   //restrict to letters

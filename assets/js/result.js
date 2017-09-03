@@ -1,6 +1,7 @@
 $(function() {
 	$.scrollify({
 		section : ".sticky-scroll",
+		scrollbars: false,
 		scrollSpeed: 1100,
 		after: function() {
       var currentSlide = $.scrollify.current();
@@ -22,12 +23,26 @@ function dynamicDiv(currentState) {
   });
 
   $('.my-container').promise().done(function() {
+  	if (thisState !== -1) {
+  		if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
+  	}
 	  if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
 	  if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
 
 		$('#'+prevState.id).css('opacity', '0');
 		$('#'+nextState.id).css('opacity', '0');
-		if (thisState !== -1) $('#'+thisState.id).fadeTo(1000, 1);
+		$('#landing-page').css('opacity', '0');
+
+		if (thisState !== -1) {
+			$('#'+thisState.id).fadeTo(1000, 1);
+		} else {
+			$('#landing-page').fadeTo(3000, 1);
+		}
+
+		//generate google map
+		//may need to only generate thisState map depending on load time
+		initMap();
+
 	});
 }
 
@@ -42,7 +57,7 @@ function genContent(makeState) {
 
 function getCurrentState(currentState) {
 	let index = states.findIndex(function(element){
-		if (element.name === currentState) return element;
+		if (element.name === currentState.replace(/-+/g, ' ')) return element;
 	});
 	return index === -1 ? -1 : states[index];
 }
@@ -88,7 +103,8 @@ function navGen(state) {
 }
 
 function mapColGen(state) {
-	let $card = $('<div>').addClass('card map').attr('id', state.name+'-map');
+	let $card = $('<div>').addClass('card map');
+	$card.attr('id', state.name.replace(/\s+/g, '-')+'-map');
 	$card.addClass('blue-grey darken-1');
 	let $col = $('<div>').addClass('col s12 m6').attr('id', 'map-col');
 	$col.html($card);

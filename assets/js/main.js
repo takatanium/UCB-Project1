@@ -56,14 +56,12 @@ function getData() {
       }
       // end result
 
-      let currentDiv = window.location.hash.slice(1);
-      if (isNaN(currentDiv)) currentDiv = 'landing'; 
-      console.log(currentDiv);
-      // let currentState = divNum === 1 ? 'landing' : states[divNum-1].name;
-      // console.log(currentState);
       console.log(states);
       createAllDivs();
-      dynamicDiv(currentDiv);
+      if (window.location.hash.slice(1).trim() === "landing" || 
+          window.location.hash.slice(1).trim() === "") {
+        dynamicDiv(window.location.hash.slice(1));
+      }
     },
     error: function(e) {
       console.log(e);
