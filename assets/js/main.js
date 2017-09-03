@@ -55,8 +55,13 @@ function getData() {
         }
       }
       // end result
+
       console.log(states);
-      dynamicDiv('landing');
+      createAllDivs();
+      if (window.location.hash.slice(1).trim() === "landing" || 
+          window.location.hash.slice(1).trim() === "") {
+        dynamicDiv(window.location.hash.slice(1));
+      }
     },
     error: function(e) {
       console.log(e);

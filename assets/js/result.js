@@ -1,62 +1,65 @@
 $(function() {
 	$.scrollify({
 		section : ".sticky-scroll",
+		scrollbars: false,
 		scrollSpeed: 1100,
 		after: function() {
       var currentSlide = $.scrollify.current();
-      let currentState = currentSlide.attr('id');
-
+      let currentState = currentSlide.data('section-name');
       dynamicDiv(currentState);
     }
 		});
 });
 
 function dynamicDiv(currentState) {
+  let thisState = getCurrentState(currentState);
   let nextState = getNextState(currentState);
-  console.log(nextState);
   let prevState = getPrevState(currentState);
-  console.log(prevState);
 
-  var makeNew = true;
   $('.my-container').each(function() {
-  	if (this.id === nextState.name) makeNew = false;
+  	if ($(this).data('section-name') !== currentState) {
+  		$(this).empty();
+  	}
   });
 
   $('.my-container').promise().done(function() {
-  	if (makeNew) {
-  		console.log("Make " + nextState.name);
+  	if (thisState !== -1) {
+  		if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
+  	}
+	  if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
+	  if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
 
-    	let $info = $('<div>').addClass('row').attr('id', 'info-row');
-    	$info.append(mapColGen(nextState)).append(statColGen(nextState));
+		$('#'+prevState.id).css('opacity', '0');
+		$('#'+nextState.id).css('opacity', '0');
+		$('#landing-page').css('opacity', '0');
 
-    	let $cont = $('<div>').addClass('my-container sticky-scroll');
-			$cont.attr('id', nextState.name).append(navGen(nextState)).append($info);
-
-			$cont.appendTo('body');
-
-			$('body').promise().done(function(){
-				$('#'+prevState.name).css('opacity', '0');
-				$('#'+nextState.name).css('opacity', '0');
-				$('#'+currentState).fadeTo(1000, 1);
-				//if (currentState !== 'landing') {
-				// 	initializeMap(currentState);
-				// }
-			});
-			$.scrollify({
-				section : ".sticky-scroll",
-				scrollSpeed: 1100
-			});
+		if (thisState !== -1) {
+			$('#'+thisState.id).fadeTo(1000, 1);
+		} else {
+			$('#landing-page').fadeTo(3000, 1);
 		}
-		else {
-			console.log("Don't make " + nextState.name);
-			$('#'+prevState.name).css('opacity', '0');
-			$('#'+nextState.name).css('opacity', '0');
-			$('#'+currentState).fadeTo(1000, 1);
-			// if (currentState !== 'landing') {
-			// 	initializeMap(currentState);
-			// }
-		}
+
+		//generate google map
+		//may need to only generate thisState map depending on load time
+		initMap();
+
 	});
+}
+
+function genContent(makeState) {
+	let $info = $('<div>').addClass('row').attr('id', 'info-row');
+	$info.append(mapColGen(makeState)).append(statColGen(makeState));
+
+	let $cont = $('<section>').addClass('my-container sticky-scroll');
+	$cont.attr('id', makeState.id).attr('data-section-name', makeState.name);
+	$('#'+makeState.id).html(navGen(makeState)).append($info);
+}
+
+function getCurrentState(currentState) {
+	let index = states.findIndex(function(element){
+		if (element.name === currentState.replace(/-+/g, ' ')) return element;
+	});
+	return index === -1 ? -1 : states[index];
 }
 
 function getNextState(currentState) {
@@ -100,7 +103,8 @@ function navGen(state) {
 }
 
 function mapColGen(state) {
-	let $card = $('<div>').addClass('card map').attr('id', state.name+'-map');
+	let $card = $('<div>').addClass('card map');
+	$card.attr('id', state.name.replace(/\s+/g, '-')+'-map');
 	$card.addClass('blue-grey darken-1');
 	let $col = $('<div>').addClass('col s12 m6').attr('id', 'map-col');
 	$col.html($card);
