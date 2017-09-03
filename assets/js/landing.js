@@ -97,3 +97,16 @@ $("#state-input").keyup(function(e) {
   }
 
 });
+
+function createAllDivs() {
+  for (var i = 0; i < states.length; i++) {
+    let $div = $('<section>').addClass('my-container sticky-scroll');
+    $div.attr('id', states[i].id);
+    $div.attr('data-section-name', states[i].name.replace(/\s+/g, '-'));
+    $div.appendTo('body');
+  }
+  $.scrollify({
+    section : ".sticky-scroll",
+    scrollSpeed: 1100
+  });
+}

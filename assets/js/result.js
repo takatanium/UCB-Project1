@@ -4,58 +4,47 @@ $(function() {
 		scrollSpeed: 1100,
 		after: function() {
       var currentSlide = $.scrollify.current();
-      let currentState = currentSlide.attr('id');
+      let currentState = currentSlide.data('section-name');
       dynamicDiv(currentState);
     }
 	});
 });
 
 function dynamicDiv(currentState) {
+  let thisState = getCurrentState(currentState);
   let nextState = getNextState(currentState);
-  console.log(nextState);
   let prevState = getPrevState(currentState);
-  console.log(prevState);
 
-  var makeNew = true;
   $('.my-container').each(function() {
-  	if (this.id === nextState.name) makeNew = false;
+  	if ($(this).data('section-name') !== currentState) {
+  		$(this).empty();
+  	}
   });
 
   $('.my-container').promise().done(function() {
-  	if (makeNew) {
-  		console.log("Make " + nextState.name);
+	  if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
+	  if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
 
-    	let $info = $('<div>').addClass('row').attr('id', 'info-row');
-    	$info.append(mapColGen(nextState)).append(statColGen(nextState));
-
-    	let $cont = $('<div>').addClass('my-container sticky-scroll');
-			$cont.attr('id', nextState.name).append(navGen(nextState)).append($info);
-
-			$cont.appendTo('body');
-
-			$('body').promise().done(function(){
-				$('#'+prevState.name).css('opacity', '0');
-				$('#'+nextState.name).css('opacity', '0');
-				$('#'+currentState).fadeTo(1000, 1);
-				//if (currentState !== 'landing') {
-				// 	initializeMap(currentState);
-				// }
-			});
-			$.scrollify({
-				section : ".sticky-scroll",
-				scrollSpeed: 1100
-			});
-		}
-		else {
-			console.log("Don't make " + nextState.name);
-			$('#'+prevState.name).css('opacity', '0');
-			$('#'+nextState.name).css('opacity', '0');
-			$('#'+currentState).fadeTo(1000, 1);
-			// if (currentState !== 'landing') {
-			// 	initializeMap(currentState);
-			// }
-		}
+		$('#'+prevState.id).css('opacity', '0');
+		$('#'+nextState.id).css('opacity', '0');
+		if (thisState !== -1) $('#'+thisState.id).fadeTo(1000, 1);
 	});
+}
+
+function genContent(makeState) {
+	let $info = $('<div>').addClass('row').attr('id', 'info-row');
+	$info.append(mapColGen(makeState)).append(statColGen(makeState));
+
+	let $cont = $('<section>').addClass('my-container sticky-scroll');
+	$cont.attr('id', makeState.id).attr('data-section-name', makeState.name);
+	$('#'+makeState.id).html(navGen(makeState)).append($info);
+}
+
+function getCurrentState(currentState) {
+	let index = states.findIndex(function(element){
+		if (element.name === currentState) return element;
+	});
+	return index === -1 ? -1 : states[index];
 }
 
 function getNextState(currentState) {
@@ -148,21 +137,5 @@ function displayStats(state, title, icon, active) {
 	}
 
 	return $li;
-}
-
-// locResult (needs to be an array of capitol results)
-
-function initializeMap(stateName) {
-
-	// var capLat = locResult[].geometry.location.lat();
-	// var capLng = locResult[].geometry.location.lng();
-
-	if (stateName !== undefined) {
-	  var state = {lat: -25.363, lng: 131.044};
-	  var stateMap = new google.maps.Map(document.getElementById(stateName+'-map'), {
-	    zoom: 4,
-	    center: state
-	  });
-	}
 }
 
