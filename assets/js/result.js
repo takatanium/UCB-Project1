@@ -7,7 +7,7 @@ $(function() {
       let currentState = currentSlide.data('section-name');
       dynamicDiv(currentState);
     }
-	});
+		});
 });
 
 function dynamicDiv(currentState) {
