@@ -1,6 +1,6 @@
 function initMap() {
         var capLocation = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('printMap'), {
+        var map = new google.maps.Map(document.getElementById('Alabama-map'), {
           zoom: 4,
           center: capLocation
         });
