@@ -1,14 +1,28 @@
 function initMap() {
-        var capLocation = {lat: -25.363, lng: 131.044};
+
+        var userLocation = "Montgomery, Alabama"
+        var geocoder = new google.maps.Geocoder();  
+
+        geocoder.geocode ({
+          address: userLocation
+        }, function(locResult) {
+            console.log(locResult);
+            var lat1 = locResult[0].geometry.location.lat();
+            console.log(lat1);
+            var lng1 = locResult[0].geometry.location.lng();
+            console.log(lng1);
+          // });
+
+        var capLocation = {lat: lat1, lng: lng1};
         var map = new google.maps.Map(document.getElementById('Alabama-map'), {
-          zoom: 4,
+          zoom: 6,
           center: capLocation
         });
         var marker = new google.maps.Marker({
           position: capLocation,
           map: map
         });
-
+});
       }
 
 //AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s = API key
