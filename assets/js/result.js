@@ -126,7 +126,7 @@ function mapColGen(state) {
 function statColGen(state) {
 	let $ul = $('<ul>').addClass('collapsible grey lighten-5');
 	$ul.attr('id', 'stat-list');
-	
+
 	$ul.append(displayStats(state, 'Employment Statistics', 'work', false));
 	$ul.append(displayStats(state, 'Education Statistics', 'school', false));
 	$ul.append(displayStats(state, 'State Information', 'whatshot', true));
@@ -151,10 +151,11 @@ function displayStats(state, title, icon, active) {
 	if (active) {
 		$liHeader.addClass('active');
 		$liBody.addClass('list-body');
+		$liContent.append('<img src="assets/img/flags/' + state.abbreviation + '.png">');
 		$liContent.append('<p>State Capitol: ' + state.capitol + '</p>');
 		$liContent.append('<p>Population: ' + state.population["2015"] + '</p>');
 		$liContent.append('<p>Median Age: ' + state.median_age["2015"] + '</p>');
-	} 
+	}
 	else if (title === 'Employment Statistics') {
 		$liContent.append('<p>State Statistics</p>');
 		$liContent.append('<p>Median Income: ' + state.median_income["2015"] + '</p>');
@@ -165,4 +166,3 @@ function displayStats(state, title, icon, active) {
 
 	return $li;
 }
-
