@@ -9,15 +9,10 @@ html,
 body {
   height: 100%;
   width: 100%;
-  /*overflow: hidden;*/
 }
 
 body {
   background-color: #d8dbe2;
-}
-
-section {
-	/*overflow-y: scroll;*/
 }
 
 .fade {
@@ -125,4 +120,25 @@ input#search {
 	background-color: #58a4b0;
 }
 
+/*landing scroll indicator*/
+#chevron {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#scroll-indicator {
+  color: white;
+  animation-name: bounce;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+@keyframes bounce {
+  0% {transform: translateY(0);} 
+  50% {transform: translateY(20px);}
+  100% {transform: translateY(0);}    
+}
 

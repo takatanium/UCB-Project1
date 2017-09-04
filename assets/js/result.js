@@ -3,18 +3,27 @@ $(function() {
 		section : ".sticky-scroll",
 		scrollbars: false,
 		scrollSpeed: 1100,
+		before: function() {
+			let currentId = $.scrollify.current().attr('id');
+
+      console.log("This returns state ID: " + currentId + " before scroll event");
+		},
 		after: function() {
-      var currentSlide = $.scrollify.current();
+      let currentSlide = $.scrollify.current();
       let currentState = currentSlide.data('section-name');
       dynamicDiv(currentState);
     }
-		});
+	});
 });
 
 function dynamicDiv(currentState) {
+
   let thisState = getCurrentState(currentState);
   let nextState = getNextState(currentState);
   let prevState = getPrevState(currentState);
+
+  console.log("This is where previous and next state IDs can be returned: " +
+  						prevState.id + " and " + nextState.id);
 
   $('.my-container').each(function() {
   	if ($(this).data('section-name') !== currentState) {
@@ -36,7 +45,7 @@ function dynamicDiv(currentState) {
 		if (thisState !== -1) {
 			$('#'+thisState.id).fadeTo(1000, 1);
 		} else {
-			$('#landing-page').fadeTo(3000, 1);
+			$('#landing-page').fadeTo(1000, 1);
 		}
 
 		//generate google map
@@ -98,6 +107,8 @@ function navGen(state) {
 	let $form = $('<form>').html($inputDiv);
 	let $navWrap = $('<div>').addClass('nav-wrapper').html($form);
 	let $nav = $('<nav>').addClass('nav-container').html($navWrap);
+
+	initiateInput();
 
 	return $nav;
 }
