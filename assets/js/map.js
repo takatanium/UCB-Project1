@@ -1,6 +1,7 @@
 function initMap() {
 
-        var userLocation = "Montgomery, Alabama"
+  let index = states.findIndex(function(element) {
+        var userLocation =  element.capitol //need to pick this up via json
         var geocoder = new google.maps.Geocoder();  
 
         geocoder.geocode ({
@@ -14,7 +15,7 @@ function initMap() {
           // });
 
         var capLocation = {lat: lat1, lng: lng1};
-        var map = new google.maps.Map(document.getElementById('Alabama-map'), {
+        var map = new google.maps.Map(document.getElementById('#' + element.name), { //need json for printing to all maps
           zoom: 6,
           center: capLocation
         });
@@ -22,8 +23,9 @@ function initMap() {
           position: capLocation,
           map: map
         });
+    });
 });
-      }
+};
 
 //AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s = API key
 
