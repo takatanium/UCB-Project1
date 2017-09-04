@@ -137,8 +137,16 @@ input#search {
   animation-iteration-count: infinite;
 }
 @keyframes bounce {
-  0% {transform: translateY(0);} 
+  0% {transform: translateY(0);}
   50% {transform: translateY(20px);}
-  100% {transform: translateY(0);}    
+  100% {transform: translateY(0);}
 }
-
+div.bar {
+	display:block;
+	width: 20px;
+	height: 20px;	/* Gets overriden by D3-assigned height below */
+	margin-top: 2px;
+	background-color: #58a4b0;
+  color: #ffffff;
+  padding-left: 5px;
+  }

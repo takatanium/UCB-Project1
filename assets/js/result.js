@@ -153,8 +153,10 @@ function displayStats(state, title, icon, active) {
 		$liBody.addClass('list-body');
 		$liContent.append('<img src="assets/img/flags/' + state.abbreviation + '.png">');
 		$liContent.append('<p>State Capitol: ' + state.capitol + '</p>');
-		$liContent.append('<p>Population: ' + state.population["2015"] + '</p>');
+		$liContent.append('<p>Population: '); // + state.population["2015"] + '</p>');
+		$liContent.append('<div class="chart"></div>');
 		$liContent.append('<p>Median Age: ' + state.median_age["2015"] + '</p>');
+		getTimeSeries(state, 2013, 2015);
 	}
 	else if (title === 'Employment Statistics') {
 		$liContent.append('<p>State Statistics</p>');
@@ -165,4 +167,24 @@ function displayStats(state, title, icon, active) {
 	}
 
 	return $li;
+}
+
+function getTimeSeries(state, start, end) {
+var dataset = [];
+	for (var i = start; i <= end; i++) {
+		dataset.push(state.population[i]);
+	}
+	var maxVal = tools.getMaxOfArray(dataset);
+	d3.select(".chart").selectAll("div")
+		.data(dataset)
+	  .enter()
+	  .append("div")
+	  .attr("class", "bar")
+	  .style("width", function(d) {
+	  	var barHeight = d / (maxVal * 0.005);
+	    return barHeight + "px";
+	   })
+		.append("text")
+		.attr("text-anchor", "middle")
+		.text(function(d) { return d; });;
 }
