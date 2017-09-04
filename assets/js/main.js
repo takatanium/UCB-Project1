@@ -58,10 +58,9 @@ function getData() {
 
       console.log(states);
       createAllDivs();
-      if (window.location.hash.slice(1).trim() === "landing" || 
-          window.location.hash.slice(1).trim() === "") {
-        dynamicDiv(window.location.hash.slice(1));
-      }
+      $.scrollify.move('#landing');
+      $('#landing-page').fadeTo(2000, 1);
+      initiateInput();
     },
     error: function(e) {
       console.log(e);
