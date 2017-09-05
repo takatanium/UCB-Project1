@@ -40,7 +40,7 @@ section {
 
 #usmap-container {
 	position: relative;
-	flex:1;
+	flex: 1;
 	width: 900px;
 	margin: 10px auto;
 }
@@ -199,7 +199,6 @@ input::-webkit-input-placeholder {
   50% {transform: translateY(20px);}
   100% {transform: translateY(0);}
 }
-<<<<<<< HEAD
 
 /*For interactive US Map*/
 #us-map {
