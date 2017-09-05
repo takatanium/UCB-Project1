@@ -4,10 +4,10 @@ $(document).keydown(function(objEvent) {
     }
 });
 
-function initiateInput() {
-  $('input').keyup(function(e) {
-    let $input = $("#state-input");
-    let $auto = $("#state-auto");
+function initiateInput(state) {
+  $('#search-'+state).keyup(function(e) {
+    let $input = $("#search-"+state);
+    let $auto = $("#state-auto-"+state);
 
     let regex = /^[a-zA-Z\s]*$/; 
     if (regex.test($(this).val())) {
@@ -31,9 +31,7 @@ function initiateInput() {
           if (str1 === str2) {
             if (e.keyCode !== 8) {
               if (tools.hasWhiteSpace(states[i].name) && str1.indexOf(" ") == -1) {
-                $auto.val(tools.splitWords(states[i].name) + " ");
                 $input.val(tools.splitWords(states[i].name) + " ");
-                continue;
               }
             }
             $auto.val(states[i].name);
@@ -47,6 +45,12 @@ function initiateInput() {
       }
     } 
 
+    if ($input.val() !== "") {
+      $auto.attr('placeholder', '');
+    } else {
+      $auto.attr('placeholder', 'Enter State');
+    }
+
     if (e.which == 13 && $auto.val().length > 0) {
       $input.val($auto.val());
     }
@@ -56,6 +60,12 @@ function initiateInput() {
       $auto.val('');
       $input.val('');
     }
+  });
+
+  $('#input-del').on('click', function() {
+    $('#search-'+state).val('');
+    $('#state-auto-'+state).val('');
+    $('#state-auto-'+state).attr('placeholder', 'Enter State');
   });
 }
 
@@ -71,3 +81,27 @@ function createAllDivs() {
     scrollSpeed: 1100
   });
 }
+
+//For interactive map
+function popDataInfo() {
+  for (var i = 0; i < states.length; i++) {
+    let $state = $('#'+states[i].abbreviation);
+    let name = states[i].name;
+    $state.attr('data-info', name);
+    $state.on('click', function() {
+      $.scrollify.move('#'+name.replace(/\s+/g, '-'));
+    });
+  }
+}
+
+$(document).ready(function() {
+  $("path").hover(function(e) {
+    $('#search-landing').val($(this).data('info'));
+    $('#state-auto-landing').val($(this).data('info'));
+  });
+  $("path").mouseleave(function(e) {
+    $('#search-landing').val('');
+    $('#state-auto-landing').val('');
+    $('#state-auto-landing').attr('placeholder', 'Enter State');
+  });
+});
