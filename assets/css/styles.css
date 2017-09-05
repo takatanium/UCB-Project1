@@ -15,12 +15,34 @@ body {
   background-color: #d8dbe2;
 }
 
+section {
+	display: flex;
+	flex-direction: column;
+}
+
+/*nav {
+	position: absolute;
+	height: 64px;
+}*/
+
 .fade {
 	opacity: 0;
   height: 100%;
   width: 100%;
-  background-image: url("../img/landing_img1.jpg");
-  background-size: cover;
+  /*background-image: url("../img/landing_img1.jpg");*/
+  /*background-size: cover;*/
+}
+
+#main-container {
+	padding: 0 50px 0 50px;
+	margin: auto;
+}
+
+#usmap-container {
+	position: relative;
+	flex:1;
+	width: 900px;
+	margin: 10px auto;
 }
 
 #main-row {
@@ -36,14 +58,52 @@ body {
   justify-content: space-around;
 }
 
-#state-auto,
-#state-input {
+.input-field {
+	position: relative;
+	background-color: #58a4b0;
+}
+/*
+.state-auto,
+.state-input {
   position: absolute;
+  top: 0;
   font-size: 60px;
   height: 80px;
+  font-size: 40px !important;
+}*/
+
+.state-auto {
+  position: absolute !important;
+  top: 0 !important;
+  color: black !important;
+  opacity: 0.5 !important;
+  z-index: 3 !important;
+  font-size: 40px !important;
+  /*border-width: 3px;*/
 }
 
-#state-auto {
+input::-webkit-input-placeholder {
+  color: black;
+}
+
+/*#state-input {
+  color: grey;
+  border-width: 3px;
+  z-index: 5;
+}*/
+
+.search {
+	z-index: 4 !important;
+	background-color: rgba(0,0,0,0.1) !important;
+	position: absolute !important;
+	top: 0 !important;
+	color: white !important;
+}
+
+.search {
+	font-size: 40px !important;
+}
+/*#state-auto {
   color: silver;
   opacity: 0.5;
   border-width: 3px;
@@ -53,19 +113,20 @@ body {
   color: #26a69a;
   border-width: 3px;
   z-index: 5;
-}
+}*/
 
-#state-input-label {
+/*#state-input-label {
   font-size: 40px;
   position: static;
   height: auto;
-}
+}*/
 
-.input-field label:not(.label-icon).active {
+/*.input-field label:not(.label-icon).active {
   transform: translateY(-40px) scale(0.6);
-}
+}*/
 
-.my-container {
+.my-container,
+.fade {
 	padding: 0 50px 0 50px;
 	opacity: 0;
 }
@@ -98,15 +159,16 @@ body {
 	line-height: 45px;
 }
 
-#search {
-	font-size: 40px;
-	margin: 0;
+#input-del {
+	cursor: pointer;
+	z-index: 4;
 }
 
-input {
+/*input {
 	background-color: rgba(0,0,0,0.1);
 	z-index: 2;
 }
+*/
 
 .nav-container {
 	background-color: rgba(0,0,0,0.1) !important;
@@ -114,10 +176,6 @@ input {
 
 .list-body {
 	border: none;
-}
-
-input#search {
-	background-color: #58a4b0;
 }
 
 /*landing scroll indicator*/
@@ -140,5 +198,27 @@ input#search {
   0% {transform: translateY(0);} 
   50% {transform: translateY(20px);}
   100% {transform: translateY(0);}    
+}
+
+/*For interactive US Map*/
+#us-map {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0; 
+	height: 99%;
+	width: auto;
+}
+
+path:hover {
+  stroke: #58a4b0 !important;
+  stroke-width: 2px;
+  stroke-linejoin: round;
+  fill: #58a4b0 !important;
+  cursor: pointer;
+}
+
+#frames {
+	pointer-events: none;
 }
 

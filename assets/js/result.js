@@ -34,6 +34,7 @@ function dynamicDiv(currentState) {
   $('.my-container').promise().done(function() {
   	if (thisState !== -1) {
   		if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
+			initiateInput(thisState.name);
   	}
 	  if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
 	  if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
@@ -50,7 +51,7 @@ function dynamicDiv(currentState) {
 
 		//generate google map
 		//may need to only generate thisState map depending on load time
-		initMap();
+		// initMap();
 
 	});
 }
@@ -90,11 +91,18 @@ function getPrevState(currentState) {
 
 function navGen(state) {
 	let $input = $('<input>').attr({
-		id: 'search',
+		id: 'search-'+state.name,
 		type: 'search',
-		placeholder: state.name,
-		required: null
-	});
+		required: 'required'
+	}).addClass('search');
+
+	let $inputAuto = $('<input>').attr({
+		id: 'state-auto-'+state.name,
+		type: 'search',
+		placeholder: 'Enter State',
+	}).addClass('state-auto');
+
+
 	let $icon1 = $('<i>').addClass('material-icons').text('search');
 	$icon1.attr('id', 'magnify');
 	let $label = $('<label>').addClass('label-icon');
@@ -102,13 +110,12 @@ function navGen(state) {
 	let $icon2 = $('<i>').addClass('material-icons').text('close');
 
 	let $inputDiv = $('<div>').addClass('input-field');
-	$inputDiv.html($input).append($label).append($icon2);
+	$inputDiv.html($inputAuto).append($input);
+	$inputDiv.append($label).append($icon2);
 
 	let $form = $('<form>').html($inputDiv);
 	let $navWrap = $('<div>').addClass('nav-wrapper').html($form);
 	let $nav = $('<nav>').addClass('nav-container').html($navWrap);
-
-	initiateInput();
 
 	return $nav;
 }
