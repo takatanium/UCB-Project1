@@ -38,5 +38,10 @@ var tools = {
 
   splitWords: function(arr) {
     return arr.substr(0, arr.indexOf(" "));
+  },
+
+  getMaxOfArray: function(numArray) {
+    return Math.max.apply(null, numArray);
   }
+
 };
