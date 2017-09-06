@@ -33,12 +33,27 @@ function dynamicDiv(currentState) {
 
   $('.my-container').promise().done(function() {
   	if (thisState !== -1) {
-  		if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
-			initiateInput(thisState.name);
-			returnToMap(thisState.name);
+  		if (!$('#'+thisState.id).has('nav').length) {
+  			$.when(genContent(thisState)).done(function() {
+					initiateInput(thisState.name);
+					returnToMap(thisState.name);
+				});
+			}
+
   	}
-	  if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
-	  if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
+	  if (!$('#'+nextState.id).has('nav').length) {
+			$.when(genContent(nextState)).done(function() {
+				initiateInput(nextState.name);
+				returnToMap(nextState.name);
+			});
+	  }
+	  if (!$('#'+prevState.id).has('nav').length) {
+			$.when(genContent(prevState)).done(function() {
+				initiateInput(prevState.name);
+				returnToMap(prevState.name);
+			});
+		}
+
 
 		$('#'+prevState.id).css('opacity', '0');
 		$('#'+nextState.id).css('opacity', '0');
@@ -51,8 +66,13 @@ function dynamicDiv(currentState) {
 		}
 
 		//generate google map
-		//may need to only generate thisState map depending on load time
-		// initMap(thisState);
+		//may need to only generate thidsState map depending on load time
+		if (thisState !== -1) {
+			$('.my-container').promise().done(function() {
+				initMap(thisState);
+			});
+		}
+
 
 	});
 }
