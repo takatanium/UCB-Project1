@@ -159,9 +159,19 @@ input::-webkit-input-placeholder {
 	line-height: 45px;
 }
 
-#input-del {
-	cursor: pointer;
-	z-index: 4;
+.map-icon {
+  height: auto;
+  width: 40px;
+  z-index: 10;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.input-del {
+	cursor: pointer !important;
+	z-index: 4 !important;
 }
 
 /*input {
