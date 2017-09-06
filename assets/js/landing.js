@@ -119,4 +119,7 @@ $(document).ready(function() {
     $('#state-auto-landing').attr('placeholder', 'Enter State');
   });
   returnToMap('landing');
+  $('#feature').on('click', function() {
+      $('.tap-target').tapTarget('open');
+  });
 });
