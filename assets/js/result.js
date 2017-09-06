@@ -164,7 +164,7 @@ function displayStats(state, title, icon, active) {
 			height: '17px',
 			margin: '2.5px 14.5px 0 0',
 		});
-		$liHeader.html($flag).append(state.name + 'Information');
+		$liHeader.html($flag).append(state.name + ' Information');
 	} else {
 		$liHeader.html('<i class="material-icons">' + icon + '</i>'+ title);
 	}

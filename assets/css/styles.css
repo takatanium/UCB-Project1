@@ -16,6 +16,7 @@ body {
 }
 
 section {
+  position: relative;
 	display: flex;
 	flex-direction: column;
 }
@@ -241,3 +242,35 @@ div.bar {
   color: #ffffff;
   padding-left: 5px;
   }
+
+/*For Feature*/
+#menu {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+  background-color: #58a4b0;
+}
+
+#feature-content {
+  background-color: #58a4b0;
+  padding-left: 30px;
+}
+
+#feature-map {
+  width: 30px;
+  height: auto;
+  line-height: 20px;
+  margin: 0 5px 0 5px;
+}
+
+#feature-icon-text {
+  display: flex;
+  flex-direction: row;
+}
+
+.feature-text {
+  font-size: 20px;
+  margin-bottom: 10px;
+  height: 40px;
+  padding-top: 10px;
+}
