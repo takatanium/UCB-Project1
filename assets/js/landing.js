@@ -48,7 +48,11 @@ function initiateInput(state) {
     if ($input.val() !== "") {
       $auto.attr('placeholder', '');
     } else {
-      $auto.attr('placeholder', 'Enter State');
+      if (state !== 'landing') {
+        $auto.attr('placeholder', state);
+      } else {
+        $auto.attr('placeholder', 'Enter State');
+      }
     }
 
     if (e.which == 13 && $auto.val().length > 0) {
@@ -62,10 +66,14 @@ function initiateInput(state) {
     }
   });
 
-  $('#input-del').on('click', function() {
+  $('#input-del-'+state).on('click', function() {
     $('#search-'+state).val('');
     $('#state-auto-'+state).val('');
-    $('#state-auto-'+state).attr('placeholder', 'Enter State');
+    if (state !== 'landing') {
+      $('#state-auto-'+state).attr('placeholder', state);
+    } else {
+      $('#state-auto-'+state).attr('placeholder', 'Enter State');
+    }
   });
 }
 
@@ -94,6 +102,12 @@ function popDataInfo() {
   }
 }
 
+function returnToMap(state) {
+  $('#map-icon-'+state).on('click', function() {
+    $.scrollify.move('#landing');
+  });
+}
+
 $(document).ready(function() {
   $("path").hover(function(e) {
     $('#search-landing').val($(this).data('info'));
@@ -104,4 +118,5 @@ $(document).ready(function() {
     $('#state-auto-landing').val('');
     $('#state-auto-landing').attr('placeholder', 'Enter State');
   });
+  returnToMap('landing');
 });

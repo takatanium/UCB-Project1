@@ -35,6 +35,7 @@ function dynamicDiv(currentState) {
   	if (thisState !== -1) {
   		if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
 			initiateInput(thisState.name);
+			returnToMap(thisState.name);
   	}
 	  if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
 	  if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
@@ -51,7 +52,7 @@ function dynamicDiv(currentState) {
 
 		//generate google map
 		//may need to only generate thisState map depending on load time
-		// initMap();
+		// initMap(thisState);
 
 	});
 }
@@ -99,19 +100,25 @@ function navGen(state) {
 	let $inputAuto = $('<input>').attr({
 		id: 'state-auto-'+state.name,
 		type: 'search',
-		placeholder: 'Enter State',
+		placeholder: state.name,
 	}).addClass('state-auto');
 
 
-	let $icon1 = $('<i>').addClass('material-icons').text('search');
-	$icon1.attr('id', 'magnify');
-	let $label = $('<label>').addClass('label-icon');
-	$label.attr('for', 'search').append($icon1);
-	let $icon2 = $('<i>').addClass('material-icons').text('close');
+	// let $icon1 = $('<i>').addClass('material-icons').text('search');
+	// $icon1.attr('id', 'magnify');
+	// let $label = $('<label>').addClass('label-icon');
+	// $label.attr('for', 'search').append($icon1);
+	let $icon1 = $('<img>').attr({
+		id: 'map-icon-'+state.name,
+		src: 'assets/img/usa.png'
+	}).addClass('map-icon');
+	let $icon2 = $('<i>').addClass('material-icons input-del');
+	$icon2.text('close').attr('id', 'input-del-'+state.name);
 
 	let $inputDiv = $('<div>').addClass('input-field');
 	$inputDiv.html($inputAuto).append($input);
-	$inputDiv.append($label).append($icon2);
+	$inputDiv.append($icon1).append($icon2);
+	// $inputDiv.append($label).append($icon2);
 
 	let $form = $('<form>').html($inputDiv);
 	let $navWrap = $('<div>').addClass('nav-wrapper').html($form);
@@ -150,15 +157,25 @@ function statColGen(state) {
 function displayStats(state, title, icon, active) {
 	let $liHeader = $('<div>').addClass('collapsible-header');
 
-	$liHeader.html('<i class="material-icons">' + icon + '</i>'+ title);
+	if (active) {
+		let $flag = $('<img>').attr('src', 'assets/img/flags/' + state.abbreviation + '.png');
+		$flag.css({
+			width: '30px',
+			height: '17px',
+			margin: '2.5px 14.5px 0 0',
+		});
+		$liHeader.html($flag).append(state.name + 'Information');
+	} else {
+		$liHeader.html('<i class="material-icons">' + icon + '</i>'+ title);
+	}
 	let $liBody = $('<div>').addClass('collapsible-body grey lighten-5');
 	let $liContent = $('<span>').appendTo($liBody);
 	let $li = $('<li>').html($liHeader).append($liBody);
 
 	if (active) {
 		$liHeader.addClass('active');
+
 		$liBody.addClass('list-body');
-		$liContent.append('<img src="assets/img/flags/' + state.abbreviation + '.png">');
 		$liContent.append('<p>State Capitol: ' + state.capitol + '</p>');
 		$liContent.append('<p>Population: '); // + state.population["2015"] + '</p>');
 		$liContent.append('<div class="chart"></div>');
