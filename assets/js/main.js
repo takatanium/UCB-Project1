@@ -1,7 +1,5 @@
 const BASE_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=pop,age,income'
-
-// Global object that holds API data
-var states;
+var states; // Global object that holds state information
 
 // Loads state object
 $(document).ready(function($) {
@@ -25,6 +23,10 @@ $(document).ready(function($) {
   })
 });
 
+/**
+ * [getData description]
+ * @return {[type]} [description]
+ */
 function getData() {
   $.ajax({
     url: BASE_URL,
@@ -62,6 +64,37 @@ function getData() {
       $('#landing-page').fadeTo(2000, 1);
       initiateInput('landing');
       popDataInfo();
+    },
+    error: function(e) {
+      console.log(e);
+    }
+  })
+}
+
+/**
+ * [getWikipedia description]
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
+function getWikipedia(state) {
+  let BASEURL = 'https://api.wikipedia.com'
+  let url = BASEURL + '?' + $.param({
+    action: 'query',
+    prop: 'extracts',
+    exintro: null,
+    explaintext: null,
+    titles: state,
+    format: 'json'
+  });
+
+  console.log(url);
+
+  $.ajax({
+    url: url,
+    dataType: 'json',
+    method: 'GET',
+    success: function(res) {
+      console.log(res);
     },
     error: function(e) {
       console.log(e);
