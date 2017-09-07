@@ -1,9 +1,14 @@
 $(document).keydown(function(objEvent) {
-    if (objEvent.keyCode == 9) { 
+    if (objEvent.keyCode == 9)  { // Tab
         objEvent.preventDefault(); 
     }
 });
 
+/**
+ * [initiateInput description]
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
 function initiateInput(state) {
   $('#search-'+state).keyup(function(e) {
     let $input = $("#search-"+state);
@@ -77,6 +82,10 @@ function initiateInput(state) {
   });
 }
 
+/**
+ * [createAllDivs description]
+ * @return {[type]} [description]
+ */
 function createAllDivs() {
   for (var i = 0; i < states.length; i++) {
     let $div = $('<section>').addClass('my-container sticky-scroll');
@@ -91,6 +100,10 @@ function createAllDivs() {
 }
 
 //For interactive map
+/**
+ * [popDataInfo description]
+ * @return {[type]} [description]
+ */
 function popDataInfo() {
   for (var i = 0; i < states.length; i++) {
     let $state = $('#'+states[i].abbreviation);
@@ -102,6 +115,11 @@ function popDataInfo() {
   }
 }
 
+/**
+ * [returnToMap description]
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
 function returnToMap(state) {
   $('#map-icon-'+state).on('click', function() {
     $.scrollify.move('#landing');
@@ -109,10 +127,12 @@ function returnToMap(state) {
 }
 
 $(document).ready(function() {
+  
   $("path").hover(function(e) {
     $('#search-landing').val($(this).data('info'));
     $('#state-auto-landing').val($(this).data('info'));
   });
+
   $("path").mouseleave(function(e) {
     $('#search-landing').val('');
     $('#state-auto-landing').val('');

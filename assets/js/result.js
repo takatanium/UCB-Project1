@@ -57,6 +57,11 @@ function dynamicDiv(currentState) {
 	});
 }
 
+/**
+ * [genContent description]
+ * @param  {[type]} makeState [description]
+ * @return {[type]}           [description]
+ */
 function genContent(makeState) {
 	let $info = $('<div>').addClass('row').attr('id', 'info-row');
 	$info.append(mapColGen(makeState)).append(statColGen(makeState));
@@ -66,6 +71,11 @@ function genContent(makeState) {
 	$('#'+makeState.id).html(navGen(makeState)).append($info);
 }
 
+/**
+ * [getCurrentState description]
+ * @param  {[type]} currentState [description]
+ * @return {[type]}              [description]
+ */
 function getCurrentState(currentState) {
 	let index = states.findIndex(function(element){
 		if (element.name === currentState.replace(/-+/g, ' ')) return element;
@@ -73,6 +83,11 @@ function getCurrentState(currentState) {
 	return index === -1 ? -1 : states[index];
 }
 
+/**
+ * [getNextState description]
+ * @param  {[type]} currentState [description]
+ * @return {[type]}              [description]
+ */
 function getNextState(currentState) {
 	let index = states.findIndex(function(element){
 		if (element.name === currentState) return element;
@@ -81,6 +96,11 @@ function getNextState(currentState) {
 	return states[index];
 }
 
+/**
+ * [getPrevState description]
+ * @param  {[type]} currentState [description]
+ * @return {[type]}              [description]
+ */
 function getPrevState(currentState) {
 	let index = states.findIndex(function(element){
 		if (element.name === currentState) return element;
@@ -90,6 +110,11 @@ function getPrevState(currentState) {
 	return states[index];
 }
 
+/**
+ * [navGen description]
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
 function navGen(state) {
 	let $input = $('<input>').attr({
 		id: 'search-'+state.name,
@@ -127,6 +152,11 @@ function navGen(state) {
 	return $nav;
 }
 
+/**
+ * [mapColGen description]
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
 function mapColGen(state) {
 	let $card = $('<div>').addClass('card map');
 	$card.attr('id', state.name.replace(/\s+/g, '-')+'-map');
@@ -137,6 +167,11 @@ function mapColGen(state) {
 	return $col;
 }
 
+/**
+ * [statColGen description]
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
 function statColGen(state) {
 	let $ul = $('<ul>').addClass('collapsible grey lighten-5');
 	$ul.attr('id', 'stat-list');
@@ -154,6 +189,14 @@ function statColGen(state) {
 	return $col;
 }
 
+/**
+ * [displayStats description]
+ * @param  {[type]} state  [description]
+ * @param  {[type]} title  [description]
+ * @param  {[type]} icon   [description]
+ * @param  {[type]} active [description]
+ * @return {[type]}        [description]
+ */
 function displayStats(state, title, icon, active) {
 	let $liHeader = $('<div>').addClass('collapsible-header');
 
@@ -193,6 +236,13 @@ function displayStats(state, title, icon, active) {
 	return $li;
 }
 
+/**
+ * [getTimeSeries description]
+ * @param  {[type]} state [description]
+ * @param  {[type]} start [description]
+ * @param  {[type]} end   [description]
+ * @return {[type]}       [description]
+ */
 function getTimeSeries(state, start, end) {
 var dataset = [];
 	for (var i = start; i <= end; i++) {

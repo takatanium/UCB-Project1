@@ -8,7 +8,12 @@ createRingChart([
                   {"age":">64", "population":"612463"}], ".chartDiv");
 
 
-
+/**
+ * @mimlowe [createRingChart description]
+ * @param  {[type]} data      [description]
+ * @param  {[type]} targetDiv [description]
+ * @return {[type]}           [description]
+ */
 function createRingChart(data, targetDiv) {
   var width = 400, height = 250, radius = Math.min(width, height) / 2;
 //  var theCSV = "age,population\n<5,2704659\n5-13,4499890\n14-17,2159981\n18-24,3853788\n25-44,14106543\n45-64,8819342\n≥65,612463";
@@ -31,8 +36,14 @@ function createRingChart(data, targetDiv) {
       return d.data.age;
   });
 
+  /**
+   * [type description]
+   * @param  {[type]} d [description]
+   * @return {[type]}   [description]
+   */
   function type(d) {
-    d.population = +d.population;
+    // could this be rewritten as d.population += d.population?
+    d.population = +d.population; 
     return d;
   }
 }
