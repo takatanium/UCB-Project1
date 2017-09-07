@@ -1,14 +1,30 @@
 //commonly used tools
 var tools = {
-  // returns a random number
+
+  /**
+   * [getRandom description]
+   * @param  {[type]} max [description]
+   * @return {[type]}     [description]
+   */
   getRandom: function(max) {
     return Math.floor(Math.random() * max);
   },
 
+  /**
+   * [capFirst description]
+   * @param  {[type]} string [description]
+   * @return {[type]}        [description]
+   */
   capFirst: function(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   },
 
+  /**
+   * [getMaxAttrIndex description]
+   * @param  {[type]} arr [description]
+   * @param  {[type]} key [description]
+   * @return {[type]}     [description]
+   */
   getMaxAttrIndex: function(arr, key) {
     var res = Math.max.apply(
       Math,
@@ -21,6 +37,11 @@ var tools = {
     });
   },
 
+  /**
+   * [shuffle description]
+   * @param  {[type]} arr [description]
+   * @return {[type]}     [description]
+   */
   shuffle: function(arr) {
     var j, x, i;
     for (i = arr.length; i; i--) {
@@ -32,14 +53,29 @@ var tools = {
     return arr;
   },
 
+  /**
+   * [hasWhiteSpace description]
+   * @param  {[type]}  arr [description]
+   * @return {Boolean}     [description]
+   */
   hasWhiteSpace: function(arr) {
     return arr.indexOf(" ") >= 0;
   },
 
+  /**
+   * [splitWords description]
+   * @param  {[type]} arr [description]
+   * @return {[type]}     [description]
+   */
   splitWords: function(arr) {
     return arr.substr(0, arr.indexOf(" "));
   },
 
+  /**
+   * [getMaxOfArray description]
+   * @param  {[type]} numArray [description]
+   * @return {[type]}          [description]
+   */
   getMaxOfArray: function(numArray) {
     return Math.max.apply(null, numArray);
   }
