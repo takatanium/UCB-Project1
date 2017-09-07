@@ -1,4 +1,6 @@
-# UCB-Project1
+# United Stats
+
+### Get information on employment, population, and age from any of the 50 U.S. States
 
 A group project built with: 
 * [@mmenschig](https://github.com/mmenschig)
