@@ -216,7 +216,7 @@ input::-webkit-input-placeholder {
   display: block;
   position: absolute;
   top: 0;
-  left: 0; 
+  left: 0;
 	height: 99%;
 	width: auto;
 }
@@ -241,7 +241,16 @@ div.bar {
 	background-color: #58a4b0;
   color: #ffffff;
   padding-left: 5px;
-  }
+}
+
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
 
 /*For Feature*/
 #menu {

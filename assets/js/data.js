@@ -1,12 +1,26 @@
-createRingChart([
-                  {"age":"<5", "population":"2704659"},
-                  {"age":"5-13", "population":"4499890"},
-                  {"age":"14-17", "population":"2159981"},
-                  {"age":"18-24", "population":"3853788"},
-                  {"age":"25-44", "population":"14106543"},
-                  {"age":"45-64", "population":"8819342"},
-                  {"age":">64", "population":"612463"}], ".chartDiv");
+/**
+ * [getTimeSeries description]
+ * @param  {[type]} state [description]
+ * @param  {[type]} start [description]
+ * @param  {[type]} end   [description]
+ * @return {[type]}       [description]
+ */
+ 
+function getTimeSeries(state, start, end) {
+  let statistics = {};
+  let stat_keys = stats;
+  for (el in stat_keys) {
+    statistics[stat_keys[el]] = [];
+  }
 
+  for (var i = start; i <= end; i++) {
+    statistics["population"].push({"year":i, "population":state.population[i]});
+    statistics["median_age"].push({"year":i, "median_age":state.median_age[i]});
+    statistics["median_income"].push({"year":i, "median_income":state.median_income[i]});
+  }
+
+  return statistics;
+}
 
 /**
  * @mimlowe [createRingChart description]
@@ -14,12 +28,13 @@ createRingChart([
  * @param  {[type]} targetDiv [description]
  * @return {[type]}           [description]
  */
-function createRingChart(data, targetDiv) {
+
+function createRingChart(data, key, targetDiv) {
   var width = 400, height = 250, radius = Math.min(width, height) / 2;
-//  var theCSV = "age,population\n<5,2704659\n5-13,4499890\n14-17,2159981\n18-24,3853788\n25-44,14106543\n45-64,8819342\n≥65,612463";
-  var color = d3.scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+  //var theCSV = "age,population\n<5,2704659\n5-13,4499890\n14-17,2159981\n18-24,3853788\n25-44,14106543\n45-64,8819342\n≥65,612463";
+  var color = d3.scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888"]);
   var arc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 70);
-  var pie = d3.pie().sort(null).value(function(d) { return d.population; });
+  var pie = d3.pie().sort(null).value(function(d) { return d[key]; });
   var svg = d3.select(targetDiv).append("svg")
               .attr("width", width)
               .attr("height", height)
@@ -33,17 +48,17 @@ function createRingChart(data, targetDiv) {
   g.append("text").attr("transform", function(d) {
       return "translate(" + arc.centroid(d) + ")";
   }).attr("dy", ".35em").text(function(d) {
-      return d.data.age;
+      return d.data["year"] + ":\n" + d.data[key];
   });
 
-  /**
+   /**
    * [type description]
    * @param  {[type]} d [description]
    * @return {[type]}   [description]
    */
   function type(d) {
     // could this be rewritten as d.population += d.population?
-    d.population = +d.population; 
+    d.population = +d.population;
     return d;
   }
 }
