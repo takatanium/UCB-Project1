@@ -7,7 +7,7 @@ A group project built with:
 * [@mimlowe](https://github.com/mimlowe)
 * [@mford008](https://github.com/mford008)
 
-A live demo can be viewed [here](https://takatanium.github.io/UCB-Project1)
+A live demo can be viewed [www.unitedstats.us](https://takatanium.github.io/UCB-Project1)
 
 
 This project is released under the MIT License.
