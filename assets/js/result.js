@@ -52,7 +52,7 @@ function dynamicDiv(currentState) {
 
     //generate google map
     //may need to only generate thisState map depending on load time
-    // initMap(thisState);
+    initMap(thisState);
 
   });
 }
