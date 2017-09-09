@@ -137,7 +137,6 @@ input::-webkit-input-placeholder {
 #stat {
 	height: 87vh;
 	margin: 0;
-	z-index: -1;
 }
 
 .stat-list {
