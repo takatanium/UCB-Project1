@@ -35,6 +35,7 @@ function tagLocation(stateName, lat, lng) {
     var location = {lat: lat, lng: lng};
     var map = new google.maps.Map(document.getElementById(stateName.replace(/\s+/g, '-')+'-map'), {
       zoom: 6,
+      // zoom: thisState.scale, else zoom: 6
     //   {
     //   if (stateName == "Alaska" || "California" || "Idaho" || "Michigan" || "Minnesota" || "Montana" || "North Carolina" || "Colorado" || "Florida" || "Kansas" || "Nebraska" || "Nevada" || "New York" || "Oregon" || "Texas" || "Virginia" || "Washington" || "Wyoming") {
     //     zoom: 5 {
