@@ -250,25 +250,6 @@ path:hover {
 	pointer-events: none;
 }
 
-div.bar {
-	display:block;
-	width: 20px;
-	height: 20px;	/* Gets overriden by D3-assigned height below */
-	margin-top: 2px;
-	background-color: #58a4b0;
-  color: #ffffff;
-  padding-left: 5px;
-}
-
-.arc text {
-  font: 10px sans-serif;
-  text-anchor: middle;
-}
-
-.arc path {
-  stroke: #fff;
-}
-
 /*For Feature*/
 #menu {
   position: absolute;
@@ -299,4 +280,39 @@ div.bar {
   margin-bottom: 10px;
   height: 40px;
   padding-top: 10px;
+}
+
+/*------- D3 -------- */
+
+div.bar {
+	display:block;
+	width: 20px;
+	height: 20px;	/* Gets overriden by D3-assigned height below */
+	margin-top: 2px;
+	background-color: #58a4b0;
+  color: #ffffff;
+  padding-left: 5px;
+}
+
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 48px;
+  padding: 4px;
+  font: 124x sans-serif;
+  color: #fff;
+  background: rgb(20, 64, 92);
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
 }

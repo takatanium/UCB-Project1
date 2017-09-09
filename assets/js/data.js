@@ -5,7 +5,7 @@
  * @param  {[type]} end   [description]
  * @return {[type]}       [description]
  */
- 
+
 function getTimeSeries(state, start, end) {
   console.log('HIT');
   let statistics = {};
@@ -43,15 +43,34 @@ function createRingChart(data, key, targetDiv) {
               .append("g")
               .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
+  var div = d3.select("body").append("div")
+              .attr("class", "tooltip")
+              .style("opacity", 0);
   //var data = d3.csvParse(theCSV);
   console.log(data);
-  var g = svg.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
+  var g = svg.selectAll("arc").data(pie(data)).enter().append("g").attr("class", "arc").on("mouseover", function(d) {
+    div.transition()
+      .duration(200)
+      .style("opacity", .9);
+    div.html(d.data["year"] + ":\n" + d.data[key] + "\n\n")
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY) + "px");
+    })
+  .on("mouseout", function(d) {
+    div.transition()
+      .duration(500)
+      .style("opacity", 0);
+    });;
   g.append("path").attr("d", arc).style("fill", function(d) { return color(d.data.age); });
-  g.append("text").attr("transform", function(d) {
+  /*g.append("text").attr("transform", function(d) {
       return "translate(" + arc.centroid(d) + ")";
   }).attr("dy", ".35em").text(function(d) {
       return d.data["year"] + ":\n" + d.data[key];
-  });
+  });*/
+
+
+
+
 
    /**
    * [type description]
