@@ -6,7 +6,7 @@ $(function() {
     before: function() {
       let currentId = $.scrollify.current().attr('id');
 
-      console.log("This returns state ID: " + currentId + " before scroll event");
+      // console.log("This returns state ID: " + currentId + " before scroll event");
     },
     after: function() {
       let currentSlide = $.scrollify.current();
@@ -22,8 +22,8 @@ function dynamicDiv(currentState) {
   let nextState = getNextState(currentState);
   let prevState = getPrevState(currentState);
 
-  console.log("This is where previous and next state IDs can be returned: " +
-              prevState.id + " and " + nextState.id);
+  // console.log("This is where previous and next state IDs can be returned: " +
+              // prevState.id + " and " + nextState.id);
 
   $('.my-container').each(function() {
     if ($(this).data('section-name') !== currentState) {
@@ -36,6 +36,8 @@ function dynamicDiv(currentState) {
       if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
       initiateInput(thisState.name);
       returnToMap(thisState.name);
+      let data = getTimeSeries(thisState, 2013, 2015);
+      createRingChart(data["median_age"], "median_age", ".chart");
     }
     if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
     if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
@@ -52,7 +54,7 @@ function dynamicDiv(currentState) {
 
     //generate google map
     //may need to only generate thisState map depending on load time
-    // initMap(thisState);
+    initMap(thisState);
 
   });
 }
@@ -173,15 +175,15 @@ function mapColGen(state) {
  * @return {[type]}       [description]
  */
 function statColGen(state) {
-  let $ul = $('<ul>').addClass('collapsible grey lighten-5');
-  $ul.attr('id', 'stat-list');
+  let $ul = $('<ul>').addClass('collapsible grey lighten-5 stat-list');
+  $ul.attr('id', state.abbreviation+'-stat-list');
 
   $ul.append(displayStats(state, 'Employment Statistics', 'work', false));
   $ul.append(displayStats(state, 'Education Statistics', 'school', false));
   $ul.append(displayStats(state, 'State Information', 'whatshot', true));
 
-  let $statDiv = $('<div>').attr('id', 'stat').html($ul);
-  let $col = $('<div>').addClass('col s12 m6').attr('id', 'stat-col');
+  let $statDiv = $('<div>').attr('id', state.abbreviation+'-stat').html($ul);
+  let $col = $('<div>').addClass('col s12 m6 stat-col').attr('id', state.abbreviation+'-stat-col');
   $col.html($statDiv);
 
   $('.collapsible').collapsible();
@@ -199,6 +201,7 @@ function statColGen(state) {
  */
 function displayStats(state, title, icon, active) {
   let $liHeader = $('<div>').addClass('collapsible-header');
+  $liHeader.attr('id', state.abbreviation+'-list-header');
 
   if (active) {
     let $flag = $('<img>').attr('src', 'assets/img/flags/' + state.abbreviation + '.png');
@@ -212,6 +215,7 @@ function displayStats(state, title, icon, active) {
     $liHeader.html('<i class="material-icons">' + icon + '</i>'+ title);
   }
   let $liBody = $('<div>').addClass('collapsible-body grey lighten-5');
+  $liBody.attr('id', state.abbreviation+'-list-body');
   let $liContent = $('<span>').appendTo($liBody);
   let $li = $('<li>').html($liHeader).append($liBody);
 
@@ -220,10 +224,14 @@ function displayStats(state, title, icon, active) {
 
     $liBody.addClass('list-body');
     $liContent.append('<p>State Capitol: ' + state.capitol + '</p>');
-    $liContent.append('<p>Population: '); // + state.population["2015"] + '</p>');
-    $liContent.append('<div class="chart"></div>');
+    $liContent.append('<p>Population: ' + state.population["2015"] + '</p>');
     $liContent.append('<p>Median Age: ' + state.median_age["2015"] + '</p>');
-    getTimeSeries(state, 2013, 2015);
+    let $chart = $('<div>').addClass('chart');
+    // let $chart = $('<div>').attr('id', state.abbreviation+'-chart');
+    // $liContent.append('<div id="'+state.abbreviation+'-chart"></div>');
+    // let data = getTimeSeries(state, 2013, 2015);
+    // createRingChart(data["median_age"], "median_age", state.abbreviation+"-chart");
+    $liBody.append($chart);
   }
   else if (title === 'Employment Statistics') {
     $liContent.append('<p>State Statistics</p>');
@@ -234,31 +242,4 @@ function displayStats(state, title, icon, active) {
   }
 
   return $li;
-}
-
-/**
- * [getTimeSeries description]
- * @param  {[type]} state [description]
- * @param  {[type]} start [description]
- * @param  {[type]} end   [description]
- * @return {[type]}       [description]
- */
-function getTimeSeries(state, start, end) {
-var dataset = [];
-  for (var i = start; i <= end; i++) {
-    dataset.push(state.population[i]);
-  }
-  var maxVal = tools.getMaxOfArray(dataset);
-  d3.select(".chart").selectAll("div")
-    .data(dataset)
-    .enter()
-    .append("div")
-    .attr("class", "bar")
-    .style("width", function(d) {
-      var barHeight = d / (maxVal * 0.005);
-      return barHeight + "px";
-     })
-    .append("text")
-    .attr("text-anchor", "middle")
-    .text(function(d) { return d; });;
 }
