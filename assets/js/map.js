@@ -1,12 +1,12 @@
 function initMap(thisState) {
 
-  if (thisState !== undefined) {
+  if (thisState !== undefined && thisState !== -1) {
 
     var userLocation =  thisState.capitol; 
 
     geoCodeAddress(userLocation)
     .then(function(results) {
-      console.log(results);
+      // console.log(results);
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
       tagLocation(thisState.name, lat1, lng1);
@@ -31,7 +31,7 @@ function geoCodeAddress(address) {
 }
 
 function tagLocation(stateName, lat, lng) {
-  console.log(stateName);
+  // console.log(stateName);
     var location = {lat: lat, lng: lng};
     var map = new google.maps.Map(document.getElementById(stateName+'-map'), {
       zoom: 6,

@@ -13,9 +13,9 @@ function initiateInput(state) {
   $('#search-'+state).keyup(function(e) {
     let $input = $("#search-"+state);
     let $auto = $("#state-auto-"+state);
-
     let regex = /^[a-zA-Z\s]*$/; 
     if (regex.test($(this).val())) {
+    // if (e.keyCode>=65 && e.keyCode<=90) {
       if ($input.val().trim() === "" && e.keyCode === 32) {
         $input.val($input.val().trim());
       }
@@ -48,7 +48,9 @@ function initiateInput(state) {
       } else {
         $auto.val("");
       }
-    } 
+    } else {
+      $input.val($input.val().slice(0, -1));
+    }
 
     if ($input.val() !== "") {
       $auto.attr('placeholder', '');
@@ -137,6 +139,10 @@ $(document).ready(function() {
     $('#search-landing').val('');
     $('#state-auto-landing').val('');
     $('#state-auto-landing').attr('placeholder', 'Enter State');
+  });
+
+  $('#menu').on('click', function() {
+    $('.tap-target').tapTarget('open');
   });
   returnToMap('landing');
 });
