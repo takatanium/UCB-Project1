@@ -11,7 +11,7 @@
     "id": "04000US02",
     "abbreviation": "AK",
     "capitol": "Juneau",
-    "scale": 4
+    "scale": 3
   },
 
   {
@@ -85,7 +85,7 @@
     "id": "04000US16",
     "abbreviation": "ID",
     "capitol": "Boise",
-    "scale": 5
+    "scale": 5.5
   },
   {
     "name": "Illinois",
