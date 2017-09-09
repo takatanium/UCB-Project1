@@ -11,7 +11,7 @@
     "id": "04000US02",
     "abbreviation": "AK",
     "capitol": "Juneau",
-    "scale": "4"
+    "scale": 3
   },
 
   {
@@ -32,7 +32,7 @@
     "id": "04000US06",
     "abbreviation": "CA",
     "capitol": "Sacramento",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -40,7 +40,7 @@
     "id": "04000US08",
     "abbreviation": "CO",
     "capitol": "Denver",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -48,14 +48,14 @@
     "id": "04000US09",
     "abbreviation": "CT",
     "capitol": "Hartford",
-    "scale": "7"
+    "scale": 7
   },
   {
     "name": "Delaware",
     "id": "04000US10",
     "abbreviation": "DE",
     "capitol": "Dover",
-    "scale": "7"
+    "scale": 7
   },
 
   {
@@ -63,7 +63,7 @@
     "id": "04000US12",
     "abbreviation": "FL",
     "capitol": "Tallahassee",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -85,7 +85,7 @@
     "id": "04000US16",
     "abbreviation": "ID",
     "capitol": "Boise",
-    "scale": "5"
+    "scale": 5.5
   },
   {
     "name": "Illinois",
@@ -112,7 +112,7 @@
     "id": "04000US20",
     "abbreviation": "KS",
     "capitol": "Topeka",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -141,7 +141,7 @@
     "id": "04000US24",
     "abbreviation": "MD",
     "capitol": "Annapolis",
-    "scale": "7"
+    "scale": 7
   },
 
   {
@@ -149,7 +149,7 @@
     "id": "04000US25",
     "abbreviation": "MA",
     "capitol": "Boston",
-    "scale": "7"
+    "scale": 7
   },
 
   {
@@ -157,14 +157,14 @@
     "id": "04000US26",
     "abbreviation": "MI",
     "capitol": "Lansing",
-    "scale": "5"
+    "scale": 5
   },
   {
     "name": "Minnesota",
     "id": "04000US27",
     "abbreviation": "MN",
     "capitol": "Saint Paul",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -186,7 +186,7 @@
     "id": "04000US30",
     "abbreviation": "MT",
     "capitol": "Helena",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -194,7 +194,7 @@
     "id": "04000US31",
     "abbreviation": "NE",
     "capitol": "Lincoln",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -202,7 +202,7 @@
     "id": "04000US32",
     "abbreviation": "NV",
     "capitol": "Carson City",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -210,7 +210,7 @@
     "id": "04000US33",
     "abbreviation": "NH",
     "capitol": "Concord",
-    "scale": "7"
+    "scale": 7
   },
 
   {
@@ -218,7 +218,7 @@
     "id": "04000US34",
     "abbreviation": "NJ",
     "capitol": "Trenton",
-    "scale": "7"
+    "scale": 7
   },
 
   {
@@ -233,14 +233,14 @@
     "id": "04000US36",
     "abbreviation": "NY",
     "capitol": "Albany",
-    "scale": "5"
+    "scale": 5
   },
   {
     "name": "North Carolina",
     "id": "04000US37",
     "abbreviation": "NC",
     "capitol": "Raleigh",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -268,7 +268,7 @@
     "id": "04000US41",
     "abbreviation": "OR",
     "capitol": "Salem",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -283,7 +283,7 @@
     "id": "04000US44",
     "abbreviation": "RI",
     "capitol": "Providence",
-    "scale": "7"
+    "scale": 7
   },
 
   {
@@ -312,7 +312,7 @@
     "id": "04000US48",
     "abbreviation": "TX",
     "capitol": "Austin",
-    "scale": "5"
+    "scale": 5
   },
   {
     "name": "Utah",
@@ -326,7 +326,7 @@
     "id": "04000US50",
     "abbreviation": "VT",
     "capitol": "Montpelier",
-    "scale": "7"
+    "scale": 7
   },
 
   {
@@ -334,7 +334,7 @@
     "id": "04000US51",
     "abbreviation": "VA",
     "capitol": "Richmond",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -342,7 +342,7 @@
     "id": "04000US53",
     "abbreviation": "WA",
     "capitol": "Olympia",
-    "scale": "5"
+    "scale": 5
   },
 
   {
@@ -364,6 +364,6 @@
     "id": "04000US56",
     "abbreviation": "WY",
     "capitol": "Cheyene",
-    "scale": "5"
+    "scale": 5
   }
 ]

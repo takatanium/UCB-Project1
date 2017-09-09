@@ -6,13 +6,12 @@ function initMap(thisState) {
 
     geoCodeAddress(userLocation)
     .then(function(results) {
-      // console.log(results);
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
       tagLocation(thisState, lat1, lng1);
+      
     })
     .catch(function(status) {
-      // alert(status);
     });
   }
 }
@@ -30,22 +29,29 @@ function geoCodeAddress(address) {
   });
 }
 
+function mapZoom (thisState) {
+  var zoom;
+    console.log(thisState);
+  if(thisState.scale !== undefined) {
+    zoom = thisState.scale;
+    } 
+    else {
+    zoom = 6;
+  }
+  return zoom;
+  console.log(zoom);
+}
+
+
 function tagLocation(thisState, lat, lng) {
-  // console.log(stateName);
+
     var location = {lat: lat, lng: lng};
-    console.log('wfehwefhweiuhu',thisState);
+    console.log(location);
+    console.log('testing',thisState);
 
-    var zoom;
-    console.log('========', thisState);
-    if(thisState.scale !== undefined) {
-      zoom = thisState.scale;
-      console.log(stateName.scale);
-    } else {
-      zoom = 6;
-    }
+    var zoom = mapZoom(thisState);
 
-    var map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
-     // zoom: 6, 
+    var map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), { 
     zoom: zoom,
     center: location
     });
