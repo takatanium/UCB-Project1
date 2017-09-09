@@ -250,6 +250,11 @@ path:hover {
 	pointer-events: none;
 }
 
+/*For google map column*/
+.card-image {
+  height: 80%;
+}
+
 /*For Feature*/
 #menu {
   position: absolute;
