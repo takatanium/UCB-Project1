@@ -39,13 +39,6 @@ section {
 	margin: auto;
 }
 
-#usmap-container {
-	position: relative;
-	flex: 1;
-	width: 900px;
-	margin: 10px auto;
-}
-
 #main-row {
   height: 100vh;
   margin: 0;
@@ -221,14 +214,29 @@ input::-webkit-input-placeholder {
 }
 
 /*For interactive US Map*/
+#usmap-container {
+  position: relative;
+  flex: 1;
+  /*width: 900px;*/
+  width: auto;
+  /*height: 90%;*/
+  margin: 10px auto;
+}
+
 #us-map {
   display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-	height: 99%;
-	width: auto;
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 0;*/
+	max-height: 80vh !important;
+	/*max-width: 90vw;*/
 }
+
+/*#us-responsive {
+  width: auto;
+  height: auto;
+  margin: auto;
+}*/
 
 path:hover {
   stroke: #58a4b0 !important;
