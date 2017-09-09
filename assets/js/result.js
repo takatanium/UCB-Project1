@@ -220,7 +220,6 @@ function displayStats(state, title, icon, active) {
   let $li = $('<li>').html($liHeader).append($liBody);
 
   if (active) {
-
     $liHeader.addClass('active');
     $liBody.addClass('list-body');
     $liContent.append('<p><span class="title-stat">State Capitol: </span><span class="text-stat">' + state.capitol + '</span></p>');
