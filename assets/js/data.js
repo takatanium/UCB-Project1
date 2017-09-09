@@ -32,10 +32,10 @@ function getTimeSeries(state, start, end) {
 
 function createRingChart(data, key, targetDiv) {
   console.log(targetDiv);
-  var width = 400, height = 250, radius = Math.min(width, height) / 2;
+  var width = 165, height = 150, radius = Math.min(width, height) / 2;
   //var theCSV = "age,population\n<5,2704659\n5-13,4499890\n14-17,2159981\n18-24,3853788\n25-44,14106543\n45-64,8819342\n≥65,612463";
   var color = d3.scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888"]);
-  var arc = d3.arc().outerRadius(radius - 10).innerRadius(radius - 70);
+  var arc = d3.arc().outerRadius(radius - 6).innerRadius(radius - 30);
   var pie = d3.pie().sort(null).value(function(d) { return d[key]; });
   var svg = d3.select(targetDiv).append("svg")
               .attr("width", width)

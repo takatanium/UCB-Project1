@@ -225,7 +225,7 @@ function displayStats(state, title, icon, active) {
     $liContent.append('<p><span class="title-stat">State Capitol: </span><span class="text-stat">' + state.capitol + '</span></p>');
     $liContent.append('<p><span class="title-stat">Population: </span><span class="number-stat">' +tools.numberWithCommas(state.population["2015"]) + '</span></p>');
     $liContent.append('<p><span class="title-stat">Median Age: </span><span class="number-stat"></p>');
-    let $chart = $('<div>').addClass('chart').addClass('card-panel  blue-grey lighten-5');
+    let $chart = $('<div>').addClass('chart').addClass('col s4 m4 card-small  blue-grey lighten-5');
     // let $chart = $('<div>').attr('id', state.abbreviation+'-chart');
     // $liContent.append('<div id="'+state.abbreviation+'-chart"></div>');
     // let data = getTimeSeries(state, 2013, 2015);
