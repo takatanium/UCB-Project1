@@ -189,6 +189,7 @@ input::-webkit-input-placeholder {
 
 .list-body {
 	border: none;
+  overflow-y: scroll;
 }
 
 /*landing scroll indicator*/
