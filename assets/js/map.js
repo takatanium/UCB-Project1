@@ -16,6 +16,7 @@ function initMap(thisState) {
   }
 }
 
+
 function geoCodeAddress(address) {
   var geocoder = new google.maps.Geocoder();  
   return new Promise(function(resolve,reject) {
