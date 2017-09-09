@@ -9,10 +9,10 @@ function initMap(thisState) {
       // console.log(results);
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
-      tagLocation(thisState.name, lat1, lng1);
+      tagLocation(thisState, lat1, lng1);
     })
     .catch(function(status) {
-      alert(status);
+      // alert(status);
     });
   }
 }
@@ -30,24 +30,24 @@ function geoCodeAddress(address) {
   });
 }
 
-function tagLocation(stateName, lat, lng) {
+function tagLocation(thisState, lat, lng) {
   // console.log(stateName);
     var location = {lat: lat, lng: lng};
-    var map = new google.maps.Map(document.getElementById(stateName.replace(/\s+/g, '-')+'-map'), {
-      zoom: 6,
-      // zoom: thisState.scale, else zoom: 6
-    //   {
-    //   if (stateName == "Alaska" || "California" || "Idaho" || "Michigan" || "Minnesota" || "Montana" || "North Carolina" || "Colorado" || "Florida" || "Kansas" || "Nebraska" || "Nevada" || "New York" || "Oregon" || "Texas" || "Virginia" || "Washington" || "Wyoming") {
-    //     zoom: 5 {
-    //       else if (stateName == "Delaware" || "Connecticut" || "Maryland" || "Massachusetts" || "Rhode Island" || "New Hampshire" || "New Jersey" || "Vermont") {
-    //         zoom: 7,
-    //       } else {
-    //         zoom: 6
-    //       }
-    //     }
-    //   }
-    // },    
-      center: location
+    console.log('wfehwefhweiuhu',thisState);
+
+    var zoom;
+    console.log('========', thisState);
+    if(thisState.scale !== undefined) {
+      zoom = thisState.scale;
+      console.log(stateName.scale);
+    } else {
+      zoom = 6;
+    }
+
+    var map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
+     // zoom: 6, 
+    zoom: zoom,
+    center: location
     });
     var marker = new google.maps.Marker({
       position: location,
