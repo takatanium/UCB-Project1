@@ -34,17 +34,18 @@ function tagLocation(stateName, lat, lng) {
   // console.log(stateName);
     var location = {lat: lat, lng: lng};
     var map = new google.maps.Map(document.getElementById(stateName.replace(/\s+/g, '-')+'-map'), {
-      zoom: {
-      if (stateName == "Alaska" || "California" || "Idaho" || "Michigan" || "Minnesota" || "Montana" || "North Carolina" || "Colorado" || "Florida" || "Kansas" || "Nebraska" || "Nevada" || "New York" || "Oregon" || "Texas" || "Virginia" || "Washington" || "Wyoming") {
-        zoom: 5 {
-          else if (stateName == "Delaware" || "Connecticut" || "Maryland" || "Massachusetts" || "Rhode Island" || "New Hampshire" || "New Jersey" || "Vermont") {
-            zoom: 7,
-          } else {
-            zoom: 6
-          }
-        }
-      }
-    },    
+      zoom: 6,
+    //   {
+    //   if (stateName == "Alaska" || "California" || "Idaho" || "Michigan" || "Minnesota" || "Montana" || "North Carolina" || "Colorado" || "Florida" || "Kansas" || "Nebraska" || "Nevada" || "New York" || "Oregon" || "Texas" || "Virginia" || "Washington" || "Wyoming") {
+    //     zoom: 5 {
+    //       else if (stateName == "Delaware" || "Connecticut" || "Maryland" || "Massachusetts" || "Rhode Island" || "New Hampshire" || "New Jersey" || "Vermont") {
+    //         zoom: 7,
+    //       } else {
+    //         zoom: 6
+    //       }
+    //     }
+    //   }
+    // },    
       center: location
     });
     var marker = new google.maps.Marker({
