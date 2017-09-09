@@ -321,3 +321,21 @@ div.tooltip {
   border-radius: 8px;
   pointer-events: none;
 }
+
+.title-stat {
+  color: #373f51;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.text-stat {
+  color: #58a4b0;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.number-stat {
+  color: #f28c21;
+  font-size: 20px;
+  font-weight: 300;
+}

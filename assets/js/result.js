@@ -220,13 +220,13 @@ function displayStats(state, title, icon, active) {
   let $li = $('<li>').html($liHeader).append($liBody);
 
   if (active) {
-    $liHeader.addClass('active');
 
+    $liHeader.addClass('active');
     $liBody.addClass('list-body');
-    $liContent.append('<p>State Capitol: ' + state.capitol + '</p>');
-    $liContent.append('<p>Population: ' + state.population["2015"] + '</p>');
-    $liContent.append('<p>Median Age: ' + state.median_age["2015"] + '</p>');
-    let $chart = $('<div>').addClass('chart');
+    $liContent.append('<p><span class="title-stat">State Capitol: </span><span class="text-stat">' + state.capitol + '</span></p>');
+    $liContent.append('<p><span class="title-stat">Population: </span><span class="number-stat">' +tools.numberWithCommas(state.population["2015"]) + '</span></p>');
+    $liContent.append('<p><span class="title-stat">Median Age: </span><span class="number-stat"></p>');
+    let $chart = $('<div>').addClass('chart').addClass('card-panel  blue-grey lighten-5');
     // let $chart = $('<div>').attr('id', state.abbreviation+'-chart');
     // $liContent.append('<div id="'+state.abbreviation+'-chart"></div>');
     // let data = getTimeSeries(state, 2013, 2015);
