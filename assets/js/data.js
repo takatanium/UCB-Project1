@@ -7,6 +7,7 @@
  */
  
 function getTimeSeries(state, start, end) {
+  console.log('HIT');
   let statistics = {};
   let stat_keys = stats;
   for (el in stat_keys) {
@@ -18,7 +19,7 @@ function getTimeSeries(state, start, end) {
     statistics["median_age"].push({"year":i, "median_age":state.median_age[i]});
     statistics["median_income"].push({"year":i, "median_income":state.median_income[i]});
   }
-
+  console.log(statistics);
   return statistics;
 }
 
@@ -30,6 +31,7 @@ function getTimeSeries(state, start, end) {
  */
 
 function createRingChart(data, key, targetDiv) {
+  console.log(targetDiv);
   var width = 400, height = 250, radius = Math.min(width, height) / 2;
   //var theCSV = "age,population\n<5,2704659\n5-13,4499890\n14-17,2159981\n18-24,3853788\n25-44,14106543\n45-64,8819342\n≥65,612463";
   var color = d3.scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888"]);
