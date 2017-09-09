@@ -5,12 +5,15 @@
     "abbreviation": "AL",
     "capitol": "Montgomery"
   },
+
   {
     "name": "Alaska",
     "id": "04000US02",
     "abbreviation": "AK",
-    "capitol": "Juneau"
+    "capitol": "Juneau",
+    "scale": "4"
   },
+
   {
     "name": "Arizona",
     "id": "04000US04",
@@ -23,53 +26,66 @@
     "abbreviation": "AR",
     "capitol": "Little Rock"
   },
+
   {
     "name": "California",
     "id": "04000US06",
     "abbreviation": "CA",
-    "capitol": "Sacramento"
+    "capitol": "Sacramento",
+    "scale": "5"
   },
+
   {
     "name": "Colorado",
     "id": "04000US08",
     "abbreviation": "CO",
-    "capitol": "Denver"
+    "capitol": "Denver",
+    "scale": "5"
   },
+
   {
     "name": "Connecticut",
     "id": "04000US09",
     "abbreviation": "CT",
-    "capitol": "Hartford"
+    "capitol": "Hartford",
+    "scale": "7"
   },
   {
     "name": "Delaware",
     "id": "04000US10",
     "abbreviation": "DE",
-    "capitol": "Dover"
+    "capitol": "Dover",
+    "scale": "7"
   },
+
   {
     "name": "Florida",
     "id": "04000US12",
     "abbreviation": "FL",
-    "capitol": "Tallahassee"
+    "capitol": "Tallahassee",
+    "scale": "5"
   },
+
   {
     "name": "Georgia",
     "id": "04000US13",
     "abbreviation": "GA",
     "capitol": "Atlanta"
   },
+
   {
     "name": "Hawaii",
     "id": "04000US15",
     "abbreviation": "HI",
     "capitol": "Honolulu"
   },
+
   {
     "name": "Idaho",
     "id": "04000US16",
     "abbreviation": "ID",
-    "capitol": "Boise"
+    "capitol": "Boise",
+    "scale": "5"
   },
   {
     "name": "Illinois",
@@ -77,12 +93,14 @@
     "abbreviation": "IL",
     "capitol": "Springfield"
   },
+
   {
     "name": "Indiana",
     "id": "04000US18",
     "abbreviation": "IN",
     "capitol": "Indianapolis"
   },
+
   {
     "name": "Iowa",
     "id": "04000US19",
@@ -93,110 +111,138 @@
     "name": "Kansas",
     "id": "04000US20",
     "abbreviation": "KS",
-    "capitol": "Topeka"
+    "capitol": "Topeka",
+    "scale": "5"
   },
+
   {
     "name": "Kentucky",
     "id": "04000US21",
     "abbreviation": "KY",
     "capitol": "Frankfort"
   },
+
   {
     "name": "Louisiana",
     "id": "04000US22",
     "abbreviation": "LA",
     "capitol": "Baton Rouge"
   },
+
   {
     "name": "Maine",
     "id": "04000US23",
     "abbreviation": "ME",
     "capitol": "Augusta"
   },
+
   {
     "name": "Maryland",
     "id": "04000US24",
     "abbreviation": "MD",
-    "capitol": "Annapolis"
+    "capitol": "Annapolis",
+    "scale": "7"
   },
+
   {
     "name": "Massachusetts",
     "id": "04000US25",
     "abbreviation": "MA",
-    "capitol": "Boston"
+    "capitol": "Boston",
+    "scale": "7"
   },
+
   {
     "name": "Michigan",
     "id": "04000US26",
     "abbreviation": "MI",
-    "capitol": "Lansing"
+    "capitol": "Lansing",
+    "scale": "5"
   },
   {
     "name": "Minnesota",
     "id": "04000US27",
     "abbreviation": "MN",
-    "capitol": "Saint Paul"
+    "capitol": "Saint Paul",
+    "scale": "5"
   },
+
   {
     "name": "Mississippi",
     "id": "04000US28",
     "abbreviation": "MS",
     "capitol": "Jackson"
   },
+
   {
     "name": "Missouri",
     "id": "04000US29",
     "abbreviation": "MO",
     "capitol": "Jefferson City"
   },
+
   {
     "name": "Montana",
     "id": "04000US30",
     "abbreviation": "MT",
-    "capitol": "Helena"
+    "capitol": "Helena",
+    "scale": "5"
   },
+
   {
     "name": "Nebraska",
     "id": "04000US31",
     "abbreviation": "NE",
-    "capitol": "Lincoln"
+    "capitol": "Lincoln",
+    "scale": "5"
   },
+
   {
     "name": "Nevada",
     "id": "04000US32",
     "abbreviation": "NV",
-    "capitol": "Carson City"
+    "capitol": "Carson City",
+    "scale": "5"
   },
+
   {
     "name": "New Hampshire",
     "id": "04000US33",
     "abbreviation": "NH",
-    "capitol": "Concord"
+    "capitol": "Concord",
+    "scale": "7"
   },
+
   {
     "name": "New Jersey",
     "id": "04000US34",
     "abbreviation": "NJ",
-    "capitol": "Trenton"
+    "capitol": "Trenton",
+    "scale": "7"
   },
+
   {
     "name": "New Mexico",
     "id": "04000US35",
     "abbreviation": "NM",
     "capitol": "Santa Fe"
   },
+
   {
     "name": "New York",
     "id": "04000US36",
     "abbreviation": "NY",
-    "capitol": "Albany"
+    "capitol": "Albany",
+    "scale": "5"
   },
   {
     "name": "North Carolina",
     "id": "04000US37",
     "abbreviation": "NC",
-    "capitol": "Raleigh"
+    "capitol": "Raleigh",
+    "scale": "5"
   },
+
   {
     "name": "North Dakota",
     "id": "04000US38",
@@ -209,53 +255,64 @@
     "abbreviation": "OH",
     "capitol": "Columbus"
   },
+
   {
     "name": "Oklahoma",
     "id": "04000US40",
     "abbreviation": "OK",
     "capitol": "Oklahoma City"
   },
+
   {
     "name": "Oregon",
     "id": "04000US41",
     "abbreviation": "OR",
-    "capitol": "Salem"
+    "capitol": "Salem",
+    "scale": "5"
   },
+
   {
     "name": "Pennsylvania",
     "id": "04000US42",
     "abbreviation": "PA",
     "capitol": "Harrisburg"
   },
+
   {
     "name": "Rhode Island",
     "id": "04000US44",
     "abbreviation": "RI",
-    "capitol": "Providence"
+    "capitol": "Providence",
+    "scale": "7"
   },
+
   {
     "name": "South Carolina",
     "id": "04000US45",
     "abbreviation": "SC",
     "capitol": "Columbia"
   },
+
   {
     "name": "South Dakota",
     "id": "04000US46",
     "abbreviation": "SD",
     "capitol": "Pierre"
   },
+
   {
     "name": "Tennessee",
     "id": "04000US47",
     "abbreviation": "TN",
     "capitol": "Nashville"
   },
+
   {
     "name": "Texas",
     "id": "04000US48",
     "abbreviation": "TX",
-    "capitol": "Austin"
+    "capitol": "Austin",
+    "scale": "5"
   },
   {
     "name": "Utah",
@@ -263,40 +320,50 @@
     "abbreviation": "UT",
     "capitol": "Salt Lake City"
   },
+
   {
     "name": "Vermont",
     "id": "04000US50",
     "abbreviation": "VT",
-    "capitol": "Montpelier"
+    "capitol": "Montpelier",
+    "scale": "7"
   },
+
   {
     "name": "Virginia",
     "id": "04000US51",
     "abbreviation": "VA",
-    "capitol": "Richmond"
+    "capitol": "Richmond",
+    "scale": "5"
   },
+
   {
     "name": "Washington",
-    "id":  "04000US53",
+    "id": "04000US53",
     "abbreviation": "WA",
-    "capitol": "Olympia"
+    "capitol": "Olympia",
+    "scale": "5"
   },
+
   {
     "name": "West Virginia",
     "id": "04000US54",
     "abbreviation": "WV",
     "capitol": "Charleston"
   },
+
   {
     "name": "Wisconsin",
     "id": "04000US55",
     "abbreviation": "WI",
     "capitol": "Madison"
   },
+
   {
     "name": "Wyoming",
-    "id":  "04000US56",
+    "id": "04000US56",
     "abbreviation": "WY",
-    "capitol": "Cheyene"
+    "capitol": "Cheyene",
+    "scale": "5"
   }
 ]
