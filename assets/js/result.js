@@ -223,7 +223,7 @@ function displayStats(state, title, icon, active) {
     $liHeader.addClass('active');
     $liBody.addClass('list-body');
     $liContent.append('<p><span class="title-stat">Capitol: </span><span class="text-stat">' + state.capitol + '</span></p>');
-    $liContent.append('<p><span class="title-stat">Population: </span><span class="number-stat">' +tools.numberWithCommas(state.population["2015"]) + '</span></p>');
+    $liContent.append('<p><span class="title-stat">Population: </span><span class="number-stat">' + tools.numberWithCommas(state.population["2015"]) + '</span></p>');
     $liContent.append('<p><span class="title-stat">Median Age: </span><span class="number-stat"></p>');
     let $chart = $('<div>').addClass('chart');
     // let $chart = $('<div>').attr('id', state.abbreviation+'-chart');
@@ -234,7 +234,7 @@ function displayStats(state, title, icon, active) {
   }
   else if (title === 'Employment Statistics') {
     $liContent.append('<p>State Statistics</p>');
-    $liContent.append('<p>Median Income: ' + state.median_income["2015"] + '</p>');
+    $liContent.append('<p><span class="title-stat">Median Income:</span> <span class="number-stat">' + tools.numberWithCommas(state.median_income["2015"]) + '</span></p>');
   }
   else {
     $liContent.append('State Statistics');
