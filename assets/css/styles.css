@@ -216,11 +216,11 @@ input::-webkit-input-placeholder {
 /*For interactive US Map*/
 #usmap-container {
   position: relative;
-  flex: 1;
+  /*flex: 1;*/
   /*width: 900px;*/
   width: auto;
   /*height: 90%;*/
-  margin: 10px auto;
+  margin: auto;
 }
 
 #us-map {
@@ -228,10 +228,15 @@ input::-webkit-input-placeholder {
   /*position: absolute;*/
   /*top: 0;*/
   /*left: 0;*/
-	max-height: 80vh !important;
+  height: 530px !important;
+  width: 930px !important;
+	/*max-height: 80vh !important;*/
 	/*max-width: 90vw;*/
 }
 
+.empty-flex {
+  flex: 1;
+}
 /*#us-responsive {
   width: auto;
   height: auto;
