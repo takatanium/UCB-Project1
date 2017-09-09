@@ -161,8 +161,19 @@ function navGen(state) {
  */
 function mapColGen(state) {
   let $card = $('<div>').addClass('card map');
-  $card.attr('id', state.name.replace(/\s+/g, '-')+'-map');
-  $card.addClass('blue-grey darken-1');
+  // $card.addClass('blue-grey darken-1');
+
+  let $img = $('<div>').addClass('card-image')
+  $img.attr('id', state.name.replace(/\s+/g, '-')+'-map');
+
+  let $content = $('<div>').addClass('card-content');
+  $content.attr('id', state.name.replace(/\s+/g, '-')+'-card-content');
+  $content.text("Place information here.");
+
+  $card.html($img).append($content);
+
+  // $card.attr('id', state.name.replace(/\s+/g, '-')+'-map');
+
   let $col = $('<div>').addClass('col s12 m6').attr('id', 'map-col');
   $col.html($card);
 
