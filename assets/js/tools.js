@@ -78,6 +78,10 @@ var tools = {
    */
   getMaxOfArray: function(numArray) {
     return Math.max.apply(null, numArray);
+  },
+
+  numberWithCommas: function(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
 };
