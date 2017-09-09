@@ -222,7 +222,7 @@ function displayStats(state, title, icon, active) {
   if (active) {
     $liHeader.addClass('active');
     $liBody.addClass('list-body');
-    $liContent.append('<p><span class="title-stat">State Capitol: </span><span class="text-stat">' + state.capitol + '</span></p>');
+    $liContent.append('<p><span class="title-stat">Capitol: </span><span class="text-stat">' + state.capitol + '</span></p>');
     $liContent.append('<p><span class="title-stat">Population: </span><span class="number-stat">' +tools.numberWithCommas(state.population["2015"]) + '</span></p>');
     $liContent.append('<p><span class="title-stat">Median Age: </span><span class="number-stat"></p>');
     let $chart = $('<div>').addClass('chart');
