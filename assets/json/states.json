@@ -3,7 +3,8 @@
     "name": "Alabama",
     "id": "04000US01",
     "abbreviation": "AL",
-    "capitol": "Montgomery"
+    "capitol": "Montgomery",
+    "wiki_pageid": 303
   },
 
   {
@@ -11,6 +12,7 @@
     "id": "04000US02",
     "abbreviation": "AK",
     "capitol": "Juneau",
+    "wiki_pageid": 624,
     "scale": 3
   },
 
@@ -18,13 +20,15 @@
     "name": "Arizona",
     "id": "04000US04",
     "abbreviation": "AZ",
-    "capitol": "Phoenix"
+    "capitol": "Phoenix",
+    "wiki_pageid": 21883824
   },
   {
     "name": "Arkansas",
     "id": "04000US05",
     "abbreviation": "AR",
-    "capitol": "Little Rock"
+    "capitol": "Little Rock",
+    "wiki_pageid": 1930
   },
 
   {
@@ -32,6 +36,7 @@
     "id": "04000US06",
     "abbreviation": "CA",
     "capitol": "Sacramento",
+    "wiki_pageid": 5407,
     "scale": 5
   },
 
@@ -40,6 +45,7 @@
     "id": "04000US08",
     "abbreviation": "CO",
     "capitol": "Denver",
+    "wiki_pageid": 5399,
     "scale": 5
   },
 
@@ -48,6 +54,7 @@
     "id": "04000US09",
     "abbreviation": "CT",
     "capitol": "Hartford",
+    "wiki_pageid": 6466,
     "scale": 7
   },
   {
@@ -55,6 +62,7 @@
     "id": "04000US10",
     "abbreviation": "DE",
     "capitol": "Dover",
+    "wiki_pageid": 7930,
     "scale": 7
   },
 
@@ -63,6 +71,7 @@
     "id": "04000US12",
     "abbreviation": "FL",
     "capitol": "Tallahassee",
+    "wiki_pageid": 18933066,
     "scale": 5
   },
 
@@ -70,14 +79,16 @@
     "name": "Georgia",
     "id": "04000US13",
     "abbreviation": "GA",
-    "capitol": "Atlanta"
+    "capitol": "Atlanta",
+    "wiki_pageid": 48830
   },
 
   {
     "name": "Hawaii",
     "id": "04000US15",
     "abbreviation": "HI",
-    "capitol": "Honolulu"
+    "capitol": "Honolulu",
+    "wiki_pageid": 13270
   },
 
   {
@@ -85,33 +96,38 @@
     "id": "04000US16",
     "abbreviation": "ID",
     "capitol": "Boise",
+    "wiki_pageid": 14607,
     "scale": 5
   },
   {
     "name": "Illinois",
     "id": "04000US17",
     "abbreviation": "IL",
-    "capitol": "Springfield"
+    "capitol": "Springfield",
+    "wiki_pageid": 14849
   },
 
   {
     "name": "Indiana",
     "id": "04000US18",
     "abbreviation": "IN",
-    "capitol": "Indianapolis"
+    "capitol": "Indianapolis",
+    "wiki_pageid": 21883857
   },
 
   {
     "name": "Iowa",
     "id": "04000US19",
     "abbreviation": "IA",
-    "capitol": "Des Moines"
+    "capitol": "Des Moines",
+    "wiki_pageid": 26810748
   },
   {
     "name": "Kansas",
     "id": "04000US20",
     "abbreviation": "KS",
     "capitol": "Topeka",
+    "wiki_pageid": 16716,
     "scale": 5
   },
 
@@ -119,21 +135,24 @@
     "name": "Kentucky",
     "id": "04000US21",
     "abbreviation": "KY",
-    "capitol": "Frankfort"
+    "capitol": "Frankfort",
+    "wiki_pageid": 16846
   },
 
   {
     "name": "Louisiana",
     "id": "04000US22",
     "abbreviation": "LA",
-    "capitol": "Baton Rouge"
+    "capitol": "Baton Rouge",
+    "wiki_pageid": 18130
   },
 
   {
     "name": "Maine",
     "id": "04000US23",
     "abbreviation": "ME",
-    "capitol": "Augusta"
+    "capitol": "Augusta",
+    "wiki_pageid": 19977
   },
 
   {
@@ -141,6 +160,7 @@
     "id": "04000US24",
     "abbreviation": "MD",
     "capitol": "Annapolis",
+    "wiki_pageid": 18858,
     "scale": 7
   },
 
@@ -149,6 +169,7 @@
     "id": "04000US25",
     "abbreviation": "MA",
     "capitol": "Boston",
+    "wiki_pageid": 1645518,
     "scale": 7
   },
 
@@ -157,6 +178,7 @@
     "id": "04000US26",
     "abbreviation": "MI",
     "capitol": "Lansing",
+    "wiki_pageid": 18859,
     "scale": 5
   },
   {
@@ -164,6 +186,7 @@
     "id": "04000US27",
     "abbreviation": "MN",
     "capitol": "Saint Paul",
+    "wiki_pageid": 19590,
     "scale": 5
   },
 
@@ -171,14 +194,16 @@
     "name": "Mississippi",
     "id": "04000US28",
     "abbreviation": "MS",
-    "capitol": "Jackson"
+    "capitol": "Jackson",
+    "wiki_pageid": 16949861
   },
 
   {
     "name": "Missouri",
     "id": "04000US29",
     "abbreviation": "MO",
-    "capitol": "Jefferson City"
+    "capitol": "Jefferson City",
+    "wiki_pageid": 19571
   },
 
   {
@@ -186,6 +211,7 @@
     "id": "04000US30",
     "abbreviation": "MT",
     "capitol": "Helena",
+    "wiki_pageid": 19978,
     "scale": 5
   },
 
@@ -194,6 +220,7 @@
     "id": "04000US31",
     "abbreviation": "NE",
     "capitol": "Lincoln",
+    "wiki_pageid": 21647,
     "scale": 5
   },
 
@@ -202,6 +229,7 @@
     "id": "04000US32",
     "abbreviation": "NV",
     "capitol": "Carson City",
+    "wiki_pageid": 21216,
     "scale": 5
   },
 
@@ -210,6 +238,7 @@
     "id": "04000US33",
     "abbreviation": "NH",
     "capitol": "Concord",
+    "wiki_pageid": 21134,
     "scale": 7
   },
 
@@ -218,6 +247,7 @@
     "id": "04000US34",
     "abbreviation": "NJ",
     "capitol": "Trenton",
+    "wiki_pageid": 21648,
     "scale": 7
   },
 
@@ -225,7 +255,8 @@
     "name": "New Mexico",
     "id": "04000US35",
     "abbreviation": "NM",
-    "capitol": "Santa Fe"
+    "capitol": "Santa Fe",
+    "wiki_pageid": 21649
   },
 
   {
@@ -233,6 +264,7 @@
     "id": "04000US36",
     "abbreviation": "NY",
     "capitol": "Albany",
+    "wiki_pageid": 8210131,
     "scale": 5
   },
   {
@@ -240,6 +272,7 @@
     "id": "04000US37",
     "abbreviation": "NC",
     "capitol": "Raleigh",
+    "wiki_pageid": 21650,
     "scale": 5
   },
 
@@ -247,20 +280,23 @@
     "name": "North Dakota",
     "id": "04000US38",
     "abbreviation": "ND",
-    "capitol": "Bismarck"
+    "capitol": "Bismarck",
+    "wiki_pageid": 21651
   },
   {
     "name": "Ohio",
     "id": "04000US39",
     "abbreviation": "OH",
-    "capitol": "Columbus"
+    "capitol": "Columbus",
+    "wiki_pageid": 22199
   },
 
   {
     "name": "Oklahoma",
     "id": "04000US40",
     "abbreviation": "OK",
-    "capitol": "Oklahoma City"
+    "capitol": "Oklahoma City",
+    "wiki_pageid": 22489
   },
 
   {
@@ -268,6 +304,7 @@
     "id": "04000US41",
     "abbreviation": "OR",
     "capitol": "Salem",
+    "wiki_pageid": 26811621,
     "scale": 5
   },
 
@@ -275,7 +312,8 @@
     "name": "Pennsylvania",
     "id": "04000US42",
     "abbreviation": "PA",
-    "capitol": "Harrisburg"
+    "capitol": "Harrisburg",
+    "wiki_pageid": 23332
   },
 
   {
@@ -283,6 +321,7 @@
     "id": "04000US44",
     "abbreviation": "RI",
     "capitol": "Providence",
+    "wiki_pageid": 25410,
     "scale": 7
   },
 
@@ -290,21 +329,24 @@
     "name": "South Carolina",
     "id": "04000US45",
     "abbreviation": "SC",
-    "capitol": "Columbia"
+    "capitol": "Columbia",
+    "wiki_pageid": 27956
   },
 
   {
     "name": "South Dakota",
     "id": "04000US46",
     "abbreviation": "SD",
-    "capitol": "Pierre"
+    "capitol": "Pierre",
+    "wiki_pageid": 26746
   },
 
   {
     "name": "Tennessee",
     "id": "04000US47",
     "abbreviation": "TN",
-    "capitol": "Nashville"
+    "capitol": "Nashville",
+    "wiki_pageid": 30395
   },
 
   {
@@ -312,13 +354,15 @@
     "id": "04000US48",
     "abbreviation": "TX",
     "capitol": "Austin",
+    "wiki_pageid": 29810,
     "scale": 5
   },
   {
     "name": "Utah",
     "id": "04000US49",
     "abbreviation": "UT",
-    "capitol": "Salt Lake City"
+    "capitol": "Salt Lake City",
+    "wiki_pageid": 31716
   },
 
   {
@@ -326,6 +370,7 @@
     "id": "04000US50",
     "abbreviation": "VT",
     "capitol": "Montpelier",
+    "wiki_pageid": 32578,
     "scale": 7
   },
 
@@ -334,6 +379,7 @@
     "id": "04000US51",
     "abbreviation": "VA",
     "capitol": "Richmond",
+    "wiki_pageid": 32432,
     "scale": 5
   },
 
@@ -342,6 +388,7 @@
     "id": "04000US53",
     "abbreviation": "WA",
     "capitol": "Olympia",
+    "wiki_pageid": 13015878,
     "scale": 5
   },
 
@@ -349,14 +396,16 @@
     "name": "West Virginia",
     "id": "04000US54",
     "abbreviation": "WV",
-    "capitol": "Charleston"
+    "capitol": "Charleston",
+    "wiki_pageid": 32905
   },
 
   {
     "name": "Wisconsin",
     "id": "04000US55",
     "abbreviation": "WI",
-    "capitol": "Madison"
+    "capitol": "Madison",
+    "wiki_pageid": 33127
   },
 
   {
@@ -364,6 +413,7 @@
     "id": "04000US56",
     "abbreviation": "WY",
     "capitol": "Cheyene",
+    "wiki_pageid": 33611,
     "scale": 5
   }
 ]

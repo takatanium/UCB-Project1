@@ -5,7 +5,7 @@ let stats = ["population", "median_age", "median_income"];
 // Loads state object
 $(document).ready(function($) {
 
-  getWikipedia("Rhode Island");
+  getWikipedia(5407);
 
   $.ajax({
     url: 'https://raw.githubusercontent.com/takatanium/UCB-Project1/master/assets/json/states.json',
@@ -47,6 +47,7 @@ function getData() {
 
             let year = res.data[i][0];
 
+            // @mmenschig - would love for this to be dynamic
             if (!states[j]['population'].hasOwnProperty(year)) {
               states[j]['population'][year] = res.data[i][2];
             }
@@ -62,7 +63,6 @@ function getData() {
         }
       }
 
-      console.log(states);
       createAllDivs();
       $.scrollify.move('#landing');
       $('#landing-page').fadeTo(2000, 1);
@@ -76,37 +76,19 @@ function getData() {
 }
 
 /**
- * Formats a received Wikipedia Response Object
- * to make it ready for immediate insertion into DOM
- * @param  {obj} data Response object
- * @return {string}      Formatted string
- */
-function formatWikipedia(data) {
-  console.log(data);
-
-  console.log(data.query.pages)
-
-  for (var key in data.query.pages) {
-    console.log(key);
-  }
-}
-
-// TODO: specify the calls to be only of a category
-// so calls return the expected articles back.
-
-/**
  * Returns a Wikipedia API response object
  * @param  {string} state The state we are retrieving data for
  * @return {object}       Wikipedia API response
  */
-function getWikipedia(state) {
+function getWikipedia(pageid) {
   let BASEURL = 'https://en.wikipedia.org/w/api.php'
   let url = BASEURL + '?' + $.param({
     action: 'query',
     prop: 'extracts',
     exintro: null,
     explaintext: null,
-    titles: state,
+    exsentences: 5,
+    pageids: pageid,
     format: 'json'
   });
 
@@ -118,11 +100,24 @@ function getWikipedia(state) {
     crossDomain: true,
     method: 'GET',
     success: function(res) {
-      formatWikipedia(res);
 
+      let extract = getExtract(res);
+      console.log(extract);
+      return extract;
     },
     error: function(e) {
       console.log(e);
     }
   })
+}
+
+function getExtract(data) {
+  let pages = data.query.pages;
+
+  for (var key in pages) {
+    if (pages.hasOwnProperty(key)) {
+      return pages[key]["extract"];
+    }
+  }
+
 }
