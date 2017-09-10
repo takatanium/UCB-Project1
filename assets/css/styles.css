@@ -5,6 +5,13 @@ a9bcd0 - pale blue - headers
 373f51 - navy - backgrounds
 1b1b1e - black/blue - other background material?*/
 
+/*new colors:
+#23628e - navy - 
+#d16262 - red - headers?
+#fff9ed - cream - stats background
+#dbdbdb - gray - ?
+#664d4d - mahogany - states
+*/
 html,
 body {
   height: 100%;
@@ -12,7 +19,7 @@ body {
 }
 
 body {
-  background-color: #d8dbe2;
+  background-color: #dbdbdb;
 }
 
 section {
@@ -54,7 +61,7 @@ section {
 
 .input-field {
 	position: relative;
-	background-color: #58a4b0;
+	background-color: #d16262;
 }
 /*
 .state-auto,
@@ -239,10 +246,10 @@ input::-webkit-input-placeholder {
 }*/
 
 path:hover {
-  stroke: #58a4b0 !important;
+  stroke: #d16262 !important;
   stroke-width: 2px;
   stroke-linejoin: round;
-  fill: #58a4b0 !important;
+  fill: #d16262 !important;
   cursor: pointer;
 }
 
@@ -260,11 +267,11 @@ path:hover {
   position: absolute;
   bottom: 20px;
   right: 50px;
-  background-color: #58a4b0;
+  background-color: #d16262;
 }
 
 #feature-content {
-  background-color: #58a4b0;
+  background-color: #d16262;
   padding-left: 30px;
 }
 
@@ -295,7 +302,7 @@ div.bar {
 	width: 20px;
 	height: 20px;	/* Gets overriden by D3-assigned height below */
 	margin-top: 2px;
-	background-color: #58a4b0;
+	background-color: #d16262;
   color: #ffffff;
   padding-left: 5px;
 }
@@ -306,7 +313,7 @@ div.bar {
 }
 
 .arc path {
-  stroke: #fff;
+  stroke: #fff9ed;
 }
 
 div.tooltip {
@@ -317,7 +324,7 @@ div.tooltip {
   padding: 4px;
   font: 124x sans-serif;
   color: #fff;
-  background: rgb(20, 64, 92);
+  background: #23628e;
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
@@ -330,13 +337,13 @@ div.tooltip {
 }
 
 .text-stat {
-  color: #58a4b0;
+  color: #23628e;
   font-size: 20px;
   font-weight: 300;
 }
 
 .number-stat {
-  color: #f28c21;
+  color: #d16262;
   font-size: 20px;
   font-weight: 300;
 }
