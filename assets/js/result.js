@@ -5,8 +5,6 @@ $(function() {
     scrollSpeed: 1100,
     before: function() {
       let currentId = $.scrollify.current().attr('id');
-
-      // console.log("This returns state ID: " + currentId + " before scroll event");
     },
     after: function() {
       let currentSlide = $.scrollify.current();
@@ -22,29 +20,33 @@ function dynamicDiv(currentState) {
   let nextState = getNextState(currentState);
   let prevState = getPrevState(currentState);
 
-  // console.log("This is where previous and next state IDs can be returned: " +
-              // prevState.id + " and " + nextState.id);
+  // $('.my-container').each(function() {
+  //   if ($(this).data('section-name') !== currentState) {
+  //     $(this).empty();
+  //   }
+  // });
 
-  $('.my-container').each(function() {
-    if ($(this).data('section-name') !== currentState) {
-      $(this).empty();
-    }
-  });
-
-  $('.my-container').promise().done(function() {
+  // $('.my-container').promise().done(function() {
     if (thisState !== -1) {
-      if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
-      initiateInput(thisState.name);
-      returnToMap(thisState.name);
-      let data = getTimeSeries(thisState, 2013, 2015);
-      createRingChart(data["median_age"], "median_age", ".chart");
-    }
-    if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
-    if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
+      if (!$('#'+thisState.id).has('nav').length) { 
+        genContent(thisState);
+        let data = getTimeSeries(thisState, 2013, 2015);
+        createRingChart(data["median_age"], "median_age", "#"+thisState.abbreviation+"-chart");
+      }
+      initiateInput(thisState.name.replace(/\s+/g, '-'));
+      returnToMap(thisState.name.replace(/\s+/g, '-'));
 
-    $('#'+prevState.id).css('opacity', '0');
-    $('#'+nextState.id).css('opacity', '0');
-    $('#landing-page').css('opacity', '0');
+      //fill in wikipedia entry
+      getWikipedia(5407,thisState.name.replace(/\s+/g, '-')+'-card-content');
+      //necesary to allow scrolling in card without scrolling screen
+      // $('.card').on('mouseover', function() {$.scrollify.disable();});
+    // }
+    // if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
+    // if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
+
+    // $('#'+prevState.id).css('opacity', '0');
+    // $('#'+nextState.id).css('opacity', '0');
+    // $('#landing-page').css('opacity', '0');
 
     if (thisState !== -1) {
       $('#'+thisState.id).fadeTo(1000, 1);
@@ -52,11 +54,9 @@ function dynamicDiv(currentState) {
       $('#landing-page').fadeTo(1000, 1);
     }
 
-    //generate google map
-    //may need to only generate thisState map depending on load time
     initMap(thisState);
-
-  });
+  }
+  // });
 }
 
 /**
@@ -119,28 +119,23 @@ function getPrevState(currentState) {
  */
 function navGen(state) {
   let $input = $('<input>').attr({
-    id: 'search-'+state.name,
+    id: 'search-'+state.name.replace(/\s+/g, '-'),
     type: 'search',
     required: 'required'
   }).addClass('search');
 
   let $inputAuto = $('<input>').attr({
-    id: 'state-auto-'+state.name,
+    id: 'state-auto-'+state.name.replace(/\s+/g, '-'),
     type: 'search',
     placeholder: state.name,
   }).addClass('state-auto');
 
-
-  // let $icon1 = $('<i>').addClass('material-icons').text('search');
-  // $icon1.attr('id', 'magnify');
-  // let $label = $('<label>').addClass('label-icon');
-  // $label.attr('for', 'search').append($icon1);
   let $icon1 = $('<img>').attr({
-    id: 'map-icon-'+state.name,
+    id: 'map-icon-'+state.name.replace(/\s+/g, '-'),
     src: 'assets/img/usa.png'
   }).addClass('map-icon');
   let $icon2 = $('<i>').addClass('material-icons input-del');
-  $icon2.text('close').attr('id', 'input-del-'+state.name);
+  $icon2.text('close').attr('id', 'input-del-'+state.name.replace(/\s+/g, '-'));
 
   let $inputDiv = $('<div>').addClass('input-field');
   $inputDiv.html($inputAuto).append($input);
@@ -237,10 +232,7 @@ function displayStats(state, title, icon, active) {
     $liContent.append('<p><span class="title-stat">Population: </span><span class="number-stat">' + tools.numberWithCommas(state.population["2015"]) + '</span></p>');
     $liContent.append('<p><span class="title-stat">Median Age: </span><span class="number-stat"></p>');
     let $chart = $('<div>').addClass('chart');
-    // let $chart = $('<div>').attr('id', state.abbreviation+'-chart');
-    // $liContent.append('<div id="'+state.abbreviation+'-chart"></div>');
-    // let data = getTimeSeries(state, 2013, 2015);
-    // createRingChart(data["median_age"], "median_age", state.abbreviation+"-chart");
+    $chart.attr('id',state.abbreviation+'-chart');
     $liBody.append($chart);
   }
   else if (title === 'Employment Statistics') {
@@ -250,6 +242,5 @@ function displayStats(state, title, icon, active) {
   else {
     $liContent.append('State Statistics');
   }
-
   return $li;
 }

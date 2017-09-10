@@ -5,7 +5,7 @@ let stats = ["population", "median_age", "median_income"];
 // Loads state object
 $(document).ready(function($) {
 
-  getWikipedia(5407);
+  // getWikipedia(5407);
 
   $.ajax({
     url: 'https://raw.githubusercontent.com/takatanium/UCB-Project1/master/assets/json/states.json',
@@ -20,6 +20,7 @@ $(document).ready(function($) {
         states[i]['median_income'] = {}
       }
       getData();
+      enableLandingFeatures();
     },
     error: function(e) {
       console.log(e);
@@ -63,11 +64,12 @@ function getData() {
         }
       }
 
-      createAllDivs();
-      $.scrollify.move('#landing');
-      $('#landing-page').fadeTo(2000, 1);
-      initiateInput('landing');
-      popDataInfo();
+      $.when(createAllDivs()).then(function(page){
+        $.scrollify.move('#'+page);
+        $('#landing-page').fadeTo(2000, 1);
+        initiateInput(page);
+        console.log("HIT2");
+      });
     },
     error: function(e) {
       console.log(e);
@@ -80,8 +82,8 @@ function getData() {
  * @param  {string} state The state we are retrieving data for
  * @return {object}       Wikipedia API response
  */
-function getWikipedia(pageid) {
-  let BASEURL = 'https://en.wikipedia.org/w/api.php'
+function getWikipedia(pageid, divId) {
+  let BASEURL = 'https://en.wikipedia.org/w/api.php';
   let url = BASEURL + '?' + $.param({
     action: 'query',
     prop: 'extracts',
@@ -92,8 +94,6 @@ function getWikipedia(pageid) {
     format: 'json'
   });
 
-  console.log(url);
-
   $.ajax({
     url: url,
     dataType: 'jsonp',
@@ -101,14 +101,15 @@ function getWikipedia(pageid) {
     method: 'GET',
     success: function(res) {
 
-      let extract = getExtract(res);
-      console.log(extract);
+      extract = getExtract(res);
+      // console.log(extract);
+      $('#'+divId).html(extract);
       return extract;
     },
     error: function(e) {
       console.log(e);
     }
-  })
+  });
 }
 
 function getExtract(data) {

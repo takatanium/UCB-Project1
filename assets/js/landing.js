@@ -10,6 +10,7 @@ $(document).keydown(function(objEvent) {
  * @return {[type]}       [description]
  */
 function initiateInput(state) {
+  console.log("HER");
   $('#search-'+state).keyup(function(e) {
     let $input = $("#search-"+state);
     let $auto = $("#state-auto-"+state);
@@ -94,11 +95,13 @@ function createAllDivs() {
     $div.attr('id', states[i].id);
     $div.attr('data-section-name', states[i].name.replace(/\s+/g, '-'));
     $div.appendTo('body');
+    enableStateClick(i);
   }
   $.scrollify({
     section : ".sticky-scroll",
     scrollSpeed: 1100
   });
+  return 'landing';
 }
 
 //For interactive map
@@ -106,15 +109,13 @@ function createAllDivs() {
  * [popDataInfo description]
  * @return {[type]} [description]
  */
-function popDataInfo() {
-  for (var i = 0; i < states.length; i++) {
-    let $state = $('#'+states[i].abbreviation);
-    let name = states[i].name;
-    $state.attr('data-info', name);
-    $state.on('click', function() {
-      $.scrollify.move('#'+name.replace(/\s+/g, '-'));
-    });
-  }
+function enableStateClick(stateNum) {
+  let $state = $('#'+states[stateNum].abbreviation);
+  let name = states[stateNum].name;
+  $state.attr('data-info', name);
+  $state.on('click', function() {
+    $.scrollify.move('#'+name.replace(/\s+/g, '-'));
+  });
 }
 
 /**
@@ -123,26 +124,25 @@ function popDataInfo() {
  * @return {[type]}       [description]
  */
 function returnToMap(state) {
+  console.log(state);
   $('#map-icon-'+state).on('click', function() {
     $.scrollify.move('#landing');
+    console.log(state);
   });
 }
 
-$(document).ready(function() {
-  
+function enableLandingFeatures() {
   $("path").hover(function(e) {
     $('#search-landing').val($(this).data('info'));
     $('#state-auto-landing').val($(this).data('info'));
   });
-
   $("path").mouseleave(function(e) {
     $('#search-landing').val('');
     $('#state-auto-landing').val('');
     $('#state-auto-landing').attr('placeholder', 'Enter State');
   });
-
   $('#menu').on('click', function() {
     $('.tap-target').tapTarget('open');
   });
   returnToMap('landing');
-});
+}
