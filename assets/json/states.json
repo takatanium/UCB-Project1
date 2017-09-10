@@ -3,7 +3,8 @@
     "name": "Alabama",
     "id": "04000US01",
     "abbreviation": "AL",
-    "capitol": "Montgomery"
+    "capitol": "Montgomery",
+    "pageid": 303
   },
 
   {
@@ -11,6 +12,7 @@
     "id": "04000US02",
     "abbreviation": "AK",
     "capitol": "Juneau",
+    "pageid": 624,
     "scale": 3
   },
 
@@ -18,13 +20,15 @@
     "name": "Arizona",
     "id": "04000US04",
     "abbreviation": "AZ",
-    "capitol": "Phoenix"
+    "capitol": "Phoenix",
+    "pageid": 21883824
   },
   {
     "name": "Arkansas",
     "id": "04000US05",
     "abbreviation": "AR",
-    "capitol": "Little Rock"
+    "capitol": "Little Rock",
+    "pageid": 1930
   },
 
   {
@@ -32,6 +36,7 @@
     "id": "04000US06",
     "abbreviation": "CA",
     "capitol": "Sacramento",
+    "pageid": 5407,
     "scale": 5
   },
 
@@ -40,6 +45,7 @@
     "id": "04000US08",
     "abbreviation": "CO",
     "capitol": "Denver",
+    "pageid": null,
     "scale": 5
   },
 
@@ -48,6 +54,7 @@
     "id": "04000US09",
     "abbreviation": "CT",
     "capitol": "Hartford",
+    "pageid": null,
     "scale": 7
   },
   {
@@ -55,6 +62,7 @@
     "id": "04000US10",
     "abbreviation": "DE",
     "capitol": "Dover",
+    "pageid": null,
     "scale": 7
   },
 
@@ -63,6 +71,7 @@
     "id": "04000US12",
     "abbreviation": "FL",
     "capitol": "Tallahassee",
+    "pageid": null,
     "scale": 5
   },
 
@@ -70,14 +79,16 @@
     "name": "Georgia",
     "id": "04000US13",
     "abbreviation": "GA",
-    "capitol": "Atlanta"
+    "capitol": "Atlanta",
+    "pageid": null
   },
 
   {
     "name": "Hawaii",
     "id": "04000US15",
     "abbreviation": "HI",
-    "capitol": "Honolulu"
+    "capitol": "Honolulu",
+    "pageid": null
   },
 
   {
@@ -85,33 +96,38 @@
     "id": "04000US16",
     "abbreviation": "ID",
     "capitol": "Boise",
+    "pageid": null,
     "scale": 5
   },
   {
     "name": "Illinois",
     "id": "04000US17",
     "abbreviation": "IL",
-    "capitol": "Springfield"
+    "capitol": "Springfield",
+    "pageid": null
   },
 
   {
     "name": "Indiana",
     "id": "04000US18",
     "abbreviation": "IN",
-    "capitol": "Indianapolis"
+    "capitol": "Indianapolis",
+    "pageid": null
   },
 
   {
     "name": "Iowa",
     "id": "04000US19",
     "abbreviation": "IA",
-    "capitol": "Des Moines"
+    "capitol": "Des Moines",
+    "pageid": null
   },
   {
     "name": "Kansas",
     "id": "04000US20",
     "abbreviation": "KS",
     "capitol": "Topeka",
+    "pageid": null,
     "scale": 5
   },
 
@@ -119,21 +135,24 @@
     "name": "Kentucky",
     "id": "04000US21",
     "abbreviation": "KY",
-    "capitol": "Frankfort"
+    "capitol": "Frankfort",
+    "pageid": null
   },
 
   {
     "name": "Louisiana",
     "id": "04000US22",
     "abbreviation": "LA",
-    "capitol": "Baton Rouge"
+    "capitol": "Baton Rouge",
+    "pageid": null
   },
 
   {
     "name": "Maine",
     "id": "04000US23",
     "abbreviation": "ME",
-    "capitol": "Augusta"
+    "capitol": "Augusta",
+    "pageid": null
   },
 
   {
@@ -141,6 +160,7 @@
     "id": "04000US24",
     "abbreviation": "MD",
     "capitol": "Annapolis",
+    "pageid": null,
     "scale": 7
   },
 
@@ -149,6 +169,7 @@
     "id": "04000US25",
     "abbreviation": "MA",
     "capitol": "Boston",
+    "pageid": null,
     "scale": 7
   },
 
@@ -157,6 +178,7 @@
     "id": "04000US26",
     "abbreviation": "MI",
     "capitol": "Lansing",
+    "pageid": null,
     "scale": 5
   },
   {
@@ -164,6 +186,7 @@
     "id": "04000US27",
     "abbreviation": "MN",
     "capitol": "Saint Paul",
+    "pageid": null,
     "scale": 5
   },
 
@@ -171,14 +194,16 @@
     "name": "Mississippi",
     "id": "04000US28",
     "abbreviation": "MS",
-    "capitol": "Jackson"
+    "capitol": "Jackson",
+    "pageid": null
   },
 
   {
     "name": "Missouri",
     "id": "04000US29",
     "abbreviation": "MO",
-    "capitol": "Jefferson City"
+    "capitol": "Jefferson City",
+    "pageid": null
   },
 
   {
@@ -186,6 +211,7 @@
     "id": "04000US30",
     "abbreviation": "MT",
     "capitol": "Helena",
+    "pageid": null,
     "scale": 5
   },
 
@@ -194,6 +220,7 @@
     "id": "04000US31",
     "abbreviation": "NE",
     "capitol": "Lincoln",
+    "pageid": null,
     "scale": 5
   },
 
@@ -202,6 +229,7 @@
     "id": "04000US32",
     "abbreviation": "NV",
     "capitol": "Carson City",
+    "pageid": null,
     "scale": 5
   },
 
@@ -210,6 +238,7 @@
     "id": "04000US33",
     "abbreviation": "NH",
     "capitol": "Concord",
+    "pageid": null,
     "scale": 7
   },
 
@@ -218,6 +247,7 @@
     "id": "04000US34",
     "abbreviation": "NJ",
     "capitol": "Trenton",
+    "pageid": null,
     "scale": 7
   },
 
@@ -225,7 +255,8 @@
     "name": "New Mexico",
     "id": "04000US35",
     "abbreviation": "NM",
-    "capitol": "Santa Fe"
+    "capitol": "Santa Fe",
+    "pageid": null
   },
 
   {
@@ -233,6 +264,7 @@
     "id": "04000US36",
     "abbreviation": "NY",
     "capitol": "Albany",
+    "pageid": null,
     "scale": 5
   },
   {
@@ -240,6 +272,7 @@
     "id": "04000US37",
     "abbreviation": "NC",
     "capitol": "Raleigh",
+    "pageid": null,
     "scale": 5
   },
 
@@ -247,20 +280,23 @@
     "name": "North Dakota",
     "id": "04000US38",
     "abbreviation": "ND",
-    "capitol": "Bismarck"
+    "capitol": "Bismarck",
+    "pageid": null
   },
   {
     "name": "Ohio",
     "id": "04000US39",
     "abbreviation": "OH",
-    "capitol": "Columbus"
+    "capitol": "Columbus",
+    "pageid": null
   },
 
   {
     "name": "Oklahoma",
     "id": "04000US40",
     "abbreviation": "OK",
-    "capitol": "Oklahoma City"
+    "capitol": "Oklahoma City",
+    "pageid": null
   },
 
   {
@@ -268,6 +304,7 @@
     "id": "04000US41",
     "abbreviation": "OR",
     "capitol": "Salem",
+    "pageid": null,
     "scale": 5
   },
 
@@ -275,7 +312,8 @@
     "name": "Pennsylvania",
     "id": "04000US42",
     "abbreviation": "PA",
-    "capitol": "Harrisburg"
+    "capitol": "Harrisburg",
+    "pageid": null
   },
 
   {
@@ -283,6 +321,7 @@
     "id": "04000US44",
     "abbreviation": "RI",
     "capitol": "Providence",
+    "pageid": null,
     "scale": 7
   },
 
@@ -290,21 +329,24 @@
     "name": "South Carolina",
     "id": "04000US45",
     "abbreviation": "SC",
-    "capitol": "Columbia"
+    "capitol": "Columbia",
+    "pageid": null
   },
 
   {
     "name": "South Dakota",
     "id": "04000US46",
     "abbreviation": "SD",
-    "capitol": "Pierre"
+    "capitol": "Pierre",
+    "pageid": null
   },
 
   {
     "name": "Tennessee",
     "id": "04000US47",
     "abbreviation": "TN",
-    "capitol": "Nashville"
+    "capitol": "Nashville",
+    "pageid": null
   },
 
   {
@@ -312,13 +354,15 @@
     "id": "04000US48",
     "abbreviation": "TX",
     "capitol": "Austin",
+    "pageid": null,
     "scale": 5
   },
   {
     "name": "Utah",
     "id": "04000US49",
     "abbreviation": "UT",
-    "capitol": "Salt Lake City"
+    "capitol": "Salt Lake City",
+    "pageid": null
   },
 
   {
@@ -326,6 +370,7 @@
     "id": "04000US50",
     "abbreviation": "VT",
     "capitol": "Montpelier",
+    "pageid": null,
     "scale": 7
   },
 
@@ -334,6 +379,7 @@
     "id": "04000US51",
     "abbreviation": "VA",
     "capitol": "Richmond",
+    "pageid": null,
     "scale": 5
   },
 
@@ -342,6 +388,7 @@
     "id": "04000US53",
     "abbreviation": "WA",
     "capitol": "Olympia",
+    "pageid": null,
     "scale": 5
   },
 
@@ -349,14 +396,16 @@
     "name": "West Virginia",
     "id": "04000US54",
     "abbreviation": "WV",
-    "capitol": "Charleston"
+    "capitol": "Charleston",
+    "pageid": null
   },
 
   {
     "name": "Wisconsin",
     "id": "04000US55",
     "abbreviation": "WI",
-    "capitol": "Madison"
+    "capitol": "Madison",
+    "pageid": null
   },
 
   {
@@ -364,6 +413,7 @@
     "id": "04000US56",
     "abbreviation": "WY",
     "capitol": "Cheyene",
+    "pageid": null,
     "scale": 5
   }
 ]

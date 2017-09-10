@@ -5,7 +5,7 @@ let stats = ["population", "median_age", "median_income"];
 // Loads state object
 $(document).ready(function($) {
 
-  getWikipedia("Rhode Island");
+  getWikipedia(5407);
 
   $.ajax({
     url: 'https://raw.githubusercontent.com/takatanium/UCB-Project1/master/assets/json/states.json',
