@@ -338,12 +338,49 @@ div.tooltip {
 
 .text-stat {
   color: #23628e;
-  font-size: 20px;
-  font-weight: 300;
 }
 
 .number-stat {
   color: #d16262;
+}
+
+.text-stat,
+.number-stat {
   font-size: 20px;
   font-weight: 300;
+}
+
+.profile {
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  transition: all 0.4s ease;
+  border: 2px solid #666;
+}
+.profile:hover {
+  transition: all 0.4s ease;
+  opacity: 0.6;
+}
+.profile-section h5 {
+  color: #666;
+  font-weight: bold;
+}
+.profile-section li {
+  display: inline;
+}
+.profile-section ul > li a:hover {
+  color: #23628e;
+  transition: all 0.4s ease;
+}
+
+.profile-section li a {
+  transition: all 0.4s ease;
+}
+
+.profile-section a:visited {
+  color: #333;
+}
+
+.profile-section a {
+  color: #333;
 }
