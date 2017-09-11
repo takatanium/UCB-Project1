@@ -6,7 +6,7 @@ a9bcd0 - pale blue - headers
 1b1b1e - black/blue - other background material?*/
 
 /*new colors:
-#23628e - navy - 
+#23628e - navy -
 #d16262 - red - headers?
 #fff9ed - cream - stats background
 #dbdbdb - gray - ?
@@ -76,7 +76,7 @@ section {
 .state-auto {
   position: absolute !important;
   top: 0 !important;
-  color: black !important;
+  color: #fff9ed  !important;
   opacity: 0.5 !important;
   z-index: 3 !important;
   font-size: 40px !important;
@@ -84,7 +84,7 @@ section {
 }
 
 input::-webkit-input-placeholder {
-  color: black;
+  color: #fff9ed ;
 }
 
 /*#state-input {
@@ -170,7 +170,7 @@ input::-webkit-input-placeholder {
 }
 
 .map-icon:hover {
-  filter: invert(100%);
+  filter: invert(90%);
 
 }
 
