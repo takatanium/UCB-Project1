@@ -1,4 +1,5 @@
 // BASIC MAP AND CAPITOL MARKER GENERATION
+var mapMobile;
 
 // Google Maps function for generating latitude and longitude to be used for placing marker
 function initMap(thisState) {
@@ -64,6 +65,15 @@ function tagLocation(thisState, lat, lng) {
       position: location,
       map: map
     });
+
+    // mapMobile = new google.maps.Map(document.getElementById(thisState.abbreviation+'-map'), { 
+    // zoom: zoom,
+    // center: location
+    // });
+    // var markerMobile = new google.maps.Marker({
+    //   position: location,
+    //   map: mapMobile
+    // });
 }
 
 // =======================================================================

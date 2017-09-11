@@ -136,12 +136,8 @@ input::-webkit-input-placeholder {
 	margin: 0;
 }
 
-#map-col {
-	padding: 0;
-}
-
 .map,
-#stat {
+.stat {
 	height: 87vh;
 	margin: 0;
 }
@@ -151,7 +147,8 @@ input::-webkit-input-placeholder {
 	height: 87vh !important;
 }
 
-.stat-col {
+.stat-col,
+.map-col {
 	padding: 0 !important;
 }
 
@@ -406,11 +403,22 @@ div.tooltip {
   margin: 0 auto;
 }
 
-.card-mobile {
-  height: 90vh;
+.mobile-card {
+  display: none;
+}
+
+.mobile-map {
+  height: 80%;
+}
+
+a {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1000px) {
+  .sticky-scroll {
+    padding: 0 20px 0 20px;
+  }
 
   .dropdown,
   .map-mobile {
@@ -426,11 +434,13 @@ div.tooltip {
 }
 
 @media screen and (max-width: 600px) {
+
   .mobile-card {
     display: block;
   }
-  
-  .map {
+
+  .map-col,
+  .stat-col {
     display: none;
   }
 
