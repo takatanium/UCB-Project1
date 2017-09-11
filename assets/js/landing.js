@@ -84,6 +84,7 @@ function initiateInput(state) {
   });
 }
 
+
 /**
  * [createAllDivs description]
  * @return {[type]} [description]
@@ -94,6 +95,7 @@ function createAllDivs() {
     $div.attr('id', states[i].id);
     $div.attr('data-section-name', states[i].name.replace(/\s+/g, '-'));
     $div.appendTo('body');
+    popDropDown(i);
   }
   $.scrollify({
     section : ".sticky-scroll",
@@ -117,6 +119,12 @@ function popDataInfo() {
   }
 }
 
+function popDropDown(stateNum) {
+  let $option = $('<option>').html(states[stateNum].name);
+  // $option.attr('id', states[stateNum].abbreviation+'-drop');
+  $('.dropdown').append($option);
+}
+
 /**
  * [returnToMap description]
  * @param  {[type]} state [description]
@@ -125,6 +133,14 @@ function popDataInfo() {
 function returnToMap(state) {
   $('#map-icon-'+state).on('click', function() {
     $.scrollify.move('#landing');
+  });
+}
+
+function dropSelection() {
+  $('select').on('click', function(){
+    if ($(this).val()!==null) {
+      $.scrollify.move('#'+$(this).val().replace(/\s+/g, '-'));
+    }
   });
 }
 
@@ -145,4 +161,6 @@ $(document).ready(function() {
     $('.tap-target').tapTarget('open');
   });
   returnToMap('landing');
+  dropSelection();
+
 });
