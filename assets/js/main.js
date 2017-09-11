@@ -5,8 +5,9 @@ let stats = ["population", "median_age", "median_income"];
 // Loads state object
 $(document).ready(function($) {
 
-  getWikipedia(5407);
-
+  // getWikipedia(5407);
+  location.hash = 'landing';
+  
   $.ajax({
     url: 'https://raw.githubusercontent.com/takatanium/UCB-Project1/master/assets/json/states.json',
     dataType: 'json',
@@ -80,7 +81,7 @@ function getData() {
  * @param  {string} state The state we are retrieving data for
  * @return {object}       Wikipedia API response
  */
-function getWikipedia(pageid) {
+function getWikipedia(pageid, state) {
   let BASEURL = 'https://en.wikipedia.org/w/api.php'
   let url = BASEURL + '?' + $.param({
     action: 'query',
@@ -103,6 +104,7 @@ function getWikipedia(pageid) {
 
       let extract = getExtract(res);
       console.log(extract);
+      $('#'+state+'-card-content').html(extract);
       return extract;
     },
     error: function(e) {
