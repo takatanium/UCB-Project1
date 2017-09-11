@@ -262,6 +262,11 @@ path:hover {
   height: 80%;
 }
 
+.card-content {
+  height: 20%;
+  overflow-y: scroll;
+}
+
 /*For Feature*/
 #menu {
   position: absolute;

@@ -32,12 +32,15 @@ function dynamicDiv(currentState) {
   });
 
   $('.my-container').promise().done(function() {
-    if (thisState !== -1) {
+    if (currentState !== 'landing') {
       if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
-      initiateInput(thisState.name);
-      returnToMap(thisState.name);
+      initiateInput(thisState.name.replace(/\s+/g, '-'));
+      returnToMap(thisState.name.replace(/\s+/g, '-'));
       let data = getTimeSeries(thisState, 2013, 2015);
       createRingChart(data["median_age"], "median_age", ".chart");
+
+      getWikipedia(5407, thisState.name.replace(/\s+/g, '-'));
+      toggleScrolling('.card');
     }
     if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
     if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
@@ -59,6 +62,11 @@ function dynamicDiv(currentState) {
     // click function for generating map with universities
     // $("#").on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
   });
+}
+
+function toggleScrolling(el) {
+  $(el).on('mouseenter',function() {$.scrollify.disable()});
+  $(el).on('mouseleave',function() {$.scrollify.enable()});
 }
 
 /**
@@ -121,33 +129,27 @@ function getPrevState(currentState) {
  */
 function navGen(state) {
   let $input = $('<input>').attr({
-    id: 'search-'+state.name,
+    id: 'search-'+state.name.replace(/\s+/g, '-'),
     type: 'search',
     required: 'required'
   }).addClass('search');
 
   let $inputAuto = $('<input>').attr({
-    id: 'state-auto-'+state.name,
+    id: 'state-auto-'+state.name.replace(/\s+/g, '-'),
     type: 'search',
     placeholder: state.name,
   }).addClass('state-auto');
 
-
-  // let $icon1 = $('<i>').addClass('material-icons').text('search');
-  // $icon1.attr('id', 'magnify');
-  // let $label = $('<label>').addClass('label-icon');
-  // $label.attr('for', 'search').append($icon1);
   let $icon1 = $('<img>').attr({
-    id: 'map-icon-'+state.name,
+    id: 'map-icon-'+state.name.replace(/\s+/g, '-'),
     src: 'assets/img/usa.png'
   }).addClass('map-icon');
   let $icon2 = $('<i>').addClass('material-icons input-del');
-  $icon2.text('close').attr('id', 'input-del-'+state.name);
+  $icon2.text('close').attr('id', 'input-del-'+state.name.replace(/\s+/g, '-'));
 
   let $inputDiv = $('<div>').addClass('input-field');
   $inputDiv.html($inputAuto).append($input);
   $inputDiv.append($icon1).append($icon2);
-  // $inputDiv.append($label).append($icon2);
 
   let $form = $('<form>').html($inputDiv);
   let $navWrap = $('<div>').addClass('nav-wrapper').html($form);
@@ -229,28 +231,22 @@ function displayStats(state, title, icon, active) {
   }
   let $liBody = $('<div>').addClass('collapsible-body grey lighten-5');
   $liBody.attr('id', state.abbreviation+'-list-body');
-  let $liContent = $('<span>').appendTo($liBody);
   let $li = $('<li>').html($liHeader).append($liBody);
 
   if (active) {
     $liHeader.addClass('active');
     $liBody.addClass('list-body');
-    $liContent.append('<p><span class="title-stat">Capitol: </span><span class="text-stat">' + state.capitol + '</span></p>');
-    $liContent.append('<p><span class="title-stat">Population: </span><span class="number-stat">' + tools.numberWithCommas(state.population["2015"]) + '</span></p>');
-    $liContent.append('<p><span class="title-stat">Median Age: </span><span class="number-stat"></p>');
+    $liBody.append('<p><span class="title-stat">Capitol: </span><span class="text-stat">' + state.capitol + '</span></p>');
+    $liBody.append('<p><span class="title-stat">Population: </span><span class="number-stat">' + tools.numberWithCommas(state.population["2015"]) + '</span></p>');
+    $liBody.append('<p><span class="title-stat">Median Age: </span><span class="number-stat"></p>');
     let $chart = $('<div>').addClass('chart');
-    // let $chart = $('<div>').attr('id', state.abbreviation+'-chart');
-    // $liContent.append('<div id="'+state.abbreviation+'-chart"></div>');
-    // let data = getTimeSeries(state, 2013, 2015);
-    // createRingChart(data["median_age"], "median_age", state.abbreviation+"-chart");
     $liBody.append($chart);
   }
   else if (title === 'Employment Statistics') {
-    $liContent.append('<p>State Statistics</p>');
-    $liContent.append('<p><span class="title-stat">Median Income:</span> <span class="number-stat">' + tools.numberWithCommas(state.median_income["2015"]) + '</span></p>');
+    $liBody.append('<p><span class="title-stat">Median Income:</span> <span class="number-stat">' + tools.numberWithCommas(state.median_income["2015"]) + '</span></p>');
   }
   else {
-    $liContent.append('State Statistics');
+    $liBody.append('State Statistics');
   }
 
   return $li;
