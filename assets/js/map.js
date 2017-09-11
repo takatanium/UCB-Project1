@@ -68,44 +68,45 @@ function tagLocation(thisState, lat, lng) {
 
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
-// function initEducationMap(thisState) { //div is being dynamically generated in result.js line 193
+function initEducationMap(thisState) { //div is being dynamically generated in result.js line 193
 
-//   var location = {lat: lat, lng: lng};
-//       //searching for type term, displaying all items with that tag within given radius
-//         map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
-//           center: location,
-//           zoom: 10
-//         });
+  var location = {lat: lat, lng: lng};
+      //searching for type term, displaying all items with that tag within given radius
+        map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
+          center: location,
+          zoom: 10
+        });
 
-//         infowindow = new google.maps.InfoWindow();
-//         var service = new google.maps.places.PlacesService(map);
-//         service.nearbySearch({
-//           location: location,
-//           radius: 100,
-//           type: ['university']
-//         }, callback);
-//       }
-//       //calling the function to create markers for each result
-//       function callback(results, status) {
-//         if (status === google.maps.places.PlacesServiceStatus.OK) {
-//           for (var i = 0; i < results.length; i++) {
-//             createMarker(results[i]);
-//           }
-//         }
-//       }
-//       //defining the function for creating location markers, adn when they're clicked bringing up information
-//       function createMarker(place) {
-//         var placeLoc = place.geometry.location;
-//         var marker = new google.maps.Marker({
-//           map: map,
-//           position: place.geometry.location
-//         });
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: location,
+          radius: 100,
+          type: ['university']
+        }, callback);
+      }
+      //calling the function to create markers for each result
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+      //defining the function for creating location markers, and when they're clicked bringing up information
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
 
-//         google.maps.event.addListener(marker, 'click', function() {
-//           infowindow.setContent(place.name);
-//           infowindow.open(map, this);
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
 
-// })
+})
+      };
         //need to write code for returning map to just map with capitol marker, clear marker function?
 
 
