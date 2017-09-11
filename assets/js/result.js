@@ -36,6 +36,7 @@ function dynamicDiv(currentState) {
       if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
       initiateInput(thisState.name.replace(/\s+/g, '-'));
       returnToMap(thisState.name.replace(/\s+/g, '-'));
+      dropSelection();
       let data = getTimeSeries(thisState, 2013, 2015);
       createRingChart(data["median_age"], "median_age", ".chart");
 
@@ -60,7 +61,7 @@ function dynamicDiv(currentState) {
     initMap(thisState);
 
     // click function for generating map with universities
-    $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
+    // $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
   });
 }
 
@@ -150,9 +151,19 @@ function navGen(state) {
   let $inputDiv = $('<div>').addClass('input-field');
   $inputDiv.html($inputAuto).append($input);
   $inputDiv.append($icon1).append($icon2);
-
   let $form = $('<form>').html($inputDiv);
-  let $navWrap = $('<div>').addClass('nav-wrapper').html($form);
+
+  let $drop = $('<select>').addClass('dropdown');
+  $drop.append('<option disabled>Choose State</option>');
+  for (let i = 0; i < states.length; i++) {
+    if (states[i].name === state.name) {
+      $drop.append('<option selected>'+states[i].name+'</option>');
+    } else {
+      $drop.append('<option>'+states[i].name+'</option>');
+    }
+  }
+
+  let $navWrap = $('<div>').addClass('nav-wrapper').html($drop).append($form);
   let $nav = $('<nav>').addClass('nav-container').html($navWrap);
 
   return $nav;
