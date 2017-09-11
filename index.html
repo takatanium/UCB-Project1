@@ -27,26 +27,24 @@
     <section class="fade sticky-scroll" id="landing-page" data-section-name="landing">
       <nav class="nav-container">
         <div class="nav-wrapper">
+          <select class="dropdown">
+			      <option disabled selected>Choose State</option>
+			    </select>
           <form>
-            <div class="input-field">
+           <div class="input-field">
               <input id="state-auto-landing" class="state-auto" type="search" placeholder="Enter State">
               <input id="search-landing" class="search" type="search" required>
               <img id="map-icon-landing" class="map-icon" src="assets/img/usa.png">
-
-              <!-- <label class="label-icon" for="search"> -->
-                <!-- <i id="magnify" class="material-icons">search</i> -->
-
-<!--               </label> -->
               <i class="material-icons input-del" id="input-del-landing">close</i>
             </div>
           </form>
         </div>
       </nav>
+
       <div class="empty-flex"></div>
+      <img id="map-mobile-landing" class="map-mobile" src="assets/img/usa_mobile.png">
       <div id="usmap-container">
-      	<!-- <div id="us-responsive"> -->
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" id="us-map" preserveAspectRatio="xMinYMin meet" x="0px" y="0px" width="930px" height="593px" viewBox="0 0 930 593"> -->
         <svg xmlns="http://www.w3.org/2000/svg" id="us-map" preserveAspectRatio="xMidYMid meet" width="930px" height="593px" viewBox="0 0 930 593">
           <title>Blank US states map</title>
           <g id="outlines">
@@ -117,7 +115,6 @@
           </g>
           <path id="frames" fill="none" stroke="#A9A9A9" stroke-width="2" d="M215,493v55l36,45 M0,425h147l68,68h85l54,54v46"/>
         </svg>
-        <!-- </div> -->
       </div>
       <div class="empty-flex"></div>
       

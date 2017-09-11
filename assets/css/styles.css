@@ -136,12 +136,8 @@ input::-webkit-input-placeholder {
 	margin: 0;
 }
 
-#map-col {
-	padding: 0;
-}
-
 .map,
-#stat {
+.stat {
 	height: 87vh;
 	margin: 0;
 }
@@ -151,7 +147,8 @@ input::-webkit-input-placeholder {
 	height: 87vh !important;
 }
 
-.stat-col {
+.stat-col,
+.map-col {
 	padding: 0 !important;
 }
 
@@ -389,3 +386,80 @@ div.tooltip {
 .profile-section a {
   color: #333;
 }
+
+/*Media Queries*/
+.dropdown {
+  display: none;
+  height: 100%;
+  background-color: #d16262;
+  line-height: 64px;
+  font-size: 30px;
+}
+
+.map-mobile {
+  display: none;
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.mobile-card {
+  display: none;
+}
+
+.mobile-map {
+  height: 80%;
+}
+
+a {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .sticky-scroll {
+    padding: 0 20px 0 20px;
+  }
+
+  .dropdown,
+  .map-mobile {
+    display: block;
+  }
+
+  form,
+  #usmap-container,
+  #menu {
+    display: none;
+  }
+ 
+}
+
+@media screen and (max-width: 600px) {
+
+  .mobile-card {
+    display: block;
+  }
+
+  .map-col,
+  .stat-col {
+    display: none;
+  }
+
+  .card {
+    height: 88vh;
+  }
+
+  .card-content {
+    overflow-y: hidden;
+  }
+
+  .main-card-content {
+    height: 85%;
+    padding: 15px !important;
+  }
+
+  .tab-card-content,
+  .card-reveal {
+    padding: 15px !important; 
+  }
+}
+

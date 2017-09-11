@@ -34,13 +34,38 @@ function dynamicDiv(currentState) {
   $('.my-container').promise().done(function() {
     if (currentState !== 'landing') {
       if (!$('#'+thisState.id).has('nav').length) genContent(thisState);
+      //for page interactions
       initiateInput(thisState.name.replace(/\s+/g, '-'));
       returnToMap(thisState.name.replace(/\s+/g, '-'));
+      dropSelection();
+
+      //for stat information (text) - Employment
+      let income = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
+      $('#'+thisState.abbreviation+'-employment-stat').html(income);
+      let incomeMobile = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
+      $('#'+thisState.abbreviation+'-employment-stat-mobile').html(incomeMobile);
+
+      //for stat information (text) - Information
+      let $stat = $('#'+thisState.abbreviation+'-information-stat');
+      $stat.html(statText('Capitol: ', thisState.capitol));
+      $stat.append(statText('Population: ', tools.numberWithCommas(thisState.population["2015"])));
+      $stat.append(statText('Median Age: ', ''));
+      let $mobileStat = $('#'+thisState.abbreviation+'-information-stat-mobile');
+      $mobileStat.html(statText('Capitol: ', thisState.capitol));
+      $mobileStat.append(statText('Population: ', tools.numberWithCommas(thisState.population["2015"])));
+      $mobileStat.append(statText('Median Age: ', ''));
+
+      //for chart generation
+      $('<div>').addClass('chart').appendTo('#'+thisState.abbreviation+'-information-stat');
       let data = getTimeSeries(thisState, 2013, 2015);
       createRingChart(data["median_age"], "median_age", ".chart");
+      $('<div>').addClass('chart-mobile').appendTo('#'+thisState.abbreviation+'-information-stat-mobile');
+      let dataMobile = getTimeSeries(thisState, 2013, 2015);
+      createRingChart(dataMobile["median_age"], "median_age", ".chart-mobile");
 
+      //for wikipedia information
       getWikipedia(5407, thisState.name.replace(/\s+/g, '-'));
-      toggleScrolling('.card');
+      toggleScrolling(['.large-card-content','.card-image']);
     }
     if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
     if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
@@ -60,13 +85,24 @@ function dynamicDiv(currentState) {
     initMap(thisState);
 
     // click function for generating map with universities
-    $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
+    // $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
   });
 }
 
+function statText(title, number) {
+  let $title = $('<span>').addClass('title-stat').html(title);
+  let $amt = $('<span>').addClass('number-stat').html(number);
+  let $p = $('<p>').html($title).append($amt); 
+  return $p; 
+}
+
 function toggleScrolling(el) {
-  $(el).on('mouseenter',function() {$.scrollify.disable()});
-  $(el).on('mouseleave',function() {$.scrollify.enable()});
+  for (let i = 0; i < el.length; i++) {
+    $(el[i]).on('mouseenter',function() {$.scrollify.disable()});
+    $(el[i]).on('mouseleave',function() {
+      $(this).promise().done($.scrollify.enable());
+    });
+  }
 }
 
 /**
@@ -76,6 +112,7 @@ function toggleScrolling(el) {
  */
 function genContent(makeState) {
   let $info = $('<div>').addClass('row').attr('id', 'info-row');
+  $info.html(statMobileGen(makeState));
   $info.append(mapColGen(makeState)).append(statColGen(makeState));
 
   let $cont = $('<section>').addClass('my-container sticky-scroll');
@@ -150,9 +187,19 @@ function navGen(state) {
   let $inputDiv = $('<div>').addClass('input-field');
   $inputDiv.html($inputAuto).append($input);
   $inputDiv.append($icon1).append($icon2);
-
   let $form = $('<form>').html($inputDiv);
-  let $navWrap = $('<div>').addClass('nav-wrapper').html($form);
+
+  let $drop = $('<select>').addClass('dropdown');
+  $drop.append('<option disabled>Choose State</option>');
+  for (let i = 0; i < states.length; i++) {
+    if (states[i].name === state.name) {
+      $drop.append('<option selected>'+states[i].name+'</option>');
+    } else {
+      $drop.append('<option>'+states[i].name+'</option>');
+    }
+  }
+
+  let $navWrap = $('<div>').addClass('nav-wrapper').html($drop).append($form);
   let $nav = $('<nav>').addClass('nav-container').html($navWrap);
 
   return $nav;
@@ -170,7 +217,7 @@ function mapColGen(state) {
   let $img = $('<div>').addClass('card-image')
   $img.attr('id', state.name.replace(/\s+/g, '-')+'-map');
 
-  let $content = $('<div>').addClass('card-content');
+  let $content = $('<div>').addClass('card-content large-card-content');
   $content.attr('id', state.name.replace(/\s+/g, '-')+'-card-content');
   $content.text("Place information here.");
 
@@ -178,7 +225,7 @@ function mapColGen(state) {
 
   // $card.attr('id', state.name.replace(/\s+/g, '-')+'-map');
 
-  let $col = $('<div>').addClass('col s12 m6').attr('id', 'map-col');
+  let $col = $('<div>').addClass('col s12 m6 map-col');
   $col.html($card);
 
   return $col;
@@ -197,7 +244,7 @@ function statColGen(state) {
   $ul.append(displayStats(state, 'Education Statistics', 'school', false));
   $ul.append(displayStats(state, 'State Information', 'whatshot', true));
 
-  let $statDiv = $('<div>').attr('id', state.abbreviation+'-stat').html($ul);
+  let $statDiv = $('<div>').addClass('stat').attr('id', state.abbreviation+'-stat').html($ul);
   let $col = $('<div>').addClass('col s12 m6 stat-col').attr('id', state.abbreviation+'-stat-col');
   $col.html($statDiv);
 
@@ -235,19 +282,129 @@ function displayStats(state, title, icon, active) {
 
   if (active) {
     $liHeader.addClass('active');
-    $liBody.addClass('list-body');
-    $liBody.append('<p><span class="title-stat">Capitol: </span><span class="text-stat">' + state.capitol + '</span></p>');
-    $liBody.append('<p><span class="title-stat">Population: </span><span class="number-stat">' + tools.numberWithCommas(state.population["2015"]) + '</span></p>');
-    $liBody.append('<p><span class="title-stat">Median Age: </span><span class="number-stat"></p>');
-    let $chart = $('<div>').addClass('chart');
-    $liBody.append($chart);
+    $liBody.addClass('list-body').attr('id', state.abbreviation+'-information-stat');
   }
   else if (title === 'Employment Statistics') {
-    $liBody.append('<p><span class="title-stat">Median Income:</span> <span class="number-stat">' + tools.numberWithCommas(state.median_income["2015"]) + '</span></p>');
+    $liBody.attr('id', state.abbreviation+'-employment-stat');
   }
   else {
-    $liBody.append('State Statistics');
+    $liBody.attr('id', state.abbreviation+'-education-stat');
   }
 
   return $li;
+}
+
+function statMobileGen(state) {
+  //main card content
+  let $main = $('<div>').addClass('card-content main-card-content');
+  $main.html(mainMobileGen(state.abbreviation, 'General Information'));
+  $main.append(mainMobileGen(state.abbreviation, 'Employment Statistics'));
+  $main.append(mainMobileGen(state.abbreviation, 'Education Statistics'));
+
+  //tab card content
+  let $ul = $('<ul>').addClass('tabs tabs-fixed-width');
+  $ul.html(tabMobileGen(state.abbreviation, 'stateinfo', 'whatshot'));
+  $ul.append(tabMobileGen(state.abbreviation, 'workstats', 'work'));
+  $ul.append(tabMobileGen(state.abbreviation, 'schoolstats', 'school'));
+
+  let $tab = $('<div>').addClass('card-content tab-card-content');
+  $tab.attr('id', state.abbreviation+'-tab-card');
+  $('<div>').addClass('card-tabs').appendTo($tab).append($ul);
+
+  //map reveal
+  let $i = $('<i>').addClass('material-icons right').html('close');
+  let $a = $('<a>').addClass('card-title grey-text text-darken-4');
+  $a.html('Map').append($i);
+  let $map = $('<div>').addClass('card-reveal').append($a);
+
+  //map div
+  let $mapDiv = $('<div>').attr('id', state.abbreviation+'-map');
+  $mapDiv.addClass('mobile-map');
+  $map.append($mapDiv);
+
+  //append to card
+  let $card = $('<div>').addClass('card mobile-card');
+  $card.html($main).append($tab).append($map);
+
+  // addTabClick(state.abbreviation);
+
+  return $card;
+}
+
+function mainMobileGen(abbr, title) {
+  let titleId, contentId;
+  if (title === 'Education Statistics') {
+    titleId = abbr+'schoolstats';
+    contentId = abbr+'-education-stat-mobile';
+  }
+  else if (title === 'Employment Statistics') {
+    titleId = abbr+'workstats';
+    contentId = abbr+'-employment-stat-mobile';
+  } else {
+    titleId = abbr+'stateinfo';
+    contentId = abbr+'-information-stat-mobile';
+  }
+
+  let $id = $('<div>').attr('id', titleId);
+  let $icon = $('<i>').addClass('material-icons right').html('pin_drop');
+  let $span = $('<span>').addClass('card-title activator grey-text text-darken-4 card-title-mobile');
+  $span.html(title).append($icon);
+  $id.html($span);
+
+  showMobileMap(mapMobile);
+
+  if (title === 'General Information') {
+    $id.css('display', 'block');
+    $id.addClass('active mobile-content');
+  } else {
+    $id.css('display', 'none');
+    $id.addClass('mobile-content');
+  }
+
+  //content
+  let $content = $('<div>').attr('id', contentId);
+  $id.append($content);
+  // let $mapDiv = $('<div>').attr('id', abbr+'-map');
+  // $mapDiv.addClass('mobile-map');
+  // $id.append($mapDiv);
+
+  return $id;
+}
+
+function tabMobileGen(abbr, id, icon) {
+  let $i = $('<i>').addClass('material-icons').html(icon);
+  let $a = $('<a>').attr('id', 'M'+abbr+id).html($i);
+
+  $a.on('click', function() {
+    clearMobileActive(abbr);
+
+    $('#'+abbr+id).css('display', 'block');
+    $('#'+abbr+id).addClass('active');
+    $('#M'+abbr+id).addClass('active');
+  });
+
+  let $li = $('<li>').addClass('tab').html($a);
+  if (icon === 'whatshot') $a.addClass('active');
+
+  return $li;
+}
+
+function clearMobileActive(abbr) {
+  $('#M'+abbr+'stateinfo').removeClass('active');
+  $('#M'+abbr+'workstats').removeClass('active');
+  $('#M'+abbr+'schoolstats').removeClass('active');
+
+  $('#'+abbr+'stateinfo').css('display', 'none');
+  $('#'+abbr+'stateinfo').removeClass('active');
+  $('#'+abbr+'workstats').css('display', 'none');
+  $('#'+abbr+'workstats').removeClass('active');
+  $('#'+abbr+'schoolstats').css('display', 'none');
+  $('#'+abbr+'schoolstats').removeClass('active');
+}
+
+function showMobileMap(map) {
+  $('.card-title-mobile').on('click', function() {
+    console.log("MAP");
+    google.maps.event.trigger(map, "resize");
+  });
 }
