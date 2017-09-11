@@ -57,7 +57,7 @@ function dynamicDiv(currentState) {
     initMap(thisState);
 
     // click function for generating map with universities
-    // $("#").on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
+    $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
   });
 }
 
