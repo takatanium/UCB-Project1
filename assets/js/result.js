@@ -56,9 +56,9 @@ function dynamicDiv(currentState) {
       $mobileStat.append(statText('Median Age: ', ''));
 
       //for chart generation
-      $('<div>').addClass('chart').appendTo('#'+thisState.abbreviation+'-information-stat');
+      $('<div>').addClass('chart'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-information-stat');
       let data = getTimeSeries(thisState, 2013, 2015);
-      createRingChart(data["median_age"], "median_age", ".chart");
+      createTimeSeries(data["median_age"], "median_age", ".chart"+thisState.abbreviation, dimple.plot.line);
       $('<div>').addClass('chart-mobile').appendTo('#'+thisState.abbreviation+'-information-stat-mobile');
       let dataMobile = getTimeSeries(thisState, 2013, 2015);
       createRingChart(dataMobile["median_age"], "median_age", ".chart-mobile");
@@ -92,8 +92,8 @@ function dynamicDiv(currentState) {
 function statText(title, number) {
   let $title = $('<span>').addClass('title-stat').html(title);
   let $amt = $('<span>').addClass('number-stat').html(number);
-  let $p = $('<p>').html($title).append($amt); 
-  return $p; 
+  let $p = $('<p>').html($title).append($amt);
+  return $p;
 }
 
 function toggleScrolling(el) {
