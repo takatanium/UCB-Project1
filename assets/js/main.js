@@ -1,7 +1,6 @@
 const BASE_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=pop,age,income'
 const CHR_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=unemployment,uninsured,high_school_graduation,some_college'
 var states; // Global object that holds state information
-let stats = ["population", "median_age", "median_income"];
 
 /*
 ******************************************************
