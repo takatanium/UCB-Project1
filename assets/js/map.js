@@ -69,6 +69,7 @@ function tagLocation(thisState, lat, lng) {
       map: map
     });
 
+  //Mobile responsiveness
     // mapMobile = new google.maps.Map(document.getElementById(thisState.abbreviation+'-map'), { 
     // zoom: zoom,
     // center: location
@@ -81,12 +82,12 @@ function tagLocation(thisState, lat, lng) {
 
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
-// 
+// initEducationMap getting called in line 88 of result.js
 function initEducationMap(thisState, lat, lng) { //div is being dynamically generated in result.js line 193
 
   var location = {lat: lat, lng: lng};
   console.log(location)
-  console.log(typeof lat);
+  // console.log(typeof lat);
       //searching for type term, displaying all items with that tag within given radius
         // var zoom = mapZoom(thisState);
         var eduMap = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
@@ -96,7 +97,7 @@ function initEducationMap(thisState, lat, lng) { //div is being dynamically gene
         });
         // console.log(eduMap);
         infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(eduMap); //error: LatLngLiteral: in property lat: not a number
+        var service = new google.maps.places.PlacesService(eduMap); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
         service.nearbySearch({ 
           location: location, //research setCenter function so it doesn't throw errors like a turd
           radius: 5000,
