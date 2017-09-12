@@ -78,9 +78,24 @@ function tagLocation(thisState, lat, lng) {
 
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
-function initEducationMap(thisState) { //div is being dynamically generated in result.js line 193
+function initEducationMap(thisState, lat, lng) { //div is being dynamically generated in result.js line 193
 
+    if (thisState !== undefined && thisState !== -1) {
+
+    var userLocation =  thisState.capitol + "," + thisState.abbreviation; 
+
+    geoCodeAddress(userLocation)
+    .then(function(results) {
+      let lat1 = results[0].geometry.location.lat();
+      let lng1 = results[0].geometry.location.lng();
+      // tagLocation(thisState, lat1, lng1);
+      
+    })
+    .catch(function(status) {
+    });
+  }
   var location = {lat: lat, lng: lng};
+  console.log(location);
       //searching for type term, displaying all items with that tag within given radius
         map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
           center: location,
