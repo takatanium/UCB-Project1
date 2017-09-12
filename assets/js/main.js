@@ -3,7 +3,8 @@ const CHR_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=un
 
 const JOIN_URL = 'https://api.datausa.io/api/join/?required=pop,age,income,unemployment,uninsured,high_school_graduation,some_college&show=geo&sumlevel=state'
 
-var states; // Global object that holds state information
+let stats = ["population", "median_age", "median_income"];
+let states; // Global object that holds state information
 
 /*
 ******************************************************
