@@ -1,5 +1,8 @@
 const BASE_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=pop,age,income'
 const CHR_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=unemployment,uninsured,high_school_graduation,some_college'
+
+const JOIN_URL = 'https://api.datausa.io/api/join/?required=pop,age,income,unemployment,uninsured,high_school_graduation,some_college&show=geo&sumlevel=state'
+
 var states; // Global object that holds state information
 
 /*
