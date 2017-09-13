@@ -88,7 +88,7 @@ function tagLocation(thisState, lat, lng) {
 
   var location = {lat: lat, lng: lng};
   console.log(location)
-  
+
       //searching for type term, displaying all items with that tag within given radius
         var map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
           
@@ -129,6 +129,7 @@ function tagLocation(thisState, lat, lng) {
       }
     }
   }else {createMarker(results)}
+        
   }
 }        
       
