@@ -13,7 +13,7 @@ function initMap(thisState) {
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
       tagLocation(thisState, lat1, lng1);
-      initEducationMap(thisState, lat1, lng1);
+      // initEducationMap(thisState, lat1, lng1);
 
       
     })
@@ -83,7 +83,8 @@ function tagLocation(thisState, lat, lng) {
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
 // initEducationMap getting called in line 88 of result.js
-$(document).on('click', '#' + thisState.abbreviation +'-stat-list', function initEducationMap(thisState, lat, lng) {
+// $(document).on('click', '#' + thisState.abbreviation +'-stat-list', 
+  function initEducationMap(thisState, lat, lng) {
 
   var location = {lat: lat, lng: lng};
   console.log(location)
