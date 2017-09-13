@@ -1,11 +1,5 @@
-/*Color pallete for reference:
-d8dbe2 - pale gray for backgrounds
-a9bcd0 - pale blue - headers
-58a4b0 - turquoise/blue - other headers, possibly larger headers
-373f51 - navy - backgrounds
-1b1b1e - black/blue - other background material?*/
-
-/*new colors:
+/*
+Color Palette:
 #23628e - navy -
 #d16262 - red - headers?
 #fff9ed - cream - stats background
@@ -28,17 +22,10 @@ section {
 	flex-direction: column;
 }
 
-/*nav {
-	position: absolute;
-	height: 64px;
-}*/
-
 .fade {
 	opacity: 0;
   height: 100%;
   width: 100%;
-  /*background-image: url("../img/landing_img1.jpg");*/
-  /*background-size: cover;*/
 }
 
 #main-container {
@@ -63,15 +50,6 @@ section {
 	position: relative;
 	background-color: #d16262;
 }
-/*
-.state-auto,
-.state-input {
-  position: absolute;
-  top: 0;
-  font-size: 60px;
-  height: 80px;
-  font-size: 40px !important;
-}*/
 
 .state-auto {
   position: absolute !important;
@@ -80,18 +58,11 @@ section {
   opacity: 0.5 !important;
   z-index: 3 !important;
   font-size: 40px !important;
-  /*border-width: 3px;*/
 }
 
 input::-webkit-input-placeholder {
   color: #fff9ed ;
 }
-
-/*#state-input {
-  color: grey;
-  border-width: 3px;
-  z-index: 5;
-}*/
 
 .search {
 	z-index: 4 !important;
@@ -104,27 +75,6 @@ input::-webkit-input-placeholder {
 .search {
 	font-size: 40px !important;
 }
-/*#state-auto {
-  color: silver;
-  opacity: 0.5;
-  border-width: 3px;
-}
-
-#state-input {
-  color: #26a69a;
-  border-width: 3px;
-  z-index: 5;
-}*/
-
-/*#state-input-label {
-  font-size: 40px;
-  position: static;
-  height: auto;
-}*/
-
-/*.input-field label:not(.label-icon).active {
-  transform: translateY(-40px) scale(0.6);
-}*/
 
 .my-container,
 .fade {
@@ -176,12 +126,6 @@ input::-webkit-input-placeholder {
 	z-index: 4 !important;
 }
 
-/*input {
-	background-color: rgba(0,0,0,0.1);
-	z-index: 2;
-}
-*/
-
 .nav-container {
 	background-color: rgba(0,0,0,0.1) !important;
 }
@@ -215,32 +159,19 @@ input::-webkit-input-placeholder {
 /*For interactive US Map*/
 #usmap-container {
   position: relative;
-  /*flex: 1;*/
-  /*width: 900px;*/
   width: auto;
-  /*height: 90%;*/
   margin: auto;
 }
 
 #us-map {
   display: block;
-  /*position: absolute;*/
-  /*top: 0;*/
-  /*left: 0;*/
   height: 530px !important;
   width: 930px !important;
-	/*max-height: 80vh !important;*/
-	/*max-width: 90vw;*/
 }
 
 .empty-flex {
   flex: 1;
 }
-/*#us-responsive {
-  width: auto;
-  height: auto;
-  margin: auto;
-}*/
 
 path:hover {
   stroke: #d16262 !important;
@@ -265,6 +196,13 @@ path:hover {
 }
 
 /*For Feature*/
+#about {
+  position: absolute;
+  bottom: 0px;
+  left: 50px;
+  color: #d16262;
+}
+
 #menu {
   position: absolute;
   bottom: 20px;
@@ -303,7 +241,6 @@ path:hover {
 }
 
 /*------- D3 -------- */
-
 div.bar {
 	display:block;
 	width: 20px;
@@ -436,6 +373,9 @@ a {
     display: none;
   }
 
+  #about {
+    left: 20px;
+  }
 }
 
 @media screen and (max-width: 600px) {
