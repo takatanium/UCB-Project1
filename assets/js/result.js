@@ -2,7 +2,7 @@ $(function() {
   $.scrollify({
     section : ".sticky-scroll",
     scrollbars: false,
-    scrollSpeed: 1100,
+    scrollSpeed: 100,
     before: function() {
       let currentId = $.scrollify.current().attr('id');
 
