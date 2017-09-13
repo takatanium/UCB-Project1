@@ -2,7 +2,9 @@
 var mapMobile;
 
 // Google Maps function for generating latitude and longitude to be used for placing marker
-function initMap(thisState) {
+// $(document).on('ready', 
+
+  function initMap(thisState) {
 
   if (thisState !== undefined && thisState !== -1) {
 

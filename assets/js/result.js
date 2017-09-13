@@ -42,27 +42,51 @@ function dynamicDiv(currentState) {
       dropSelection();
       let data = getTimeSeries(thisState, 2013, 2015);
       let eduData = getTimeSeries(thisState, 2015, 2017);
-
       //for stat information (text) - Employment
       //let income = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
-      let income = statText('Median Income:');
-      $('#'+thisState.abbreviation+'-employment-stat').append(income);
+      let incomeTitle = statText('Median Income:');
+      let incomeTitleMobile = statText('Median Income:');
+      $('#'+thisState.abbreviation+'-employment-stat').append(incomeTitle);
+      $('#'+thisState.abbreviation+'-employment-stat-mobile').append(incomeTitleMobile);
       $('<div>').addClass('chart-median-income-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat');
-      createTimeSeries(data["median_income"], "median_income", ".chart-median-income-"+thisState.abbreviation, dimple.plot.line);
-      let incomeMobile = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
-      $('#'+thisState.abbreviation+'-employment-stat-mobile').html(incomeMobile);
+      $('<div>').addClass('chart-median-income-mobile-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat-mobile');
+
+      createTimeSeries(data["median_income"], "median_income", ".chart-median-income-"+thisState.abbreviation, dimple.plot.line, 350, 150);
+      createTimeSeries(data["median_income"], "median_income", ".chart-median-income-mobile-"+thisState.abbreviation, dimple.plot.line, 350, 150);
+
+
+      let unemploymentTitle = statText('Unemployment:');
+      let unemploymentTitleMobile = statText('Unemployment:');
+      $('#'+thisState.abbreviation+'-employment-stat').append(unemploymentTitle);
+      $('#'+thisState.abbreviation+'-employment-stat-mobile').append(unemploymentTitleMobile);
+      $('<div>').addClass('chart-unemployment-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat');
+      $('<div>').addClass('chart-unemployment-mobile-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat-mobile');
+
+      createTimeSeries(eduData["unemployment"], "unemployment", ".chart-unemployment-"+thisState.abbreviation, dimple.plot.line, 350, 150);
+      createTimeSeries(eduData["unemployment"], "unemployment", ".chart-unemployment-mobile-"+thisState.abbreviation, dimple.plot.line, 350, 150);
+
+    //  let incomeMobile = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
+    //  $('#'+thisState.abbreviation+'-employment-stat-mobile').html(income);
 
       // for education information
-      let educationLevel = statText('Education Level:');
-      $('#'+thisState.abbreviation+'-education-stat').append(educationLevel);
+      let educationLevelTitle = statText('Education Level:');
+      let educationLevelTitleMobile = statText('Education Level:');
+      let educationLevelKey = $('<div>').html('<br><span class="badge" id="high_school_key">High School Graduate</span><span class="badge" id="some_college_key">Some College</span>');
+      let educationLevelKeyMobile = $('<div>').html('<br><span class="badge" id="high_school_key">High School Graduate</span><span class="badge" id="some_college_key">Some College</span><br>');
+
+      $('#'+thisState.abbreviation+'-education-stat').append(educationLevelTitle);
+      $('#'+thisState.abbreviation+'-education-stat').append(educationLevelKey);
+      $('#'+thisState.abbreviation+'-education-stat-mobile').append(educationLevelTitleMobile);
+      $('#'+thisState.abbreviation+'-education-stat-mobile').append(educationLevelKeyMobile);
       $('<div>').addClass('chart-education-level-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-education-stat');
+      $('<div>').addClass('chart-education-level-mobile-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-education-stat-mobile');
       let highSchoolJSON = [{"edu_level" : thisState.high_school_graduation["2017"]},
                             {"edu_level" : (tools.cutDecimal(1.0-thisState.high_school_graduation["2017"]))}];
       let collegeJSON = [{"edu_level" : thisState.some_college["2017"]},
                             {"edu_level" : (tools.cutDecimal(1.0-thisState.some_college["2017"]))}];
 
       createRingChart(highSchoolJSON, collegeJSON, "high_school_graduation", ".chart-education-level-"+thisState.abbreviation, 265);
-
+      createRingChart(highSchoolJSON, collegeJSON, "high_school_graduation", ".chart-education-level-mobile-"+thisState.abbreviation, 265);
       //for stat information (text) - Information
       let $stat = $('#'+thisState.abbreviation+'-information-stat');
       $stat.html(statText('Capitol: ', thisState.capitol));
@@ -75,10 +99,10 @@ function dynamicDiv(currentState) {
 
       //for chart generation
       $('<div>').addClass('chart-median-age-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-information-stat');
-      createTimeSeries(data["median_age"], "median_age", ".chart-median-age-"+thisState.abbreviation, dimple.plot.line);
+      createTimeSeries(data["median_age"], "median_age", ".chart-median-age-"+thisState.abbreviation, dimple.plot.line, 350, 200);
       $('<div>').addClass('chart-mobile'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-information-stat-mobile');
       let dataMobile = getTimeSeries(thisState, 2013, 2015);
-      createTimeSeries(dataMobile["median_age"], "median_age", ".chart-mobile"+thisState.abbreviation, dimple.plot.line);
+      createTimeSeries(dataMobile["median_age"], "median_age", ".chart-mobile"+thisState.abbreviation, dimple.plot.line, 350, 200);
 
       //for wikipedia information
       getWikipedia(thisState.wiki_pageid, thisState.name.replace(/\s+/g, '-'));
