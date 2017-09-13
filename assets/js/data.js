@@ -97,3 +97,4 @@ function createTimeSeries(data, key, targetDiv, chartType) {
   y.titleShape.remove();
   x.titleShape.remove();
 }
+

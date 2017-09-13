@@ -13,7 +13,7 @@ function initMap(thisState) {
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
       tagLocation(thisState, lat1, lng1);
-      initEducationMap(thisState, lat1, lng1);
+      // initEducationMap(thisState, lat1, lng1);
 
       
     })
@@ -83,17 +83,19 @@ function tagLocation(thisState, lat, lng) {
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
 // initEducationMap getting called in line 88 of result.js
-function initEducationMap(thisState, lat, lng) { //div is being dynamically generated in result.js line 193
+// $(document).on('click', '#' + thisState.abbreviation +'-stat-list', 
+  function initEducationMap(thisState, lat, lng) {
 
   var location = {lat: lat, lng: lng};
   console.log(location)
+
       //searching for type term, displaying all items with that tag within given radius
         var map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
           
           center: location,
           zoom: 8
         });
-        // console.log(eduMap);
+        
         infowindow = new google.maps.InfoWindow({});
         var service = new google.maps.places.PlacesService(map); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
         service.nearbySearch({ 
@@ -127,7 +129,7 @@ function initEducationMap(thisState, lat, lng) { //div is being dynamically gene
       }
     }
   }else {createMarker(results)}
-
+        
   }
 }        
       
