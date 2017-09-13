@@ -87,9 +87,7 @@ function initEducationMap(thisState, lat, lng) { //div is being dynamically gene
 
   var location = {lat: lat, lng: lng};
   console.log(location)
-  // console.log(typeof lat);
       //searching for type term, displaying all items with that tag within given radius
-        // var zoom = mapZoom(thisState);
         var map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
           
           center: location,
@@ -124,19 +122,15 @@ function initEducationMap(thisState, lat, lng) { //div is being dynamically gene
         return function() {
           infowindow.setContent(results[i][0]);
           infowindow.open(map, marker);
-        }
-      })(marker, i));
+          }
+        })(marker, i));
+      }
     }
-  }
   }else {createMarker(results)}
-}
+
+  }
 }        
-      //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-      //     for (var i = 0; i < results.length; i++) {
-      //       createMarker(results[i]);
-      //     }
-      //   }
-      // }
+      
       //defining the function for creating location markers, and when they're clicked bringing up information
       function createMarker(place) {
         var placeLoc = place.geometry.location;
