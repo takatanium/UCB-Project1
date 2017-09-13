@@ -29,6 +29,7 @@ County Health Rankings (CHR)
 // Loads state object
 $(document).ready(function($) {
 
+  // Forces the page to #landing
   location.hash = 'landing';
   
   $.ajax({
@@ -38,7 +39,7 @@ $(document).ready(function($) {
     success: function(res) {
       states = res;
 
-      // Optimize this routine
+      // @mmenschig - Optimize this routine
       for (let i = 0; i < states.length; i++) {
         states[i]['population'] = {};
         states[i]['median_age'] = {};
@@ -167,8 +168,6 @@ function getWikipedia(pageid, state) {
     format: 'json'
   });
 
-  console.log(url);
-
   $.ajax({
     url: url,
     dataType: 'jsonp',
@@ -177,7 +176,6 @@ function getWikipedia(pageid, state) {
     success: function(res) {
 
       let extract = getExtract(res);
-      console.log(extract);
       $('#'+state+'-card-content').html(extract);
       return extract;
     },
