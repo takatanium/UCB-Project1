@@ -20,6 +20,8 @@ function getTimeSeries(state, start, end) {
     statistics["median_income"].push({"year":i, "median_income":state.median_income[i]});
     statistics["high_school_graduation"].push({"year":i, "high_school_graduation":state.high_school_graduation[i]});
     statistics["some_college"].push({"year":i, "some_college":state.some_college[i]});
+    statistics["unemployment"].push({"year":i, "unemployment":state.unemployment[i]});
+
   }
   console.log(statistics);
   return statistics;
@@ -95,6 +97,8 @@ function createRingChart(data,data2, key, targetDiv, size) {
     g2.append("path").attr("d", arc2).style("fill", function(d) { return color(d.data.edu_level);
 
   });
+
+
   /**
   * [type description]
   * @param  {[type]} d [description]
@@ -114,10 +118,10 @@ function createRingChart(data,data2, key, targetDiv, size) {
 * @param {[type]} targetDiv  [div that the graph will be drawn in]
 * @param {[type]} chartType  [dimple.js chart type ex: dimple.plot.line, dimple.plot.bubble]
 */
-function createTimeSeries(data, key, targetDiv, chartType) {
-  var svg = dimple.newSvg(targetDiv, 350, 200);
+function createTimeSeries(data, key, targetDiv, chartType, w, h) {
+  var svg = dimple.newSvg(targetDiv, w, h);
   var myChart = new dimple.chart(svg, data);
-  myChart.setBounds(70, 30, 250, 150);
+  myChart.setBounds(70, 30, w-100, h-50);
   var x =  myChart.addCategoryAxis("x", "year")
   x.showGridlines = true;
   x.addOrderRule("year");
@@ -129,4 +133,3 @@ function createTimeSeries(data, key, targetDiv, chartType) {
   y.titleShape.remove();
   x.titleShape.remove();
 }
-

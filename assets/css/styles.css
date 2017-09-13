@@ -274,6 +274,18 @@ div.tooltip {
   pointer-events: none;
 }
 
+#high_school_key {
+  background-color: #98abc6;
+  color: #fff9ed;
+  display: inline-block;
+}
+
+#some_college_key {
+  background-color: #794e67;
+  color: #fff9ed;
+  display: inline-block;
+}
+
 .title-stat {
   color: #373f51;
   font-size: 20px;
