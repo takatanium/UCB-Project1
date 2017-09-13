@@ -16,6 +16,11 @@ $(function() {
   });
 });
 
+/**
+ * [dynamicDiv description]
+ * @param  {[type]} currentState [description]
+ * @return {[type]}              [description]
+ */
 function dynamicDiv(currentState) {
 
   let thisState = getCurrentState(currentState);
@@ -93,6 +98,12 @@ function dynamicDiv(currentState) {
   });
 }
 
+/**
+ * [statText description]
+ * @param  {[type]} title  [description]
+ * @param  {[type]} number [description]
+ * @return {[type]}        [description]
+ */
 function statText(title, number) {
   let $title = $('<span>').addClass('title-stat').html(title);
   let $amt = $('<span>').addClass('number-stat').html(number);
@@ -100,6 +111,11 @@ function statText(title, number) {
   return $p;
 }
 
+/**
+ * [toggleScrolling description]
+ * @param  {[type]} el [description]
+ * @return {[type]}    [description]
+ */
 function toggleScrolling(el) {
   for (let i = 0; i < el.length; i++) {
     $(el[i]).on('mouseenter',function() {$.scrollify.disable()});
@@ -298,6 +314,11 @@ function displayStats(state, title, icon, active) {
   return $li;
 }
 
+/**
+ * [statMobileGen description]
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
 function statMobileGen(state) {
   //main card content
   let $main = $('<div>').addClass('card-content main-card-content');
@@ -335,6 +356,12 @@ function statMobileGen(state) {
   return $card;
 }
 
+/**
+ * [mainMobileGen description]
+ * @param  {[type]} abbr  [description]
+ * @param  {[type]} title [description]
+ * @return {[type]}       [description]
+ */
 function mainMobileGen(abbr, title) {
   let titleId, contentId;
   if (title === 'Education Statistics') {
@@ -375,6 +402,13 @@ function mainMobileGen(abbr, title) {
   return $id;
 }
 
+/**
+ * [tabMobileGen description]
+ * @param  {[type]} abbr [description]
+ * @param  {[type]} id   [description]
+ * @param  {[type]} icon [description]
+ * @return {[type]}      [description]
+ */
 function tabMobileGen(abbr, id, icon) {
   let $i = $('<i>').addClass('material-icons').html(icon);
   let $a = $('<a>').attr('id', 'M'+abbr+id).html($i);
@@ -393,6 +427,11 @@ function tabMobileGen(abbr, id, icon) {
   return $li;
 }
 
+/**
+ * [clearMobileActive description]
+ * @param  {[type]} abbr [description]
+ * @return {[type]}      [description]
+ */
 function clearMobileActive(abbr) {
   $('#M'+abbr+'stateinfo').removeClass('active');
   $('#M'+abbr+'workstats').removeClass('active');
@@ -406,6 +445,11 @@ function clearMobileActive(abbr) {
   $('#'+abbr+'schoolstats').removeClass('active');
 }
 
+/**
+ * [showMobileMap description]
+ * @param  {[type]} map [description]
+ * @return {[type]}     [description]
+ */
 function showMobileMap(map) {
   $('.card-title-mobile').on('click', function() {
     console.log("MAP");
