@@ -272,6 +272,11 @@ path:hover {
   background-color: #d16262;
 }
 
+.btn-floating,
+.btn-floating:hover {
+  background-color: #23628e;
+}
+
 #feature-content {
   background-color: #d16262;
   padding-left: 30px;
