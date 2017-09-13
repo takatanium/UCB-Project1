@@ -1,6 +1,6 @@
 $(document).keydown(function(objEvent) {
     if (objEvent.keyCode == 9)  { // Tab
-        objEvent.preventDefault(); 
+        objEvent.preventDefault();
     }
 });
 
@@ -13,7 +13,7 @@ function initiateInput(state) {
   $('#search-'+state).keyup(function(e) {
     let $input = $("#search-"+state);
     let $auto = $("#state-auto-"+state);
-    let regex = /^[a-zA-Z\s]*$/; 
+    let regex = /^[a-zA-Z\s]*$/;
     if (regex.test($(this).val())) {
     // if (e.keyCode>=65 && e.keyCode<=90) {
       if ($input.val().trim() === "" && e.keyCode === 32) {
@@ -145,7 +145,7 @@ function dropSelection() {
 }
 
 $(document).ready(function() {
-  
+
   $("path").hover(function(e) {
     $('#search-landing').val($(this).data('info'));
     $('#state-auto-landing').val($(this).data('info'));

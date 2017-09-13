@@ -16,6 +16,11 @@ $(function() {
   });
 });
 
+/**
+ * [dynamicDiv description]
+ * @param  {[type]} currentState [description]
+ * @return {[type]}              [description]
+ */
 function dynamicDiv(currentState) {
 
   let thisState = getCurrentState(currentState);
@@ -36,6 +41,7 @@ function dynamicDiv(currentState) {
       returnToMap(thisState.name.replace(/\s+/g, '-'));
       dropSelection();
       let data = getTimeSeries(thisState, 2013, 2015);
+      let eduData = getTimeSeries(thisState, 2015, 2017);
 
       //for stat information (text) - Employment
       //let income = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
@@ -43,9 +49,19 @@ function dynamicDiv(currentState) {
       $('#'+thisState.abbreviation+'-employment-stat').append(income);
       $('<div>').addClass('chart-median-income-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat');
       createTimeSeries(data["median_income"], "median_income", ".chart-median-income-"+thisState.abbreviation, dimple.plot.line);
-
       let incomeMobile = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
       $('#'+thisState.abbreviation+'-employment-stat-mobile').html(incomeMobile);
+
+      // for education information
+      let educationLevel = statText('Education Level:');
+      $('#'+thisState.abbreviation+'-education-stat').append(educationLevel);
+      $('<div>').addClass('chart-education-level-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-education-stat');
+      let highSchoolJSON = [{"edu_level" : thisState.high_school_graduation["2017"]},
+                            {"edu_level" : (tools.cutDecimal(1.0-thisState.high_school_graduation["2017"]))}];
+      let collegeJSON = [{"edu_level" : thisState.some_college["2017"]},
+                            {"edu_level" : (tools.cutDecimal(1.0-thisState.some_college["2017"]))}];
+
+      createRingChart(highSchoolJSON, collegeJSON, "high_school_graduation", ".chart-education-level-"+thisState.abbreviation, 265);
 
       //for stat information (text) - Information
       let $stat = $('#'+thisState.abbreviation+'-information-stat');
@@ -86,10 +102,16 @@ function dynamicDiv(currentState) {
     initMap(thisState);
 
     // click function for generating map with universities
-  $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
+  // $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
   });
 }
 
+/**
+ * [statText description]
+ * @param  {[type]} title  [description]
+ * @param  {[type]} number [description]
+ * @return {[type]}        [description]
+ */
 function statText(title, number) {
   let $title = $('<span>').addClass('title-stat').html(title);
   let $amt = $('<span>').addClass('number-stat').html(number);
@@ -97,6 +119,11 @@ function statText(title, number) {
   return $p;
 }
 
+/**
+ * [toggleScrolling description]
+ * @param  {[type]} el [description]
+ * @return {[type]}    [description]
+ */
 function toggleScrolling(el) {
   for (let i = 0; i < el.length; i++) {
     $(el[i]).on('mouseenter',function() {$.scrollify.disable()});
@@ -295,6 +322,11 @@ function displayStats(state, title, icon, active) {
   return $li;
 }
 
+/**
+ * [statMobileGen description]
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
 function statMobileGen(state) {
   //main card content
   let $main = $('<div>').addClass('card-content main-card-content');
@@ -332,6 +364,12 @@ function statMobileGen(state) {
   return $card;
 }
 
+/**
+ * [mainMobileGen description]
+ * @param  {[type]} abbr  [description]
+ * @param  {[type]} title [description]
+ * @return {[type]}       [description]
+ */
 function mainMobileGen(abbr, title) {
   let titleId, contentId;
   if (title === 'Education Statistics') {
@@ -372,6 +410,13 @@ function mainMobileGen(abbr, title) {
   return $id;
 }
 
+/**
+ * [tabMobileGen description]
+ * @param  {[type]} abbr [description]
+ * @param  {[type]} id   [description]
+ * @param  {[type]} icon [description]
+ * @return {[type]}      [description]
+ */
 function tabMobileGen(abbr, id, icon) {
   let $i = $('<i>').addClass('material-icons').html(icon);
   let $a = $('<a>').attr('id', 'M'+abbr+id).html($i);
@@ -390,6 +435,11 @@ function tabMobileGen(abbr, id, icon) {
   return $li;
 }
 
+/**
+ * [clearMobileActive description]
+ * @param  {[type]} abbr [description]
+ * @return {[type]}      [description]
+ */
 function clearMobileActive(abbr) {
   $('#M'+abbr+'stateinfo').removeClass('active');
   $('#M'+abbr+'workstats').removeClass('active');
@@ -403,6 +453,11 @@ function clearMobileActive(abbr) {
   $('#'+abbr+'schoolstats').removeClass('active');
 }
 
+/**
+ * [showMobileMap description]
+ * @param  {[type]} map [description]
+ * @return {[type]}     [description]
+ */
 function showMobileMap(map) {
   $('.card-title-mobile').on('click', function() {
     console.log("MAP");
