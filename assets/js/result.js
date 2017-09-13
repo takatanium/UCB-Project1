@@ -38,10 +38,15 @@ function dynamicDiv(currentState) {
       initiateInput(thisState.name.replace(/\s+/g, '-'));
       returnToMap(thisState.name.replace(/\s+/g, '-'));
       dropSelection();
+      let data = getTimeSeries(thisState, 2013, 2015);
 
       //for stat information (text) - Employment
-      let income = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
-      $('#'+thisState.abbreviation+'-employment-stat').html(income);
+      //let income = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
+      let income = statText('Median Income:');
+      $('#'+thisState.abbreviation+'-employment-stat').append(income);
+      $('<div>').addClass('chart-median-income-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat');
+      createTimeSeries(data["median_income"], "median_income", ".chart-median-income-"+thisState.abbreviation, dimple.plot.line);
+
       let incomeMobile = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
       $('#'+thisState.abbreviation+'-employment-stat-mobile').html(incomeMobile);
 
@@ -56,12 +61,11 @@ function dynamicDiv(currentState) {
       $mobileStat.append(statText('Median Age: ', ''));
 
       //for chart generation
-      $('<div>').addClass('chart').appendTo('#'+thisState.abbreviation+'-information-stat');
-      let data = getTimeSeries(thisState, 2013, 2015);
-      createRingChart(data["median_age"], "median_age", ".chart");
-      $('<div>').addClass('chart-mobile').appendTo('#'+thisState.abbreviation+'-information-stat-mobile');
+      $('<div>').addClass('chart-median-age-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-information-stat');
+      createTimeSeries(data["median_age"], "median_age", ".chart-median-age-"+thisState.abbreviation, dimple.plot.line);
+      $('<div>').addClass('chart-mobile'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-information-stat-mobile');
       let dataMobile = getTimeSeries(thisState, 2013, 2015);
-      createRingChart(dataMobile["median_age"], "median_age", ".chart-mobile");
+      createTimeSeries(dataMobile["median_age"], "median_age", ".chart-mobile"+thisState.abbreviation, dimple.plot.line);
 
       //for wikipedia information
       getWikipedia(5407, thisState.name.replace(/\s+/g, '-'));
@@ -92,8 +96,8 @@ function dynamicDiv(currentState) {
 function statText(title, number) {
   let $title = $('<span>').addClass('title-stat').html(title);
   let $amt = $('<span>').addClass('number-stat').html(number);
-  let $p = $('<p>').html($title).append($amt); 
-  return $p; 
+  let $p = $('<p>').html($title).append($amt);
+  return $p;
 }
 
 function toggleScrolling(el) {
