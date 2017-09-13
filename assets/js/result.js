@@ -39,16 +39,28 @@ function dynamicDiv(currentState) {
       returnToMap(thisState.name.replace(/\s+/g, '-'));
       dropSelection();
       let data = getTimeSeries(thisState, 2013, 2015);
-
+      let eduData = getTimeSeries(thisState, 2015, 2017);
+console.log(thisState.some_college["2017"]);
+console.log(thisState.high_school_graduation["2017"]);
       //for stat information (text) - Employment
       //let income = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
       let income = statText('Median Income:');
       $('#'+thisState.abbreviation+'-employment-stat').append(income);
       $('<div>').addClass('chart-median-income-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat');
       createTimeSeries(data["median_income"], "median_income", ".chart-median-income-"+thisState.abbreviation, dimple.plot.line);
-
       let incomeMobile = statText('Median Income: ', tools.numberWithCommas(thisState.median_income["2015"]));
       $('#'+thisState.abbreviation+'-employment-stat-mobile').html(incomeMobile);
+
+      // for education information
+      let educationLevel = statText('Education Level:');
+      $('#'+thisState.abbreviation+'-education-stat').append(educationLevel);
+      $('<div>').addClass('chart-education-level-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-education-stat');
+      let highSchoolJSON = [{"edu_level" : thisState.high_school_graduation["2017"]},
+                            {"edu_level" : (1.0-thisState.high_school_graduation["2017"])}];
+      let collegeJSON = [{"edu_level" : thisState.some_college["2017"]},
+                            {"edu_level" : (1.0-thisState.some_college["2017"])}];
+
+      createRingChart(highSchoolJSON, collegeJSON, "high_school_graduation", ".chart-education-level-"+thisState.abbreviation, 265);
 
       //for stat information (text) - Information
       let $stat = $('#'+thisState.abbreviation+'-information-stat');

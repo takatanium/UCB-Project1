@@ -326,10 +326,10 @@ div.bar {
 div.tooltip {
   position: absolute;
   text-align: center;
-  width: 60px;
+  width: 70px;
   height: 48px;
   padding: 4px;
-  font: 124x sans-serif;
+  font: 24px sans-serif;
   color: #fff;
   background: #23628e;
   border: 0px;
