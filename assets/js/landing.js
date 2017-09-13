@@ -1,3 +1,4 @@
+//Prevents the default tabbing keyboard event
 $(document).keydown(function(objEvent) {
     if (objEvent.keyCode == 9)  { // Tab
         objEvent.preventDefault();
@@ -5,9 +6,9 @@ $(document).keydown(function(objEvent) {
 });
 
 /**
- * [initiateInput description]
- * @param  {[type]} state [description]
- * @return {[type]}       [description]
+ * [User keyboard input handler]
+ * @param  {string} state [current page input area identifier]
+ * @return {null}
  */
 function initiateInput(state) {
   $('#search-'+state).keyup(function(e) {
@@ -84,10 +85,9 @@ function initiateInput(state) {
   });
 }
 
-
 /**
- * [createAllDivs description]
- * @return {[type]} [description]
+ * [Builds all main div elements for the dynamically added pages]
+ * @return {null}
  */
 function createAllDivs() {
   for (var i = 0; i < states.length; i++) {
@@ -95,7 +95,8 @@ function createAllDivs() {
     $div.attr('id', states[i].id);
     $div.attr('data-section-name', states[i].name.replace(/\s+/g, '-'));
     $div.appendTo('body');
-    popDropDown(i);
+    populateDataInfo(i);
+    populateDropDown(i);
   }
   $.scrollify({
     section : ".sticky-scroll",
@@ -103,32 +104,35 @@ function createAllDivs() {
   });
 }
 
-//For interactive map
 /**
- * [popDataInfo description]
- * @return {[type]} [description]
+ * [sets appropriate variables and scroll information to each new state div]
+ * @return {null}
  */
-function popDataInfo() {
-  for (var i = 0; i < states.length; i++) {
-    let $state = $('#'+states[i].abbreviation);
-    let name = states[i].name;
-    $state.attr('data-info', name);
-    $state.on('click', function() {
-      $.scrollify.move('#'+name.replace(/\s+/g, '-'));
-    });
-  }
+function populateDataInfo(stateNum) {
+  // for (var i = 0; i < states.length; i++) {
+  let $state = $('#'+states[stateNum].abbreviation);
+  let name = states[stateNum].name;
+  $state.attr('data-info', name);
+  $state.on('click', function() {
+    $.scrollify.move('#'+name.replace(/\s+/g, '-'));
+  });
+  // }
 }
 
-function popDropDown(stateNum) {
+/**
+ * [Builds a dropdown option element for mobile view]
+ * @param  {num} state [number corresponding to state]
+ * @return {null}
+ */
+function populateDropDown(stateNum) {
   let $option = $('<option>').html(states[stateNum].name);
-  // $option.attr('id', states[stateNum].abbreviation+'-drop');
   $('.dropdown').append($option);
 }
 
 /**
- * [returnToMap description]
- * @param  {[type]} state [description]
- * @return {[type]}       [description]
+ * [click handler for map icon on each page]
+ * @param  {string} state [name of page]
+ * @return {null} 
  */
 function returnToMap(state) {
   $('#map-icon-'+state).on('click', function() {
@@ -136,6 +140,10 @@ function returnToMap(state) {
   });
 }
 
+/**
+ * [click handler for dropdown selection]
+ * @return {null} 
+ */
 function dropSelection() {
   $('select').on('click', function(){
     if ($(this).val()!==null) {
@@ -144,23 +152,23 @@ function dropSelection() {
   });
 }
 
-$(document).ready(function() {
-
+/**
+ * [initiates interactivity for landing page]
+ * @return {null} 
+ */
+function initiateLanding() {
   $("path").hover(function(e) {
     $('#search-landing').val($(this).data('info'));
     $('#state-auto-landing').val($(this).data('info'));
   });
-
   $("path").mouseleave(function(e) {
     $('#search-landing').val('');
     $('#state-auto-landing').val('');
     $('#state-auto-landing').attr('placeholder', 'Enter State');
   });
-
   $('#menu').on('click', function() {
     $('.tap-target').tapTarget('open');
   });
   returnToMap('landing');
   dropSelection();
-
-});
+}

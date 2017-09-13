@@ -31,6 +31,7 @@ $(document).ready(function($) {
 
   // Forces the page to #landing
   location.hash = 'landing';
+  initiateLanding();
 
   $.ajax({
     url: 'https://raw.githubusercontent.com/takatanium/UCB-Project1/master/assets/json/states.json',
