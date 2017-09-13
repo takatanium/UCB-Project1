@@ -3,7 +3,7 @@ const CHR_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=un
 
 const JOIN_URL = 'https://api.datausa.io/api/join/?required=pop,age,income,unemployment,uninsured,high_school_graduation,some_college&show=geo&sumlevel=state'
 
-let stats = ["population", "median_age", "median_income"];
+let stats = ["population", "median_age", "median_income", "high_school_graduation", "some_college"];
 let states; // Global object that holds state information
 
 /*
@@ -17,7 +17,7 @@ American Community Survey (ACS)
   income                 - Median household income
 
 County Health Rankings (CHR)
-  unemployment           - Percentage of the civilian labor force, age 16 and older, that is unemployed but seeking work 
+  unemployment           - Percentage of the civilian labor force, age 16 and older, that is unemployed but seeking work
   uninsured              - Percentage of the population under age 65 thath has no health insurance coverage
   high_school_graduation - Percentage of nith-grade cohort in public schools that graduates from high school in four years
   some_college           - Percentage of the population ages 25-44 with some post-secondary education, such as enrollment
@@ -31,7 +31,7 @@ $(document).ready(function($) {
 
   // Forces the page to #landing
   location.hash = 'landing';
-  
+
   $.ajax({
     url: 'https://raw.githubusercontent.com/takatanium/UCB-Project1/master/assets/json/states.json',
     dataType: 'json',
@@ -71,10 +71,10 @@ function getCHRData() {
 
       for (let i = 0; i < res.data.length; i++) {
         let id = res.data[i][1];
-        
+
         for (let j = 0; j < states.length; j++) {
           if (id == states[j].id) {
-            
+
             let year = res.data[i][0];
             // @mmenschig - optimize this routine
             if (!states[j]['unemployment'].hasOwnProperty(year)) {
@@ -120,7 +120,7 @@ function getACSData() {
 
         for (let j = 0; j < states.length; j++) {
           if (id == states[j].id) {
-            
+
             let year = res.data[i][0];
 
             // @mmenschig - would love for this to be dynamic

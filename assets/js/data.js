@@ -18,6 +18,8 @@ function getTimeSeries(state, start, end) {
     statistics["population"].push({"year":i, "population":state.population[i]});
     statistics["median_age"].push({"year":i, "median_age":state.median_age[i]});
     statistics["median_income"].push({"year":i, "median_income":state.median_income[i]});
+    statistics["high_school_graduation"].push({"year":i, "high_school_graduation":state.high_school_graduation[i]});
+    statistics["some_college"].push({"year":i, "some_college":state.some_college[i]});
   }
   console.log(statistics);
   return statistics;
@@ -30,13 +32,14 @@ function getTimeSeries(state, start, end) {
  * @return {[type]}           [description]
  */
 
-function createRingChart(data, key, targetDiv) {
+function createRingChart(data,data2, key, targetDiv, size) {
   console.log(targetDiv);
-  var width = 165, height = 150, radius = Math.min(width, height) / 2;
+  var width = size, height = size-15, radius = Math.min(width, height) / 2;
+
   //var theCSV = "age,population\n<5,2704659\n5-13,4499890\n14-17,2159981\n18-24,3853788\n25-44,14106543\n45-64,8819342\n≥65,612463";
-  var color = d3.scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888"]);
+  var color = d3.scaleOrdinal().range(["#98abc5", "#a7a7a7", "#794e67", "#a7a7a7",]);
   var arc = d3.arc().outerRadius(radius - 6).innerRadius(radius - 30);
-  var pie = d3.pie().sort(null).value(function(d) { return d[key]; });
+  var pie = d3.pie().sort(null).value(function(d) { return d["edu_level"]; });
   var svg = d3.select(targetDiv).append("svg")
               .attr("width", width)
               .attr("height", height)
@@ -52,7 +55,7 @@ function createRingChart(data, key, targetDiv) {
     div.transition()
       .duration(200)
       .style("opacity", .9);
-    div.html(d.data["year"] + ":\n" + d.data[key] + "\n\n")
+    div.html(d.data["edu_level"])
       .style("left", (d3.event.pageX) + "px")
       .style("top", (d3.event.pageY) + "px");
     })
@@ -61,7 +64,36 @@ function createRingChart(data, key, targetDiv) {
       .duration(500)
       .style("opacity", 0);
     });;
-    g.append("path").attr("d", arc).style("fill", function(d) { return color(d.data.age);
+    g.append("path").attr("d", arc).style("fill", function(d) { return color(d.data.edu_level);
+  });
+
+  var width2 = size-100, height2 = size-115, radius2 = Math.min(width2, height2) / 2;
+
+  //var theCSV = "age,population\n<5,2704659\n5-13,4499890\n14-17,2159981\n18-24,3853788\n25-44,14106543\n45-64,8819342\n≥65,612463";
+  var arc2 = d3.arc().outerRadius(radius2 - 6).innerRadius(radius2 - 30);
+  var pie2 = d3.pie().sort(null).value(function(d) { return d["edu_level"]; });
+
+
+  var div2 = d3.select("body").append("div")
+              .attr("class", "tooltip")
+              .style("opacity", 0);
+
+  console.log(data2);
+  var g2 = svg.selectAll("arc").data(pie(data2)).enter().append("g").attr("class", "arc").on("mouseover", function(d) {
+    div2.transition()
+      .duration(200)
+      .style("opacity", .9);
+    div2.html(d.data["edu_level"])
+      .style("left", (d3.event.pageX) + "px")
+      .style("top", (d3.event.pageY) + "px");
+    })
+    .on("mouseout", function(d) {
+      div2.transition()
+      .duration(500)
+      .style("opacity", 0);
+    });;
+    g2.append("path").attr("d", arc2).style("fill", function(d) { return color(d.data.edu_level);
+
   });
   /**
   * [type description]
