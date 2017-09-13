@@ -90,28 +90,53 @@ function initEducationMap(thisState, lat, lng) { //div is being dynamically gene
   // console.log(typeof lat);
       //searching for type term, displaying all items with that tag within given radius
         // var zoom = mapZoom(thisState);
-        var eduMap = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
+        var map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
           
           center: location,
           zoom: 8
         });
         // console.log(eduMap);
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(eduMap); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
+        infowindow = new google.maps.InfoWindow({});
+        var service = new google.maps.places.PlacesService(map); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
         service.nearbySearch({ 
           location: location, //research setCenter function so it doesn't throw errors like a turd
           radius: 5000,
           type: ['university']
         }, callback);
-      }
+      // }
       //calling the function to create markers for each result
       function callback(results, status) {
+        var bounds = new google.maps.LatLngBounds();
+          console.log("=====results======", results)
+        if(Array.isArray(results)){
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
+        for (var i = 0; i < results.length; i++) {
+        var position = new google.maps.LatLng(results[i].geometry.location.lat(), results[i].geometry.location.lng());
+        bounds.extend(position);
+        
+
+        var marker = new google.maps.Marker({
+        position: position,
+        map: map
+      });
+      map.fitBounds(bounds)
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(results[i][0]);
+          infowindow.open(map, marker);
         }
-      }
+      })(marker, i));
+    }
+  }
+  }else {createMarker(results)}
+}
+}        
+      //   if (status === google.maps.places.PlacesServiceStatus.OK) {
+      //     for (var i = 0; i < results.length; i++) {
+      //       createMarker(results[i]);
+      //     }
+      //   }
+      // }
       //defining the function for creating location markers, and when they're clicked bringing up information
       function createMarker(place) {
         var placeLoc = place.geometry.location;
