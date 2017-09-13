@@ -37,7 +37,7 @@ function createRingChart(data,data2, key, targetDiv, size) {
   var width = size, height = size-15, radius = Math.min(width, height) / 2;
 
   //var theCSV = "age,population\n<5,2704659\n5-13,4499890\n14-17,2159981\n18-24,3853788\n25-44,14106543\n45-64,8819342\n≥65,612463";
-  var color = d3.scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888"]);
+  var color = d3.scaleOrdinal().range(["#98abc5", "#a7a7a7", "#794e67", "#a7a7a7",]);
   var arc = d3.arc().outerRadius(radius - 6).innerRadius(radius - 30);
   var pie = d3.pie().sort(null).value(function(d) { return d["edu_level"]; });
   var svg = d3.select(targetDiv).append("svg")
@@ -78,6 +78,7 @@ function createRingChart(data,data2, key, targetDiv, size) {
               .attr("class", "tooltip")
               .style("opacity", 0);
 
+  console.log(data2);
   var g2 = svg.selectAll("arc").data(pie(data2)).enter().append("g").attr("class", "arc").on("mouseover", function(d) {
     div2.transition()
       .duration(200)
@@ -92,6 +93,7 @@ function createRingChart(data,data2, key, targetDiv, size) {
       .style("opacity", 0);
     });;
     g2.append("path").attr("d", arc2).style("fill", function(d) { return color(d.data.edu_level);
+
   });
   /**
   * [type description]

@@ -82,6 +82,10 @@ var tools = {
 
   numberWithCommas: function(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  },
+
+  cutDecimal: function(x) {
+    return x.toFixed(3);
   }
 
 };
