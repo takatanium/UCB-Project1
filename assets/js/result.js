@@ -2,7 +2,7 @@ $(function() {
   $.scrollify({
     section : ".sticky-scroll",
     scrollbars: false,
-    scrollSpeed: 1100,
+    scrollSpeed: 200,
     before: function() {
       let currentId = $.scrollify.current().attr('id');
 
@@ -26,9 +26,6 @@ function dynamicDiv(currentState) {
   let thisState = getCurrentState(currentState);
   let nextState = getNextState(currentState);
   let prevState = getPrevState(currentState);
-
-  // console.log("This is where previous and next state IDs can be returned: " +
-              // prevState.id + " and " + nextState.id);
 
   $('.my-container').each(function() {
     if ($(this).data('section-name') !== currentState) {
@@ -84,7 +81,7 @@ function dynamicDiv(currentState) {
       createTimeSeries(dataMobile["median_age"], "median_age", ".chart-mobile"+thisState.abbreviation, dimple.plot.line);
 
       //for wikipedia information
-      getWikipedia(5407, thisState.name.replace(/\s+/g, '-'));
+      getWikipedia(thisState.wiki_pageid, thisState.name.replace(/\s+/g, '-'));
       toggleScrolling(['.large-card-content','.card-image']);
     }
     if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
