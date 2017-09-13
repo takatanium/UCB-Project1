@@ -13,6 +13,8 @@ function initMap(thisState) {
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
       tagLocation(thisState, lat1, lng1);
+      initEducationMap(thisState, lat1, lng1);
+
       
     })
     .catch(function(status) {
@@ -51,6 +53,7 @@ function mapZoom (thisState) {
 // Generating the map and placing a marker at the location geocoded previously
 function tagLocation(thisState, lat, lng) {
 
+  
     var location = {lat: lat, lng: lng};
     console.log(location);
     console.log('testing',thisState);
@@ -66,6 +69,7 @@ function tagLocation(thisState, lat, lng) {
       map: map
     });
 
+  //Mobile responsiveness
     // mapMobile = new google.maps.Map(document.getElementById(thisState.abbreviation+'-map'), { 
     // zoom: zoom,
     // center: location
@@ -78,20 +82,25 @@ function tagLocation(thisState, lat, lng) {
 
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
-function initEducationMap(thisState) { //div is being dynamically generated in result.js line 193
+// initEducationMap getting called in line 88 of result.js
+function initEducationMap(thisState, lat, lng) { //div is being dynamically generated in result.js line 193
 
   var location = {lat: lat, lng: lng};
+  console.log(location)
+  // console.log(typeof lat);
       //searching for type term, displaying all items with that tag within given radius
-        map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
+        // var zoom = mapZoom(thisState);
+        var eduMap = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
+          
           center: location,
-          zoom: 10
+          zoom: 8
         });
-
+        // console.log(eduMap);
         infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: location,
-          radius: 100,
+        var service = new google.maps.places.PlacesService(eduMap); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
+        service.nearbySearch({ 
+          location: location, //research setCenter function so it doesn't throw errors like a turd
+          radius: 5000,
           type: ['university']
         }, callback);
       }
@@ -118,21 +127,6 @@ function initEducationMap(thisState) { //div is being dynamically generated in r
 })
       };
         //need to write code for returning map to just map with capitol marker, clear marker function?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s = API key

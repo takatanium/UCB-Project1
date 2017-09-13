@@ -1,11 +1,34 @@
 const BASE_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=pop,age,income'
-var states; // Global object that holds state information
+const CHR_URL = 'https://api.datausa.io/api/?show=geo&sumlevel=state&required=unemployment,uninsured,high_school_graduation,some_college'
+
+const JOIN_URL = 'https://api.datausa.io/api/join/?required=pop,age,income,unemployment,uninsured,high_school_graduation,some_college&show=geo&sumlevel=state'
+
 let stats = ["population", "median_age", "median_income"];
+let states; // Global object that holds state information
+
+/*
+******************************************************
+STATISTICS DESCRIPTION
+******************************************************
+
+American Community Survey (ACS)
+  pop                    - Population
+  age                    - Median Age
+  income                 - Median household income
+
+County Health Rankings (CHR)
+  unemployment           - Percentage of the civilian labor force, age 16 and older, that is unemployed but seeking work 
+  uninsured              - Percentage of the population under age 65 thath has no health insurance coverage
+  high_school_graduation - Percentage of nith-grade cohort in public schools that graduates from high school in four years
+  some_college           - Percentage of the population ages 25-44 with some post-secondary education, such as enrollment
+                           in vocational/technical school, junior colleges, or four-year colleges, including individuals
+                           who pursued education following high school but did not receive a degree
+ */
+
 
 // Loads state object
 $(document).ready(function($) {
 
-  // getWikipedia(5407);
   location.hash = 'landing';
   
   $.ajax({
@@ -15,12 +38,18 @@ $(document).ready(function($) {
     success: function(res) {
       states = res;
 
+      // Optimize this routine
       for (let i = 0; i < states.length; i++) {
-        states[i]['population'] = {}
-        states[i]['median_age'] = {}
-        states[i]['median_income'] = {}
+        states[i]['population'] = {};
+        states[i]['median_age'] = {};
+        states[i]['median_income'] = {};
+        states[i]['unemployment'] = {};
+        states[i]['uninsured'] = {};
+        states[i]['high_school_graduation'] = {};
+        states[i]['some_college'] = {};
       }
-      getData();
+      getACSData();
+      getCHRData();
     },
     error: function(e) {
       console.log(e);
@@ -29,10 +58,56 @@ $(document).ready(function($) {
 });
 
 /**
+ * [getCHRData description]
+ * @return {[type]} [description]
+ */
+function getCHRData() {
+  $.ajax({
+    url: CHR_URL,
+    dataType: 'json',
+    method: 'GET',
+    success: function(res) {
+
+      for (let i = 0; i < res.data.length; i++) {
+        let id = res.data[i][1];
+        
+        for (let j = 0; j < states.length; j++) {
+          if (id == states[j].id) {
+            
+            let year = res.data[i][0];
+            // @mmenschig - optimize this routine
+            if (!states[j]['unemployment'].hasOwnProperty(year)) {
+              states[j]['unemployment'][year] = res.data[i][2];
+            }
+
+            if (!states[j]['uninsured'].hasOwnProperty(year)) {
+              states[j]['uninsured'][year] = res.data[i][3];
+            }
+
+            if (!states[j]['high_school_graduation'].hasOwnProperty(year)) {
+              states[j]['high_school_graduation'][year] = res.data[i][4];
+            }
+
+            if (!states[j]['some_college'].hasOwnProperty(year)) {
+              states[j]['some_college'][year] = res.data[i][5];
+            }
+
+          }
+        }
+      }
+
+    },
+    error: function(e) {
+      console.log(e);
+    }
+  })
+}
+
+/**
  * [getData description]
  * @return {[type]} [description]
  */
-function getData() {
+function getACSData() {
   $.ajax({
     url: BASE_URL,
     dataType: 'json',
@@ -43,9 +118,8 @@ function getData() {
         let id = res.data[i][1];
 
         for (let j = 0; j < states.length; j++) {
-
           if (id == states[j].id) {
-
+            
             let year = res.data[i][0];
 
             // @mmenschig - would love for this to be dynamic
@@ -121,5 +195,4 @@ function getExtract(data) {
       return pages[key]["extract"];
     }
   }
-
 }
