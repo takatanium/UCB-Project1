@@ -46,7 +46,7 @@ function createRingChart(data, key, targetDiv) {
   var div = d3.select("body").append("div")
               .attr("class", "tooltip")
               .style("opacity", 0);
-  //var data = d3.csvParse(theCSV);
+
   console.log(data);
   var g = svg.selectAll("arc").data(pie(data)).enter().append("g").attr("class", "arc").on("mouseover", function(d) {
     div.transition()
@@ -56,30 +56,44 @@ function createRingChart(data, key, targetDiv) {
       .style("left", (d3.event.pageX) + "px")
       .style("top", (d3.event.pageY) + "px");
     })
-  .on("mouseout", function(d) {
-    div.transition()
+    .on("mouseout", function(d) {
+      div.transition()
       .duration(500)
       .style("opacity", 0);
     });;
-  g.append("path").attr("d", arc).style("fill", function(d) { return color(d.data.age); });
-  /*g.append("text").attr("transform", function(d) {
-      return "translate(" + arc.centroid(d) + ")";
-  }).attr("dy", ".35em").text(function(d) {
-      return d.data["year"] + ":\n" + d.data[key];
-  });*/
-
-
-
-
-
-   /**
-   * [type description]
-   * @param  {[type]} d [description]
-   * @return {[type]}   [description]
-   */
+    g.append("path").attr("d", arc).style("fill", function(d) { return color(d.data.age);
+  });
+  /**
+  * [type description]
+  * @param  {[type]} d [description]
+  * @return {[type]}   [description]
+  */
   function type(d) {
     // could this be rewritten as d.population += d.population?
     d.population = +d.population;
     return d;
   }
+}
+
+/**
+* @mimlowe [createTimeSeries description]
+* @param  {[type]} data [state data set ex: data["median_age"]]
+* @param {[type]} key  [data set key as string ex: "median_age"]
+* @param {[type]} targetDiv  [div that the graph will be drawn in]
+* @param {[type]} chartType  [dimple.js chart type ex: dimple.plot.line, dimple.plot.bubble]
+*/
+function createTimeSeries(data, key, targetDiv, chartType) {
+  var svg = dimple.newSvg(targetDiv, 350, 200);
+  var myChart = new dimple.chart(svg, data);
+  myChart.setBounds(70, 30, 250, 150);
+  var x =  myChart.addCategoryAxis("x", "year")
+  x.showGridlines = true;
+  x.addOrderRule("year");
+  var y = myChart.addCategoryAxis("y", key);
+  var s = myChart.addSeries(null,chartType);
+  s.lineWeight = 4;
+  s.lineMarkers = true;
+  myChart.draw(800);
+  y.titleShape.remove();
+  x.titleShape.remove();
 }
