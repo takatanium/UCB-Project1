@@ -10,7 +10,7 @@ var mapMobile;
 
   function initMap(thisState) { 
 
-    let showPoi = false //Poi = points of interest
+    // let showPoi = false //Poi = points of interest
 
   if (thisState !== undefined && thisState !== -1) {
 
@@ -21,18 +21,18 @@ var mapMobile;
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
       
-      $('#some-div').on('click', function(event) {
-        event.preventDefault();
-        console.log("button has been clicked");
-        showPoi = true
-      })
+      // $('#some-div').on('click', function(event) {
+      //   event.preventDefault();
+      //   console.log("button has been clicked");
+      //   showPoi = true
+      // })
 
-      if showPoi = false {
+      // if showPoi = false {
         tagLocation(thisState, lat1, lng1);
-      }
-      else if (showPoi = true) {
+      // }
+      // else if (showPoi = true) {
         initEducationMap(thisState, lat1, lng1);
-      }
+      // }
       
     })
     .catch(function(status) {
@@ -143,7 +143,8 @@ function tagLocation(thisState, lat, lng) {
       map.fitBounds(bounds)
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent(results[i][0]);
+          infowindow.setContent(results[i].name);
+          console.log(results);
           infowindow.open(map, marker);
           }
         })(marker, i));
