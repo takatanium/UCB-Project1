@@ -17,6 +17,7 @@ var mapMobile;
       tagLocation(thisState, lat1, lng1);
 
       // $(document).on('click', '#' + thisState.abbreviation +'-stat-list', 
+      //$('#AL-list-head').on('click', initEducationMap(thisState, lat1, lng1))
         initEducationMap(thisState, lat1, lng1);
       
     })
