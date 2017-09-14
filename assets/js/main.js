@@ -144,7 +144,6 @@ function getACSData() {
       $.scrollify.move('#landing');
       $('#landing-page').fadeTo(2000, 1);
       initiateInput('landing');
-      popDataInfo();
     },
     error: function(e) {
       console.log(e);

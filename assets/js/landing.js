@@ -100,7 +100,7 @@ function createAllDivs() {
   }
   $.scrollify({
     section : ".sticky-scroll",
-    scrollSpeed: 1100
+    scrollSpeed: 1800
   });
 }
 
@@ -170,5 +170,6 @@ function initiateLanding() {
     $('.tap-target').tapTarget('open');
   });
   returnToMap('landing');
+  initiateInput('landing');
   dropSelection();
 }
