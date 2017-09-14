@@ -2,11 +2,12 @@ $(function() {
   $.scrollify({
     section : ".sticky-scroll",
     scrollbars: false,
-    scrollSpeed: 1800,
+    scrollSpeed: 1500,
     after: function() {
       let currentSlide = $.scrollify.current();
       let currentState = currentSlide.data('section-name');
       dynamicDiv(currentState);
+      $.scrollify.disable();
     }
   });
 });
@@ -120,9 +121,13 @@ function dynamicDiv(currentState) {
     $('#landing-page').css('opacity', '0');
 
     if (thisState !== -1) {
-      $('#'+thisState.id).fadeTo(1000, 1);
+      $.when($('#'+thisState.id).fadeTo(1000, 1)).then(function() {
+        $.scrollify.enable();
+      });
     } else {
-      $('#landing-page').fadeTo(1000, 1);
+      $.when($('#landing-page').fadeTo(1000, 1)).then(function() {
+        $.scrollify.enable();
+      });
     }
 
     //generate google map
@@ -158,7 +163,7 @@ function toggleScrolling(el) {
       $.scrollify.disable();
     });
     $(el[i]).on('mouseleave',function() {
-      $(this).promise().done($.scrollify.enable());
+      $.scrollify.enable();
     });
   }
 }

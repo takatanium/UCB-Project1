@@ -139,11 +139,11 @@ function getACSData() {
           }
         }
       }
-
-      createAllDivs();
-      $.scrollify.move('#landing');
-      $('#landing-page').fadeTo(2000, 1);
-      initiateInput('landing');
+      $.scrollify.disable();
+      createAllDivs()
+      $.when($('#landing-page').fadeTo(2000, 1)).then(function() {
+	      $.scrollify.enable();
+      });
     },
     error: function(e) {
       console.log(e);
