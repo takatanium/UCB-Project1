@@ -495,8 +495,6 @@ function mainMobileGen(abbr, title) {
   $span.html(title).append($icon);
   $id.html($span);
 
-  showMobileMap(mapMobile);
-
   if (title === 'General Information') {
     $id.css('display', 'block');
     $id.addClass('active mobile-content');
