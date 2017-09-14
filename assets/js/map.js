@@ -1,5 +1,5 @@
 // BASIC MAP AND CAPITOL MARKER GENERATION
-var mapMobile;
+// var mapMobile;
 
 // Google Maps function for generating latitude and longitude to be used for placing marker
 // $(document).on('ready', 
@@ -10,26 +10,23 @@ var mapMobile;
 
 function initMap(thisState, showPoi) { //Poi = points of interest
 
-  // let showPoi = false //Poi = points of interest
+  if (thisState !== undefined && thisState !== -1) {
 
-if (thisState !== undefined && thisState !== -1) {
-
-  let userLocation =  thisState.capitol + "," + thisState.abbreviation; 
-
-  geoCodeAddress(userLocation)
-  .then(function(results) {
-    let lat1 = results[0].geometry.location.lat();
-    let lng1 = results[0].geometry.location.lng();
-    if (showPoi) {
-      initEducationMap(thisState, lat1, lng1);
-    } else {
-      tagLocation(thisState, lat1, lng1);
-    }
-  })
-  .catch(function(status) {
-  });
+    let userLocation =  thisState.capitol + "," + thisState.abbreviation; 
+    geoCodeAddress(userLocation)
+    .then(function(results) {
+      let lat1 = results[0].geometry.location.lat();
+      let lng1 = results[0].geometry.location.lng();
+      if (showPoi) {
+        initEducationMap(thisState, lat1, lng1);
+      } else {
+        tagLocation(thisState, lat1, lng1);
+      }
+    })
+    .catch(function(status) {
+    });
+  }
 }
-
 
 // Geocoding the location
 function geoCodeAddress(address) {
@@ -86,9 +83,6 @@ function tagLocation(thisState, lat, lng) {
 
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
-// $(document).on('click', '#AL-stat-list', 
-  
-
 function initEducationMap(thisState, lat, lng) {
 
   let location = {lat: lat, lng: lng};
@@ -99,38 +93,38 @@ function initEducationMap(thisState, lat, lng) {
     zoom: 8
   });
     
-        infowindow = new google.maps.InfoWindow({});
-        let service = new google.maps.places.PlacesService(map); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
-        service.nearbySearch({ 
-          location: location, //research setCenter function so it doesn't throw errors like a turd
-          radius: 5000,
-          type: ['university']
-        }, callback);
+  infowindow = new google.maps.InfoWindow({});
+  let service = new google.maps.places.PlacesService(map); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
+  service.nearbySearch({ 
+    location: location, //research setCenter function so it doesn't throw errors like a turd
+    radius: 5000,
+    type: ['university']
+  }, callback);
 
-      //calling the function to create markers for each result
-      function callback(results, status) {
-        let bounds = new google.maps.LatLngBounds();
-        if(Array.isArray(results)){
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
+  //calling the function to create markers for each result
+  function callback(results, status) {
+    let bounds = new google.maps.LatLngBounds();
+    if(Array.isArray(results)){
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i++) {
-        let position = new google.maps.LatLng(results[i].geometry.location.lat(), results[i].geometry.location.lng());
-        bounds.extend(position);
-        
+          let position = new google.maps.LatLng(results[i].geometry.location.lat(), results[i].geometry.location.lng());
+          bounds.extend(position);
 
-        let marker = new google.maps.Marker({
-        position: position,
-        map: map
-      });
-      map.fitBounds(bounds)
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(results[i][0]);
-          infowindow.open(map, marker);
-          }
-        })(marker, i));
+          let marker = new google.maps.Marker({
+            position: position,
+            map: map
+          });
+          map.fitBounds(bounds)
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.setContent(results[i].name);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
       }
-    }
-  } else {createMarker(results)}
+    } else {createMarker(results)}
+  }
 }
       
     
@@ -148,6 +142,4 @@ function createMarker(place) {
   });
 }
 
-
 //AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s = API key
-
