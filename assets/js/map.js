@@ -4,22 +4,23 @@ var mapMobile;
 // Google Maps function for generating latitude and longitude to be used for placing marker
 // $(document).on('ready', 
 
-  function initMap(thisState) {
+  function initMap(thisState) { //Poi = points of interest
+
+    // let showPoi = false
 
   if (thisState !== undefined && thisState !== -1) {
 
-    var userLocation =  thisState.capitol + "," + thisState.abbreviation; 
+    let userLocation =  thisState.capitol + "," + thisState.abbreviation; 
 
     geoCodeAddress(userLocation)
     .then(function(results) {
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
       tagLocation(thisState, lat1, lng1);
-
-      // $(document).on('click', '#' + thisState.abbreviation +'-stat-list', 
-      //$('#AL-list-head').on('click', initEducationMap(thisState, lat1, lng1))
-        initEducationMap(thisState, lat1, lng1);
-      
+      // 
+      // if (showPoi = true) {
+      initEducationMap(thisState, lat1, lng1);
+      // }
     })
     .catch(function(status) {
     });
@@ -28,7 +29,7 @@ var mapMobile;
 
 // Geocoding the location
 function geoCodeAddress(address) {
-  var geocoder = new google.maps.Geocoder();  
+  let geocoder = new google.maps.Geocoder();  
   return new Promise(function(resolve,reject) {
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
@@ -42,7 +43,7 @@ function geoCodeAddress(address) {
 
 // setting zoom viewport appropriately based on json values (or the abscence thereof)
 function mapZoom (thisState) {
-  var zoom;
+  let zoom;
     console.log(thisState);
   if(thisState.scale !== undefined) {
     zoom = thisState.scale;
@@ -58,17 +59,17 @@ function mapZoom (thisState) {
 function tagLocation(thisState, lat, lng) {
 
   
-    var location = {lat: lat, lng: lng};
+    let location = {lat: lat, lng: lng};
     console.log(location);
     console.log('testing',thisState);
 
-    var zoom = mapZoom(thisState);
+    let zoom = mapZoom(thisState);
 
-    var map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), { 
+    let map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), { 
     zoom: zoom,
     center: location
     });
-    var marker = new google.maps.Marker({
+    let marker = new google.maps.Marker({
       position: location,
       map: map
     });
@@ -89,18 +90,18 @@ function tagLocation(thisState, lat, lng) {
 // $(document).on('click', '#AL-stat-list', 
   function initEducationMap(thisState, lat, lng) {
 
-  var location = {lat: lat, lng: lng};
+  let location = {lat: lat, lng: lng};
   console.log(location)
 
       //searching for type term, displaying all items with that tag within given radius
-        var map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
+        let map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
           
           center: location,
           zoom: 8
         });
         
         infowindow = new google.maps.InfoWindow({});
-        var service = new google.maps.places.PlacesService(map); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
+        let service = new google.maps.places.PlacesService(map); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
         service.nearbySearch({ 
           location: location, //research setCenter function so it doesn't throw errors like a turd
           radius: 5000,
@@ -109,16 +110,16 @@ function tagLocation(thisState, lat, lng) {
       // }
       //calling the function to create markers for each result
       function callback(results, status) {
-        var bounds = new google.maps.LatLngBounds();
+        let bounds = new google.maps.LatLngBounds();
           console.log("=====results======", results)
         if(Array.isArray(results)){
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-        var position = new google.maps.LatLng(results[i].geometry.location.lat(), results[i].geometry.location.lng());
+        for (let i = 0; i < results.length; i++) {
+        let position = new google.maps.LatLng(results[i].geometry.location.lat(), results[i].geometry.location.lng());
         bounds.extend(position);
         
 
-        var marker = new google.maps.Marker({
+        let marker = new google.maps.Marker({
         position: position,
         map: map
       });
@@ -138,8 +139,8 @@ function tagLocation(thisState, lat, lng) {
       
       //defining the function for creating location markers, and when they're clicked bringing up information
       function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
+        let placeLoc = place.geometry.location;
+        let marker = new google.maps.Marker({
           map: map,
           position: place.geometry.location
         });
@@ -158,4 +159,7 @@ function tagLocation(thisState, lat, lng) {
 
 //AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s = API key
 
+// initEducationMap(thisState, lat1, lng1);
+    // click function for generating map with universities
+    // $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState));
 
