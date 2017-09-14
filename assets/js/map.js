@@ -8,9 +8,9 @@ var mapMobile;
   // PoiOverlay.prototype = new google.maps.OverlayView();
 
 
-  function initMap(thisState) { //Poi = points of interest
+  function initMap(thisState) { 
 
-    // let showPoi = false //Poi = points of interest
+    let showPoi = false //Poi = points of interest
 
   if (thisState !== undefined && thisState !== -1) {
 
@@ -20,11 +20,20 @@ var mapMobile;
     .then(function(results) {
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
-      tagLocation(thisState, lat1, lng1);
-      // 
-      // if (showPoi = true) {
-      // initEducationMap(thisState, lat1, lng1);
-      // }
+      
+      $('#some-div').on('click', function(event) {
+        event.preventDefault();
+        console.log("button has been clicked");
+        showPoi = true
+      })
+
+      if showPoi = false {
+        tagLocation(thisState, lat1, lng1);
+      }
+      else if (showPoi = true) {
+        initEducationMap(thisState, lat1, lng1);
+      }
+      
     })
     .catch(function(status) {
     });
@@ -166,8 +175,4 @@ function tagLocation(thisState, lat, lng) {
 
 
 //AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s = API key
-
-// initEducationMap(thisState, lat1, lng1);
-    // click function for generating map with universities
-    // $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState));
 
