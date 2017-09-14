@@ -184,7 +184,6 @@ function initiateLanding() {
   $('#menu').on('click', function() {
     $('.tap-target').tapTarget('open');
   });
-  returnToMap('landing');
   initiateInput('landing');
   dropSelection();
   $.scrollify.move('#landing');
