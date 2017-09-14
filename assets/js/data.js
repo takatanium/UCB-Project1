@@ -31,6 +31,7 @@ function getTimeSeries(state, start, end) {
  * @param  {[type]} targetDiv [description]
  * @return {[type]}           [description]
  */
+
 function createRingChart(data,data2, key, targetDiv, size) {
   console.log(targetDiv);
   var width = size, height = size-15, radius = Math.min(width, height) / 2;
@@ -94,7 +95,6 @@ function createRingChart(data,data2, key, targetDiv, size) {
     g2.append("path").attr("d", arc2).style("fill", function(d) { return color(d.data.edu_level);
 
   });
-
 
   /**
   * [type description]

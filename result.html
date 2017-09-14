@@ -71,12 +71,28 @@
 			      </form>
 			    </div>
 			  </nav>
+		  	
+
 		  	<div id="map-row" class="row">
+				<div id="map-col" class="col s12 m6">
+					<div id="floating-panel">
+      					<input type="button" value="Toggle visibility" onclick="overlay.toggle();"></input>
+      					<input type="button" value="Toggle DOM attachment" onclick="overlay.toggleDOM();"></input>
+    				</div>
+
+				</div>
+		  	</div>
+
+		  	<div id="map-row" class="row">
+	
+
 	        <div id="map-col" class="col s12 m6">
+
 	          <div id="map" class="card blue-grey darken-1">
 	            <div class="card-content white-text">
 	              <span class="card-title">Google Map</span>
 	              <p id="printMap">Card to hold Map and associated data</p>
+
 	            </div>
 	          </div>
 	        </div>
@@ -84,8 +100,6 @@
 			<script async defer
     					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s&callback=initMap&libraries=places">
     		</script>
-
-			<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s&libraries=places"></script> -->
 
 	        <div id="stat-col" class="col s12 m6">
 	          <div id="stat">
@@ -96,7 +110,9 @@
 						    </li>
 						    <li>
 						      <div class="collapsible-header"><i class="material-icons">place</i>Statistic Two</div>
-						      <div class="collapsible-body grey lighten-5"><span>Graphs, text, etc. If overflow then use scrollify.</span></div>
+						      <div class="collapsible-body grey lighten-5"><span>Graphs, text, etc. If overflow then use scrollify.</span>
+
+						      </div>
 						    </li>
 						    <li>
 						      <div class="collapsible-header active"><i class="material-icons">whatshot</i>State Info</div>
