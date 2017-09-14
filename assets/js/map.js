@@ -3,10 +3,14 @@ var mapMobile;
 
 // Google Maps function for generating latitude and longitude to be used for placing marker
 // $(document).on('ready', 
+  // let overlay;
+
+  // PoiOverlay.prototype = new google.maps.OverlayView();
+
 
   function initMap(thisState) { //Poi = points of interest
 
-    // let showPoi = false
+    // let showPoi = false //Poi = points of interest
 
   if (thisState !== undefined && thisState !== -1) {
 
@@ -19,7 +23,7 @@ var mapMobile;
       tagLocation(thisState, lat1, lng1);
       // 
       // if (showPoi = true) {
-      initEducationMap(thisState, lat1, lng1);
+      // initEducationMap(thisState, lat1, lng1);
       // }
     })
     .catch(function(status) {
@@ -83,11 +87,15 @@ function tagLocation(thisState, lat, lng) {
     //   position: location,
     //   map: mapMobile
     // });
+
+
 }
 
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
 // $(document).on('click', '#AL-stat-list', 
+  
+
   function initEducationMap(thisState, lat, lng) {
 
   let location = {lat: lat, lng: lng};
