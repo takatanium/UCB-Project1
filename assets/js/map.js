@@ -6,6 +6,8 @@ var mapMobile;
 
   function initMap(thisState) {
 
+    // let showPoi = false
+
   if (thisState !== undefined && thisState !== -1) {
 
     var userLocation =  thisState.capitol + "," + thisState.abbreviation; 
@@ -16,13 +18,14 @@ var mapMobile;
       let lng1 = results[0].geometry.location.lng();
       tagLocation(thisState, lat1, lng1);
       // $(document).on('click', '#' + thisState.abbreviation +'-stat-list', 
-        initEducationMap(thisState, lat1, lng1));
-      
+          if (showPoi = true) {
+        // initEducationMap(thisState, lat1, lng1);
+      }
     })
     .catch(function(status) {
     });
   }
-}
+
 
 // Geocoding the location
 function geoCodeAddress(address) {
@@ -81,7 +84,7 @@ function tagLocation(thisState, lat, lng) {
     //   map: mapMobile
     // });
 }
-
+}
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
 // initEducationMap getting called in line 88 of result.js
