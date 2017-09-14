@@ -6,7 +6,6 @@
  * @return {[type]}       [description]
  */
 function getTimeSeries(state, start, end) {
-  console.log('HIT');
   let statistics = {};
   let stat_keys = stats;
   for (el in stat_keys) {
@@ -22,7 +21,6 @@ function getTimeSeries(state, start, end) {
     statistics["unemployment"].push({"year":i, "unemployment":state.unemployment[i]});
 
   }
-  console.log(statistics);
   return statistics;
 }
 /**
@@ -33,7 +31,6 @@ function getTimeSeries(state, start, end) {
  */
 
 function createRingChart(data,data2, key, targetDiv, size) {
-  console.log(targetDiv);
   var width = size, height = size-15, radius = Math.min(width, height) / 2;
 
   //var theCSV = "age,population\n<5,2704659\n5-13,4499890\n14-17,2159981\n18-24,3853788\n25-44,14106543\n45-64,8819342\n≥65,612463";
@@ -50,7 +47,6 @@ function createRingChart(data,data2, key, targetDiv, size) {
               .attr("class", "tooltip")
               .style("opacity", 0);
 
-  console.log(data);
   var g = svg.selectAll("arc").data(pie(data)).enter().append("g").attr("class", "arc").on("mouseover", function(d) {
     div.transition()
       .duration(200)
@@ -78,7 +74,6 @@ function createRingChart(data,data2, key, targetDiv, size) {
               .attr("class", "tooltip")
               .style("opacity", 0);
 
-  console.log(data2);
   var g2 = svg.selectAll("arc").data(pie(data2)).enter().append("g").attr("class", "arc").on("mouseover", function(d) {
     div2.transition()
       .duration(200)
