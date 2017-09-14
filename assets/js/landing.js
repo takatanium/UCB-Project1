@@ -1,8 +1,8 @@
 //Prevents the default tabbing keyboard event
 $(document).keydown(function(objEvent) {
-    if (objEvent.keyCode == 9)  { // Tab
-        objEvent.preventDefault();
-    }
+  if (objEvent.which == 9) { // Tab
+    objEvent.preventDefault();
+  }
 });
 
 /**
@@ -11,12 +11,25 @@ $(document).keydown(function(objEvent) {
  * @return {null}
  */
 function initiateInput(state) {
+  //prevent keys
+  $('#search-'+state).keydown(function(e) {
+    if (e.keyCode !== 32 && e.keyCode !== 8) {
+      if (e.keyCode < 65 || e.keyCode > 90) {
+        e.preventDefault();
+      }
+    }
+  });
+
   $('#search-'+state).keyup(function(e) {
+    if (e.keyCode !== 32 && e.keyCode !== 8) {
+      if (e.keyCode < 65 || e.keyCode > 90) {
+          e.preventDefault();
+      }
+    }
     let $input = $("#search-"+state);
     let $auto = $("#state-auto-"+state);
     let regex = /^[a-zA-Z\s]*$/;
     if (regex.test($(this).val())) {
-    // if (e.keyCode>=65 && e.keyCode<=90) {
       if ($input.val().trim() === "" && e.keyCode === 32) {
         $input.val($input.val().trim());
       }
@@ -100,7 +113,7 @@ function createAllDivs() {
   }
   $.scrollify({
     section : ".sticky-scroll",
-    scrollSpeed: 1100
+    scrollSpeed: 1500
   });
 }
 
@@ -115,6 +128,7 @@ function populateDataInfo(stateNum) {
   $state.attr('data-info', name);
   $state.on('click', function() {
     $.scrollify.move('#'+name.replace(/\s+/g, '-'));
+    $.scrollify.disable();
   });
   // }
 }
@@ -137,6 +151,7 @@ function populateDropDown(stateNum) {
 function returnToMap(state) {
   $('#map-icon-'+state).on('click', function() {
     $.scrollify.move('#landing');
+    $.scrollify.disable();
   });
 }
 
@@ -170,5 +185,7 @@ function initiateLanding() {
     $('.tap-target').tapTarget('open');
   });
   returnToMap('landing');
+  initiateInput('landing');
   dropSelection();
+  $.scrollify.move('#landing');
 }
