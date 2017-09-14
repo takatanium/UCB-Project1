@@ -5,7 +5,6 @@
  * @param  {[type]} end   [description]
  * @return {[type]}       [description]
  */
-
 function getTimeSeries(state, start, end) {
   console.log('HIT');
   let statistics = {};
@@ -26,14 +25,12 @@ function getTimeSeries(state, start, end) {
   console.log(statistics);
   return statistics;
 }
-
 /**
  * @mimlowe [createRingChart description]
  * @param  {[type]} data      [description]
  * @param  {[type]} targetDiv [description]
  * @return {[type]}           [description]
  */
-
 function createRingChart(data,data2, key, targetDiv, size) {
   console.log(targetDiv);
   var width = size, height = size-15, radius = Math.min(width, height) / 2;
