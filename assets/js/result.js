@@ -40,66 +40,6 @@ function dynamicDiv(currentState) {
       let data = getTimeSeries(thisState, 2013, 2015);
       let eduData = getTimeSeries(thisState, 2015, 2017);
 
-      // //for stat information (text) - Employment
-      // let incomeTitle = statText('Median Income:');
-      // let incomeTitleMobile = statText('Median Income:');
-      // $('#'+thisState.abbreviation+'-employment-stat').append(incomeTitle);
-      // $('#'+thisState.abbreviation+'-employment-stat-mobile').append(incomeTitleMobile);
-      // $('<div>').addClass('chart-median-income-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat');
-      // $('<div>').addClass('chart-median-income-mobile-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat-mobile');
-
-      // createTimeSeries(data["median_income"], "median_income", ".chart-median-income-"+thisState.abbreviation, dimple.plot.line, 350, 150);
-      // createTimeSeries(data["median_income"], "median_income", ".chart-median-income-mobile-"+thisState.abbreviation, dimple.plot.line, 350, 150);
-
-      // let unemploymentTitle = statText('Unemployment:');
-      // let unemploymentTitleMobile = statText('Unemployment:');
-      // $('#'+thisState.abbreviation+'-employment-stat').append(unemploymentTitle);
-      // $('#'+thisState.abbreviation+'-employment-stat-mobile').append(unemploymentTitleMobile);
-      // $('<div>').addClass('chart-unemployment-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat');
-      // $('<div>').addClass('chart-unemployment-mobile-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-employment-stat-mobile');
-
-      // createTimeSeries(eduData["unemployment"], "unemployment", ".chart-unemployment-"+thisState.abbreviation, dimple.plot.line, 350, 150);
-      // createTimeSeries(eduData["unemployment"], "unemployment", ".chart-unemployment-mobile-"+thisState.abbreviation, dimple.plot.line, 350, 150);
-
-      // for education information
-      // let educationLevelTitle = statText('Education Level:');
-      // let educationLevelTitleMobile = statText('Education Level:');
-      // let educationLevelKey = $('<div>').html('<br><span class="badge" id="high_school_key">High School Graduate</span><span class="badge" id="some_college_key">Some College</span>');
-      // let educationLevelKeyMobile = $('<div>').html('<br><span class="badge" id="high_school_key">High School Graduate</span><span class="badge" id="some_college_key">Some College</span><br>');
-
-      // $('#'+thisState.abbreviation+'-education-stat').append(educationLevelTitle);
-      // $('#'+thisState.abbreviation+'-education-stat').append(educationLevelKey);
-      // $('#'+thisState.abbreviation+'-education-stat-mobile').append(educationLevelTitleMobile);
-      // $('#'+thisState.abbreviation+'-education-stat-mobile').append(educationLevelKeyMobile);
-      // $('<div>').addClass('chart-education-level-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-education-stat');
-      // $('<div>').addClass('chart-education-level-mobile-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-education-stat-mobile');
-      // let highSchoolJSON = [{"edu_level" : thisState.high_school_graduation["2017"]},
-      //                       {"edu_level" : (tools.cutDecimal(1.0-thisState.high_school_graduation["2017"]))}];
-      // let collegeJSON = [{"edu_level" : thisState.some_college["2017"]},
-      //                       {"edu_level" : (tools.cutDecimal(1.0-thisState.some_college["2017"]))}];
-
-      // createRingChart(highSchoolJSON, collegeJSON, "high_school_graduation", ".chart-education-level-"+thisState.abbreviation, 265);
-      // createRingChart(highSchoolJSON, collegeJSON, "high_school_graduation", ".chart-education-level-mobile-"+thisState.abbreviation, 265);
-      
-
-
-      // //for stat information (text) - Information
-      // let $stat = $('#'+thisState.abbreviation+'-information-stat');
-      // $stat.html(statText('Capitol: ', thisState.capitol));
-      // $stat.append(statText('Population: ', tools.numberWithCommas(thisState.population["2015"])));
-      // $stat.append(statText('Median Age: ', ''));
-      // let $mobileStat = $('#'+thisState.abbreviation+'-information-stat-mobile');
-      // $mobileStat.html(statText('Capitol: ', thisState.capitol));
-      // $mobileStat.append(statText('Population: ', tools.numberWithCommas(thisState.population["2015"])));
-      // $mobileStat.append(statText('Median Age: ', ''));
-
-      // //for chart generation
-      // $('<div>').addClass('chart-median-age-'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-information-stat');
-      // createTimeSeries(data["median_age"], "median_age", ".chart-median-age-"+thisState.abbreviation, dimple.plot.line, 350, 200);
-      // $('<div>').addClass('chart-mobile'+thisState.abbreviation).appendTo('#'+thisState.abbreviation+'-information-stat-mobile');
-      // let dataMobile = getTimeSeries(thisState, 2013, 2015);
-      // createTimeSeries(dataMobile["median_age"], "median_age", ".chart-mobile"+thisState.abbreviation, dimple.plot.line, 350, 200);
-
       populateInformation(thisState, data, "full");
       populateInformation(thisState, data, "mobile");
 
@@ -113,6 +53,7 @@ function dynamicDiv(currentState) {
       getWikipedia(thisState.wiki_pageid, thisState.name.replace(/\s+/g, '-'));
       toggleScrolling(['.large-card-content','.card-image']);
     }
+
     if (!$('#'+nextState.id).has('nav').length) genContent(nextState);
     if (!$('#'+prevState.id).has('nav').length) genContent(prevState);
 
@@ -130,13 +71,20 @@ function dynamicDiv(currentState) {
       });
     }
 
-    //generate google map
-    //may need to only generate thisState map depending on load time
-    initMap(thisState);
-    // initEducationMap(thisState, lat1, lng1);
-    // click function for generating map with universities
-    // $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState)); //Not sure if this is the right approach, only want universities displayed when "Education Statistics" is clicked
+    initMap(thisState, false);
+    initiateGMapGen(thisState, "Information");
+    initiateGMapGen(thisState, "Education");
   });
+}
+
+function initiateGMapGen(thisState, tab) {
+  $('#' + thisState.abbreviation+'-list-header-'+tab).on("click", function() {
+    if (tab === "Information") {
+      initMap(thisState, false);
+    } else {
+      initMap(thisState, true);
+    }
+  }); 
 }
 
 /**
@@ -398,7 +346,6 @@ function statColGen(state) {
  */
 function displayStats(state, title, icon, active) {
   let $liHeader = $('<div>').addClass('collapsible-header');
-  $liHeader.attr('id', state.abbreviation+'-list-header');
 
   if (active) {
     let $flag = $('<img>').attr('src', 'assets/img/flags/' + state.abbreviation + '.png');
@@ -408,8 +355,10 @@ function displayStats(state, title, icon, active) {
       margin: '2.5px 14.5px 0 0',
     });
     $liHeader.html($flag).append(state.name + ' Information');
+    $liHeader.attr('id', state.abbreviation+'-list-header-Information');
   } else {
     $liHeader.html('<i class="material-icons">' + icon + '</i>'+ title);
+    $liHeader.attr('id', state.abbreviation+'-list-header-'+title.slice(0,title.indexOf(' ')));
   }
   let $liBody = $('<div>').addClass('collapsible-body grey lighten-5');
   $liBody.attr('id', state.abbreviation+'-list-body');

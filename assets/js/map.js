@@ -8,27 +8,27 @@ var mapMobile;
   // PoiOverlay.prototype = new google.maps.OverlayView();
 
 
-  function initMap(thisState) { //Poi = points of interest
+function initMap(thisState, showPoi) { //Poi = points of interest
 
-    // let showPoi = false //Poi = points of interest
+  // let showPoi = false //Poi = points of interest
 
-  if (thisState !== undefined && thisState !== -1) {
+if (thisState !== undefined && thisState !== -1) {
 
-    let userLocation =  thisState.capitol + "," + thisState.abbreviation; 
+  let userLocation =  thisState.capitol + "," + thisState.abbreviation; 
 
-    geoCodeAddress(userLocation)
-    .then(function(results) {
-      let lat1 = results[0].geometry.location.lat();
-      let lng1 = results[0].geometry.location.lng();
+  geoCodeAddress(userLocation)
+  .then(function(results) {
+    let lat1 = results[0].geometry.location.lat();
+    let lng1 = results[0].geometry.location.lng();
+    if (showPoi) {
+      initEducationMap(thisState, lat1, lng1);
+    } else {
       tagLocation(thisState, lat1, lng1);
-      // 
-      // if (showPoi = true) {
-      // initEducationMap(thisState, lat1, lng1);
-      // }
-    })
-    .catch(function(status) {
-    });
-  }
+    }
+  })
+  .catch(function(status) {
+  });
+}
 
 
 // Geocoding the location
@@ -48,7 +48,6 @@ function geoCodeAddress(address) {
 // setting zoom viewport appropriately based on json values (or the abscence thereof)
 function mapZoom (thisState) {
   let zoom;
-    console.log(thisState);
   if(thisState.scale !== undefined) {
     zoom = thisState.scale;
     } 
@@ -56,27 +55,23 @@ function mapZoom (thisState) {
     zoom = 6;
   }
   return zoom;
-  console.log(zoom);
 }
 
 // Generating the map and placing a marker at the location geocoded previously
 function tagLocation(thisState, lat, lng) {
 
-  
-    let location = {lat: lat, lng: lng};
-    console.log(location);
-    console.log('testing',thisState);
+  let location = {lat: lat, lng: lng};
 
-    let zoom = mapZoom(thisState);
+  let zoom = mapZoom(thisState);
 
-    let map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), { 
-    zoom: zoom,
-    center: location
-    });
-    let marker = new google.maps.Marker({
-      position: location,
-      map: map
-    });
+  let map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), { 
+  zoom: zoom,
+  center: location
+  });
+  let marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
 
   //Mobile responsiveness
     // mapMobile = new google.maps.Map(document.getElementById(thisState.abbreviation+'-map'), { 
@@ -87,27 +82,23 @@ function tagLocation(thisState, lat, lng) {
     //   position: location,
     //   map: mapMobile
     // });
-
-
 }
-}
+
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
 // $(document).on('click', '#AL-stat-list', 
   
 
-  function initEducationMap(thisState, lat, lng) {
+function initEducationMap(thisState, lat, lng) {
 
   let location = {lat: lat, lng: lng};
-  console.log(location)
 
-      //searching for type term, displaying all items with that tag within given radius
-        let map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
-          
-          center: location,
-          zoom: 8
-        });
-        
+  //searching for type term, displaying all items with that tag within given radius
+  let map = new google.maps.Map(document.getElementById(thisState.name.replace(/\s+/g, '-')+'-map'), {
+    center: location,
+    zoom: 8
+  });
+    
         infowindow = new google.maps.InfoWindow({});
         let service = new google.maps.places.PlacesService(map); //error: LatLngLiteral: in property lat: not a number...fixed by taking out "typeof"? Test when data.js is working again.
         service.nearbySearch({ 
@@ -115,11 +106,10 @@ function tagLocation(thisState, lat, lng) {
           radius: 5000,
           type: ['university']
         }, callback);
-      // }
+
       //calling the function to create markers for each result
       function callback(results, status) {
         let bounds = new google.maps.LatLngBounds();
-          console.log("=====results======", results)
         if(Array.isArray(results)){
         if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i++) {
@@ -140,34 +130,24 @@ function tagLocation(thisState, lat, lng) {
         })(marker, i));
       }
     }
-  }else {createMarker(results)}
-        console.log(results);
-  }
-        
+  } else {createMarker(results)}
+}
       
-      //defining the function for creating location markers, and when they're clicked bringing up information
-      function createMarker(place) {
-        let placeLoc = place.geometry.location;
-        let marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
+    
+//defining the function for creating location markers, and when they're clicked bringing up information
+function createMarker(place) {
+  let placeLoc = place.geometry.location;
+  let marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location
+  });
 
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          console.log(place.name);
-          infowindow.open(map, this);
-
-})
-      };
-
-    };
-        //need to write code for returning map to just map with capitol marker, clear marker function?
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
+  });
+}
 
 
 //AIzaSyDRdo3AR4eMaeOMWSVTgOmiW6Xu6WLSO6s = API key
-
-// initEducationMap(thisState, lat1, lng1);
-    // click function for generating map with universities
-    // $('#' + thisState.abbreviation +'-stat-list').on("click", initEducationMap(thisState));
 
