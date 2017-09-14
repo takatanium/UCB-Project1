@@ -29,7 +29,7 @@ var mapMobile;
     .catch(function(status) {
     });
   }
-}
+
 
 // Geocoding the location
 function geoCodeAddress(address) {
@@ -90,7 +90,7 @@ function tagLocation(thisState, lat, lng) {
 
 
 }
-
+}
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
 // $(document).on('click', '#AL-stat-list', 

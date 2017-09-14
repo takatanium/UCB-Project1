@@ -5,7 +5,6 @@
  * @param  {[type]} end   [description]
  * @return {[type]}       [description]
  */
-
 function getTimeSeries(state, start, end) {
   console.log('HIT');
   let statistics = {};
@@ -26,7 +25,6 @@ function getTimeSeries(state, start, end) {
   console.log(statistics);
   return statistics;
 }
-
 /**
  * @mimlowe [createRingChart description]
  * @param  {[type]} data      [description]
@@ -97,7 +95,6 @@ function createRingChart(data,data2, key, targetDiv, size) {
     g2.append("path").attr("d", arc2).style("fill", function(d) { return color(d.data.edu_level);
 
   });
-
 
   /**
   * [type description]
