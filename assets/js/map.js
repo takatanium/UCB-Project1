@@ -15,8 +15,7 @@ var mapMobile;
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
       tagLocation(thisState, lat1, lng1);
-      // $(document).on('click', '#' + thisState.abbreviation +'-stat-list', 
-        initEducationMap(thisState, lat1, lng1));
+      $('.title-stat').on('click', initEducationMap(thisState, lat1, lng1));
       
     })
     .catch(function(status) {
@@ -84,8 +83,7 @@ function tagLocation(thisState, lat, lng) {
 
 // =======================================================================
 // GENERATING UNIVERSITY MARKERS
-// initEducationMap getting called in line 88 of result.js
-// $(document).on('click', '#' + thisState.abbreviation +'-stat-list', 
+// $(document).on('click', '#AL-stat-list', 
   function initEducationMap(thisState, lat, lng) {
 
   var location = {lat: lat, lng: lng};
@@ -131,9 +129,9 @@ function tagLocation(thisState, lat, lng) {
       }
     }
   }else {createMarker(results)}
-        
+        console.log(results);
   }
-}        
+        
       
       //defining the function for creating location markers, and when they're clicked bringing up information
       function createMarker(place) {
@@ -145,10 +143,13 @@ function tagLocation(thisState, lat, lng) {
 
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.setContent(place.name);
+          console.log(place.name);
           infowindow.open(map, this);
 
 })
       };
+
+    };
         //need to write code for returning map to just map with capitol marker, clear marker function?
 
 
