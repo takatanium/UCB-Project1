@@ -13,8 +13,8 @@ function initMap(thisState) {
       let lat1 = results[0].geometry.location.lat();
       let lng1 = results[0].geometry.location.lng();
       tagLocation(thisState, lat1, lng1);
-      // initEducationMap(thisState, lat1, lng1);
-
+      // $(document).on('click', '#' + thisState.abbreviation +'-stat-list', 
+        initEducationMap(thisState, lat1, lng1));
       
     })
     .catch(function(status) {
